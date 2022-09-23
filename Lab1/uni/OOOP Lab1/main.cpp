@@ -1,113 +1,118 @@
 #include <iostream>
 #include <list>
 #include <vector>
-#include <stack>
 
 using namespace std;
+
+// структура для зберігання даних у вершинах графа
+template <typename T> struct AdjListNode
+{
+public:
+    T data;
+    int number{};
+
+    // Конструктор
+    explicit AdjListNode(T data, int number = 0);
+};
+
+template <typename T> AdjListNode<T>::AdjListNode(T data, int n)
+{
+    this->data = data;
+    this->number = n;
+}
 
 // Клас для графу, представленого структурою суміжності
 template <typename T> class Graph
 {
     // Кількість вершин
-    int V {};
+    int V{};
 
-    // Вказівник на список суміжних вершин
-    vector<list<T>> adj;
+    // Список суміжних вершин
+    vector<list<AdjListNode<T>>> adj;
 public:
 
     // Конструктор
-    explicit Graph(int V);
+    explicit Graph(T V);
 
     // Додавання ребра
-    void addEdge(int v, int w);
+    void addEdge(int v, AdjListNode<T> w);
 
     // BFS обхід
-    void BFS(int s);
+    void BFS(AdjListNode<T> v);
 
-    // DFS обхід
-    void DFS(int s);
+    // DFS обхід (функція виклику)
+    void DFS(AdjListNode<T> v);
+
+    // DFS обхід (допоміжна функція)
+    void DFSUtil(AdjListNode<T> v, vector<bool> &visited);
 };
 
-template <typename T> Graph<T>::Graph(int V)
+template <typename T> Graph<T>::Graph(T V)
 {
     this->V = V;
     adj.resize(V);
 }
 
-template <typename T>
-void Graph<T>::addEdge(int v, int w)
+template <typename T> void Graph<T>::addEdge(int v, AdjListNode<T> w)
 {
     // Додати вершину w до списку v
     adj[v].push_back(w);
 }
 
-template <typename T> void Graph<T>::BFS(int s)
+template <typename T> void Graph<T>::BFS(AdjListNode<T> v)
 {
     // Ні одна вершина ще не відвідана
     vector<bool> visited;
     visited.resize(V,false);
 
     // Черга для BFS
-    list<int> queue;
+    list<AdjListNode<T>> queue;
 
     // Відвідуємо поточний вузол та додаємо до черги
-    visited[s] = true;
-    queue.push_back(s);
+    visited[v.number] = true;
+    queue.push_back(v);
 
     while(!queue.empty())
     {
         // Видалення вузла з черги
-        s = queue.front();
-        cout << s << " ";
+        v = queue.front();
+        cout << v.number << " - " << v.data << "    ";
         queue.pop_front();
 
         // Отримуємо всі суміжні вершини вилученої з черги вершини s.
         // Якщо сусідня вершина не відвідана,
-        // відвідуємо її й додаємо до черги
-        for (auto adjacent: adj[s])
+        // відвідуємо її й додаємо до черги.
+        for (AdjListNode<T> adjacent: adj[v.number])
         {
-            if (!visited[adjacent])
+            if (!visited[adjacent.number])
             {
-                visited[adjacent] = true;
+                visited[adjacent.number] = true;
                 queue.push_back(adjacent);
             }
         }
     }
+    cout << endl;
 }
 
-template <typename T> void Graph<T>::DFS(int s)
+template <typename T> void Graph<T>::DFS(AdjListNode<T> v)
 {
     // Ні одна вершина ще не відвідана
     vector<bool> visited(V, false);
+    DFSUtil(v, visited);
+}
 
-    // Стек для DFS
-    stack<int> stack;
+template <typename T> void Graph<T>::DFSUtil(AdjListNode<T> v, vector<bool> &visited)
+{
+    // Відвідуємо поточну вершину
+    visited[v.number] = true;
+    cout << v.number << " - " << v.data << "    ";
 
-    // Пушимо поточний вузол в чергу
-    stack.push(s);
-
-    while (!stack.empty())
+    // Рекурсивно проходимо інші вершини
+    for (AdjListNode<T> adjacent: adj[v.number])
     {
-        // Видаляємо вершину зі стеку
-        int v = stack.top();
-        stack.pop();
-
-        // Стек може містити одну й ту саму вершину двічі,
-        // тому перевіряємо, чи була вершина відвідана раніше
-        if (!visited[v])
+        if (!visited[adjacent.number])
         {
-            cout << v << " ";
-            visited[v] = true;
-        }
-
-        // Відвідуємо всі сусідні вершини.
-        // Якщо сусідня вершина не була відвідана, пушимо її до стеку
-        for (auto i = adj[v].begin(); i != adj[v].end(); ++i)
-        {
-            if (!visited[*i])
-            {
-                stack.push(*i);
-            }
+            DFSUtil(adjacent, visited);
         }
     }
 }
@@ -115,20 +120,23 @@ template <typename T> void Graph<T>::DFS(int s)
 int main()
 {
     Graph<int> g(4);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
-    g.addEdge(2, 3);
-    g.addEdge(3, 3);
-    const int s = 2;
+    AdjListNode<int> v1(100, 1);
+    g.addEdge(0, v1);
+    AdjListNode<int> v2(200, 2);
+    g.addEdge(0, v2);
+    AdjListNode<int> v3(50, 2);
+    g.addEdge(1, v3);
+    AdjListNode<int> v4(100, 0);
+    g.addEdge(2, v4);
+    AdjListNode<int> v5(200, 3);
+    g.addEdge(2, v5);
 
     cout << "BST: ";
-    cout << "(Починаючи з вершини номер " << s << ")\n";
-    g.BFS(s);
-    cout << endl;
+    cout << "(Починаючи з вершини номер " << v2.number << ")\n";
+    g.BFS(v2);
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     cout << "DST: ";
-    cout << "(Починаючи з вершини номер " << s << ")\n";
-    g.DFS(s);
+    cout << "(Починаючи з вершини номер " << v2.number << ")\n";
+    g.DFS(v2);
     return 0;
 }
