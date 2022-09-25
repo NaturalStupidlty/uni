@@ -199,8 +199,7 @@ int main()
     cout << "DST: ";
     cout << "(Починаючи з вершини номер " << v2.number << ")\n";
     g.DFS(v2);
-
-    cout << endl;
+    cout << "\n\n";
     if (g.isStronglyConnected())
     {
         printf("%s", "Graph is strongly connected");
