@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// структура для зберігання даних у вершинах графа
+// Структура для зберігання даних у вершинах графа
 template <typename T1, typename T2> struct AdjListNode
 {
 public:
