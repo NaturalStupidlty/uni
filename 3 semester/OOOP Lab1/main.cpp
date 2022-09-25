@@ -25,21 +25,28 @@ template <typename T1, typename T2> AdjListNode<T1, T2>::AdjListNode(T1 vertexDa
 // Клас для графу, представленого списком суміжності
 template <typename T1, typename T2> class Graph
 {
+private:
     // Кількість вершин
     int V {};
 
     // Список суміжних вершин
     vector<list<AdjListNode<T1, T2>>> adj;
-public:
 
+public:
     // Конструктор
-    explicit Graph(int V);
+    explicit Graph(int V = 1);
 
     // Додавання ребра
     void addEdge(int v, AdjListNode<T1, T2> w);
 
     // Додавання вершини
     void addVertex(list<AdjListNode<T1, T2>>);
+
+    //
+    bool isStronglyConnected();
+
+    //
+    bool isUnilaterallyConnected();
 
     // BFS обхід
     void BFS(AdjListNode<T1, T2> v);
@@ -68,6 +75,48 @@ template <typename T1, typename T2> void Graph<T1, T2>::addVertex(list<AdjListNo
     this->V++;
     this->adj.resize(V);
     adj[V] = l;
+}
+
+template <typename T1, typename T2> bool Graph<T1, T2>::isStronglyConnected()
+{
+    for (int i = 0; i < adj.size(); ++i)
+    {
+        if (adj[i].empty())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename T1, typename T2> bool Graph<T1, T2>::isUnilaterallyConnected()
+{
+    bool unilaterally = false;
+    int v = 0;
+    for (int i = 0; i < adj.size(); ++i)
+    {
+        if (adj[i].empty())
+        {
+            v = i;
+            unilaterally = true;
+            break;
+        }
+    }
+    if (unilaterally)
+    {
+        for (int i = 0; i < adj.size(); ++i)
+        {
+            for (auto it = adj[i].begin(); it != adj[i].end(); ++it)
+            {
+                if (it->number == v)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    return true;
 }
 
 template <typename T1, typename T2> void Graph<T1, T2>::BFS(AdjListNode<T1, T2> v)
@@ -131,6 +180,7 @@ template <typename T1, typename T2> void Graph<T1, T2>::DFSUtil(AdjListNode<T1, 
 int main()
 {
     Graph<int, float> g(4);
+
     AdjListNode<int, float> v1(100, 5.5, 1);
     g.addEdge(0, v1);
     AdjListNode<int, float> v2(200, 1.2,  2);
@@ -149,5 +199,25 @@ int main()
     cout << "DST: ";
     cout << "(Починаючи з вершини номер " << v2.number << ")\n";
     g.DFS(v2);
+
+    cout << endl;
+    if (g.isStronglyConnected())
+    {
+        printf("%s", "Graph is strongly connected");
+    }
+    else
+    {
+        printf("%s", "Graph is NOT strongly connected");
+    }
+    cout << endl;
+    if (g.isUnilaterallyConnected())
+    {
+        printf("%s", "Graph is unilaterally connected");
+    }
+    else
+    {
+        printf("%s", "Graph is NOT unilaterally connected");
+    }
+    cout << endl;
     return 0;
 }
