@@ -5,78 +5,79 @@
 using namespace std;
 
 // структура для зберігання даних у вершинах графа
-template <typename T> struct AdjListNode
+template <typename T1, typename T2> struct AdjListNode
 {
 public:
-    T data;
+    T1 vertexData;
     int number {};
-
+    T2 edgeData;
     // Конструктор
-    explicit AdjListNode(T data, int number = 0);
+    explicit AdjListNode(T1 vertexData, T2 edgeData, int number = 0);
 };
 
-template <typename T> AdjListNode<T>::AdjListNode(T data, int n)
+template <typename T1, typename T2> AdjListNode<T1, T2>::AdjListNode(T1 vertexData, T2 edgeData, int n)
 {
-    this->data = data;
+    this->vertexData = vertexData;
+    this->edgeData = edgeData;
     this->number = n;
 }
 
-// Клас для графу, представленого структурою суміжності
-template <typename T> class Graph
+// Клас для графу, представленого списком суміжності
+template <typename T1, typename T2> class Graph
 {
     // Кількість вершин
     int V {};
 
     // Список суміжних вершин
-    vector<list<AdjListNode<T>>> adj;
+    vector<list<AdjListNode<T1, T2>>> adj;
 public:
 
     // Конструктор
-    explicit Graph(T V);
+    explicit Graph(int V);
 
     // Додавання ребра
-    void addEdge(int v, AdjListNode<T> w);
+    void addEdge(int v, AdjListNode<T1, T2> w);
 
     // Додавання вершини
-    void addVertex(list<AdjListNode<T>>);
+    void addVertex(list<AdjListNode<T1, T2>>);
 
     // BFS обхід
-    void BFS(AdjListNode<T> v);
+    void BFS(AdjListNode<T1, T2> v);
 
     // DFS обхід (функція виклику)
-    void DFS(AdjListNode<T> v);
+    void DFS(AdjListNode<T1, T2> v);
 
     // DFS обхід (допоміжна функція)
-    void DFSUtil(AdjListNode<T> v, vector<bool> &visited);
+    void DFSUtil(AdjListNode<T1, T2> v, vector<bool> &visited);
 };
 
-template <typename T> Graph<T>::Graph(T V)
+template <typename T1, typename T2> Graph<T1, T2>::Graph(int V)
 {
     this->V = V;
     adj.resize(V);
 }
 
-template <typename T> void Graph<T>::addEdge(int v, AdjListNode<T> w)
+template <typename T1, typename T2> void Graph<T1, T2>::addEdge(int v, AdjListNode<T1, T2> w)
 {
     // Додати вершину w до списку v
     adj[v].push_back(w);
 }
 
-template <typename T> void Graph<T>::addVertex(list<AdjListNode<T>> l)
+template <typename T1, typename T2> void Graph<T1, T2>::addVertex(list<AdjListNode<T1, T2>> l)
 {
     this->V++;
     this->adj.resize(V);
     adj[V] = l;
 }
 
-template <typename T> void Graph<T>::BFS(AdjListNode<T> v)
+template <typename T1, typename T2> void Graph<T1, T2>::BFS(AdjListNode<T1, T2> v)
 {
     // Ні одна вершина ще не відвідана
     vector<bool> visited;
     visited.resize(V,false);
 
     // Черга для BFS
-    list<AdjListNode<T>> queue;
+    list<AdjListNode<T1, T2>> queue;
 
     // Відвідуємо поточний вузол та додаємо до черги
     visited[v.number] = true;
@@ -86,13 +87,13 @@ template <typename T> void Graph<T>::BFS(AdjListNode<T> v)
     {
         // Видалення вузла з черги
         v = queue.front();
-        cout << v.number << " - " << v.data << "    ";
+        cout << v.number << " - " << v.vertexData << " - " << v.edgeData << "    ";
         queue.pop_front();
 
         // Отримуємо всі суміжні вершини вилученої з черги вершини s.
         // Якщо сусідня вершина не відвідана,
         // відвідуємо її й додаємо до черги.
-        for (AdjListNode<T> adjacent: adj[v.number])
+        for (AdjListNode<T1, T2> adjacent: adj[v.number])
         {
             if (!visited[adjacent.number])
             {
@@ -104,21 +105,21 @@ template <typename T> void Graph<T>::BFS(AdjListNode<T> v)
     cout << endl;
 }
 
-template <typename T> void Graph<T>::DFS(AdjListNode<T> v)
+template <typename T1, typename T2> void Graph<T1, T2>::DFS(AdjListNode<T1, T2> v)
 {
     // Ні одна вершина ще не відвідана
     vector<bool> visited(V, false);
     DFSUtil(v, visited);
 }
 
-template <typename T> void Graph<T>::DFSUtil(AdjListNode<T> v, vector<bool> &visited)
+template <typename T1, typename T2> void Graph<T1, T2>::DFSUtil(AdjListNode<T1, T2> v, vector<bool> &visited)
 {
     // Відвідуємо поточну вершину
     visited[v.number] = true;
-    cout << v.number << " - " << v.data << "    ";
+    cout << v.number << " - " << v.vertexData << " - " << v.edgeData << "    ";
 
     // Рекурсивно проходимо інші вершини
-    for (AdjListNode<T> adjacent: adj[v.number])
+    for (AdjListNode<T1, T2> adjacent: adj[v.number])
     {
         if (!visited[adjacent.number])
         {
@@ -129,16 +130,16 @@ template <typename T> void Graph<T>::DFSUtil(AdjListNode<T> v, vector<bool> &vis
 
 int main()
 {
-    Graph<int> g(4);
-    AdjListNode<int> v1(100, 1);
+    Graph<int, float> g(4);
+    AdjListNode<int, float> v1(100, 5.5, 1);
     g.addEdge(0, v1);
-    AdjListNode<int> v2(200, 2);
+    AdjListNode<int, float> v2(200, 1.2,  2);
     g.addEdge(0, v2);
-    AdjListNode<int> v3(50, 2);
+    AdjListNode<int, float> v3(50, 10.3, 2);
     g.addEdge(1, v3);
-    AdjListNode<int> v4(100, 0);
+    AdjListNode<int, float> v4(100, 42.69, 0);
     g.addEdge(2, v4);
-    AdjListNode<int> v5(200, 3);
+    AdjListNode<int, float> v5(200, 69.69, 3);
     g.addEdge(2, v5);
 
     cout << "BST: ";
