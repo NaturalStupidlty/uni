@@ -12,24 +12,24 @@ template <typename vertexT, typename edgeT> class MatrixGraph: public Graph<vert
 {
 private:
     // Матриця суміжності
-    vector<vector<Data<vertexT, edgeT>>> matrix;
+    vector<vector<Data<vertexT, edgeT>>> adjacencyMatrix;
 
     // DFS обхід (допоміжна функція)
-    void DFSUtil(Data<vertexT, edgeT> v, std::vector<bool> &visited, bool print = false)
+    void DFSUtil(Data<vertexT, edgeT> vertex, std::vector<bool> &visited, bool print = false)
     {
         // Відвідуємо поточну вершину
-        visited[v.number] = true;
+        visited[vertex.number] = true;
         if (print)
         {
-            cout << v.number;
+            cout << vertex.number;
         }
 
         // Рекурсивно проходимо інші вершини
-        for (auto i = 0; i < matrix[v.number].size(); ++i)
+        for (auto i = 0; i < adjacencyMatrix[vertex.number].size(); ++i)
         {
-            if (matrix[v.number][i].number >= 0 and !visited[matrix[v.number][i].number])
+            if (adjacencyMatrix[vertex.number][i].number >= 0 and !visited[adjacencyMatrix[vertex.number][i].number])
             {
-                DFSUtil(matrix[v.number][i], visited, print);
+                DFSUtil(adjacencyMatrix[vertex.number][i], visited, print);
             }
         }
     }
@@ -46,7 +46,7 @@ public:
                 Data<vertexT, edgeT> data;
                 line.push_back(data);
             }
-            matrix.push_back(line);
+            adjacencyMatrix.push_back(line);
         }
     }
 
@@ -55,16 +55,16 @@ public:
     virtual ~MatrixGraph() = default;
 
     // Додавання ребра
-    void addEdge(int v, int w, vertexT vertexData, edgeT edgeData) override
+    void addEdge(int startVertex, int endVertex, vertexT vertexData, edgeT edgeData) override
     {
-        if (v >= 0 and w >= 0)
+        if (startVertex >= 0 and endVertex >= 0)
         {
-            Data<vertexT, edgeT> edge(vertexData, edgeData, w);
-            this->matrix[v][w] = edge;
+            Data<vertexT, edgeT> edge(vertexData, edgeData, endVertex);
+            this->adjacencyMatrix[startVertex][endVertex] = edge;
         }
         else
         {
-            int error = 1;
+            int error = 2;
             printError(error);
         }
     }
@@ -73,11 +73,11 @@ public:
     MatrixGraph<vertexT, edgeT> getTransposed()
     {
         MatrixGraph<vertexT, edgeT> transposedGraph(this->numberOfVertices);
-        for (int i = 0; i < matrix.size(); ++i)
+        for (int i = 0; i < adjacencyMatrix.size(); ++i)
         {
-            for(int j = 0; j < matrix.size(); ++j)
+            for(int j = 0; j < adjacencyMatrix.size(); ++j)
             {
-                transposedGraph.matrix[i][j] = matrix[j][i];
+                transposedGraph.adjacencyMatrix[i][j] = adjacencyMatrix[j][i];
             }
         }
         return transposedGraph;
@@ -95,9 +95,9 @@ public:
         {
             for (j = 0; this->numberOfVertices; ++j)
             {
-                if (matrix[i][j].number >= 0)
+                if (adjacencyMatrix[i][j].number >= 0)
                 {
-                    DFSUtil(matrix[i][j], visited);
+                    DFSUtil(adjacencyMatrix[i][j], visited);
                     break;
                 }
             }
@@ -118,7 +118,7 @@ public:
         visited.resize(this->numberOfVertices,false);
 
         // DFS другий раз
-        DFSUtil(matrix[i][j], visited);
+        DFSUtil(adjacencyMatrix[i][j], visited);
 
         // Перевіряжмо чи відвідали всі вершини
         for (int k = 0; k < this->numberOfVertices; ++k)
@@ -132,7 +132,7 @@ public:
     }
 
     // Знаходження відстані між двома вершинами
-    int findDistance(int v, int w) override
+    int findDistance(int startVertex, int endVertex) override
     {
         vector<bool> visited;
         vector<int> distance;
@@ -143,42 +143,42 @@ public:
         queue<int> queue;
 
         // Відвідуємо поточний вузол та додаємо до черги
-        visited[v] = true;
-        queue.push(v);
+        visited[startVertex] = true;
+        queue.push(startVertex);
 
         while(!queue.empty())
         {
             // Видалення вузла з черги
-            v = queue.front();
+            startVertex = queue.front();
             queue.pop();
-            distance[v] = distance[v] + 1;
+            distance[startVertex] = distance[startVertex] + 1;
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
             // Якщо сусідня вершина не відвідана,
             // відвідуємо її й додаємо до черги.
-            for (auto i = 0; i < matrix[v].size(); ++i)
+            for (auto i = 0; i < adjacencyMatrix[startVertex].size(); ++i)
             {
-                if (matrix[v][i].number >= 0 and !visited[matrix[v][i].number])
+                if (adjacencyMatrix[startVertex][i].number >= 0 and !visited[adjacencyMatrix[startVertex][i].number])
                 {
-                    queue.push(matrix[v][i].number);
-                    visited[matrix[v][i].number] = true;
+                    queue.push(adjacencyMatrix[startVertex][i].number);
+                    visited[adjacencyMatrix[startVertex][i].number] = true;
                 }
             }
         }
-        return distance[w];
+        return distance[endVertex];
     }
 
     // BFS обхід
-    void BFS(int v) override
+    void BFS(int vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних
         Data<vertexT, edgeT> w;
-        for (int i = 0; i < matrix.size(); ++i)
+        for (int i = 0; i < adjacencyMatrix.size(); ++i)
         {
-            if (matrix[i][v].number == v)
+            if (adjacencyMatrix[i][vertex].number == vertex)
             {
-                w = matrix[i][v];
+                w = adjacencyMatrix[i][vertex];
             }
         }
 
@@ -203,12 +203,12 @@ public:
             // Отримуємо всі суміжні вершини вилученої з черги вершини w.
             // Якщо сусідня вершина не відвідана,
             // відвідуємо її й додаємо до черги.
-            for (auto i = 0; i < matrix[w.number].size(); ++i)
+            for (auto i = 0; i < adjacencyMatrix[w.number].size(); ++i)
             {
-                if (matrix[w.number][i].number >= 0 and !visited[matrix[w.number][i].number])
+                if (adjacencyMatrix[w.number][i].number >= 0 and !visited[adjacencyMatrix[w.number][i].number])
                 {
-                    queue.push(matrix[w.number][i]);
-                    visited[matrix[w.number][i].number] = true;
+                    queue.push(adjacencyMatrix[w.number][i]);
+                    visited[adjacencyMatrix[w.number][i].number] = true;
                 }
             }
         }
@@ -216,16 +216,16 @@ public:
     }
 
     // DFS обхід (функція виклику)
-    void DFS(int v) override
+    void DFS(int vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних
         Data<vertexT, edgeT> w;
-        for (int i = 0; i < matrix.size(); ++i)
+        for (int i = 0; i < adjacencyMatrix.size(); ++i)
         {
-            if (matrix[i][v].number == v)
+            if (adjacencyMatrix[i][vertex].number == vertex)
             {
-                w = matrix[i][v];
+                w = adjacencyMatrix[i][vertex];
             }
         }
 
@@ -234,7 +234,7 @@ public:
         DFSUtil(w, visited, true);
     }
 
-    /*
+/*
     // Перевірка на часткову зв'язність
     bool isUnilaterallyConnected()
     {

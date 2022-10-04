@@ -12,14 +12,15 @@ protected:
 
     // Коструктор
     explicit Graph(int numberOfVertices = 1)
-    {
+    {;
         if (numberOfVertices > 0)
         {
             this->numberOfVertices = numberOfVertices;
         }
         else
         {
-            printError(2);
+            int error = 1;
+            printError(error);
         }
     }
 
@@ -29,19 +30,19 @@ protected:
 
 public:
     // Додавання ребра
-    virtual void addEdge(int v, int w, vertexT vertexData, edgeT edgeData) = 0;
+    virtual void addEdge(int startVertex, int endVertex, vertexT vertexData, edgeT edgeData) = 0;
 
     // Перевірка зв'язності
     virtual bool isConnected() = 0;
 
     // Відстань між двома заданими вершинами
-    virtual int findDistance(int v, int w) = 0;
+    virtual int findDistance(int startVertex, int endVertex) = 0;
 
     // BFS обхід
-    virtual void BFS(int v) = 0;
+    virtual void BFS(int vertex) = 0;
 
     // DFS обхід
-    virtual void DFS(int v) = 0;
+    virtual void DFS(int vertex) = 0;
 };
 
 #endif //OOOP_LAB1_GRAPH_H

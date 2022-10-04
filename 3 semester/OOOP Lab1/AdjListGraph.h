@@ -20,20 +20,20 @@ template <typename vertexT, typename edgeT> class AdjListGraph: public Graph<ver
 {
 private:
     // Список суміжних вершин
-    vector<list<Data<vertexT, edgeT>>> adj;
+    vector<list<Data<vertexT, edgeT>>> adjacencyList;
 
     // DFS обхід (допоміжна функція)
-    void DFSUtil(Data<vertexT, edgeT> v, vector<bool> &visited, bool print = false)
+    void DFSUtil(Data<vertexT, edgeT> vertex, vector<bool> &visited, bool print = false)
     {
         // Відвідуємо поточну вершину
-        visited[v.number] = true;
+        visited[vertex.number] = true;
         if (print)
         {
-            cout << v.number;
+            cout << vertex.number;
         }
 
         // Рекурсивно проходимо інші вершини
-        for (Data<vertexT, edgeT> adjacent: adj[v.number])
+        for (Data<vertexT, edgeT> adjacent: adjacencyList[vertex.number])
         {
             if (!visited[adjacent.number])
             {
@@ -46,7 +46,7 @@ public:
     // Конструктор
     explicit AdjListGraph(int numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
     {
-        adj.resize(numberOfVertices);
+        adjacencyList.resize(numberOfVertices);
     }
 
     // Віртуальний деструктор для коректної
@@ -54,15 +54,16 @@ public:
     virtual ~AdjListGraph() = default;
 
     // Додавання ребра
-    void addEdge(int v, int w, vertexT vertexData, edgeT edgeData) override {
-        if (v >= 0 and w >= 0)
+    void addEdge(int startVertex, int endVertex, vertexT vertexData, edgeT edgeData) override
+    {
+        if (startVertex >= 0 and endVertex >= 0)
         {
-            Data<vertexT, edgeT> edge(vertexData, edgeData, w);
-            adj[v].push_back(edge);
+            Data<vertexT, edgeT> edge(vertexData, edgeData, endVertex);
+            adjacencyList[startVertex].push_back(edge);
         }
         else
         {
-            int error = 1;
+            int error = 2;
             printError(error);
         }
     }
@@ -71,12 +72,12 @@ public:
     AdjListGraph<vertexT, edgeT> getTransposed()
     {
         AdjListGraph<vertexT, edgeT> newGraph(this->numberOfVertices);
-        for (int v = 0; v < adj.size(); ++v)
+        for (int v = 0; v < adjacencyList.size(); ++v)
         {
-            for (auto it = newGraph.adj[v].begin(); it != newGraph.adj[v].end(); ++it)
+            for (auto it = newGraph.adjacencyList[v].begin(); it != newGraph.adjacencyList[v].end(); ++it)
             {
                 Data<vertexT, edgeT> data((*it).vertexData, (*it).edgeData, v);
-                newGraph.adj[(*it).number].push_back(data);
+                newGraph.adjacencyList[(*it).number].push_back(data);
             }
         }
         return newGraph;
@@ -89,7 +90,7 @@ public:
         vector<bool> visited(this->numberOfVertices, false);
 
         // DFS перший раз
-        DFSUtil(*(adj[0].begin()), visited);
+        DFSUtil(*(adjacencyList[0].begin()), visited);
 
         // Перевіряємо чи відвідали всі вершини
         for (int i = 0; i < this->numberOfVertices; ++i)
@@ -106,7 +107,7 @@ public:
         visited.resize(this->numberOfVertices,false);
 
         // DFS другий раз
-        DFSUtil(*(adj[0].begin()), visited);
+        DFSUtil(*(adjacencyList[0].begin()), visited);
 
         // Перевіряжмо чи відвідали всі вершини
         for (int i = 0; i < this->numberOfVertices; ++i)
@@ -120,7 +121,7 @@ public:
     }
 
     // Знаходження відстані між двома вершинами
-    int findDistance(int v, int w) override
+    int findDistance(int startVertex, int endVertex) override
     {
         vector<bool> visited(this->numberOfVertices,false);
         vector<int> distance(this->numberOfVertices, 0);
@@ -129,20 +130,20 @@ public:
         queue<int> queue;
 
         // Відвідуємо поточний вузол та додаємо до черги
-        visited[v] = true;
-        queue.push(v);
+        visited[startVertex] = true;
+        queue.push(startVertex);
 
         while(!queue.empty())
         {
             // Видалення вузла з черги
-            v = queue.front();
+            startVertex = queue.front();
             queue.pop();
-            distance[v] = distance[v] + 1;
+            distance[startVertex] = distance[startVertex] + 1;
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
             // Якщо сусідня вершина не відвідана,
             // відвідуємо її й додаємо до черги.
-            for (Data<vertexT, edgeT> adjacent: adj[v])
+            for (Data<vertexT, edgeT> adjacent: adjacencyList[startVertex])
             {
                 if (!visited[adjacent.number])
                 {
@@ -151,20 +152,20 @@ public:
                 }
             }
         }
-        return distance[w];
+        return distance[endVertex];
     }
 
     // BFS обхід
-    void BFS(int v) override
+    void BFS(int vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних
         Data<vertexT, edgeT> w;
-        for (int i = 0; i < adj.size(); ++i)
+        for (int i = 0; i < adjacencyList.size(); ++i)
         {
-            for (Data<vertexT, edgeT> adjacent: adj[i])
+            for (Data<vertexT, edgeT> adjacent: adjacencyList[i])
             {
-                if (adjacent.number == v)
+                if (adjacent.number == vertex)
                 {
                     w = adjacent;
                     break;
@@ -192,7 +193,7 @@ public:
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
             // Якщо сусідня вершина не відвідана,
             // відвідуємо її й додаємо до черги.
-            for (Data<vertexT, edgeT> adjacent: adj[w.number])
+            for (Data<vertexT, edgeT> adjacent: adjacencyList[w.number])
             {
                 if (!visited[adjacent.number])
                 {
@@ -205,16 +206,16 @@ public:
     }
 
     // DFS обхід (функція виклику)
-    void DFS(int v) override
+    void DFS(int vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних
         Data<vertexT, edgeT> w;
-        for (int i = 0; i < adj.size(); ++i)
+        for (int i = 0; i < adjacencyList.size(); ++i)
         {
-            for (Data<vertexT, edgeT> adjacent: adj[i])
+            for (Data<vertexT, edgeT> adjacent: adjacencyList[i])
             {
-                if (adjacent.number == v)
+                if (adjacent.number == vertex)
                 {
                     w = adjacent;
                     break;
@@ -258,7 +259,6 @@ public:
         return true;
     }
 */
-
 };
 
 #endif //OOOP_LAB1_ADJLISTGRAPH_H
