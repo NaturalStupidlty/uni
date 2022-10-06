@@ -1,5 +1,7 @@
-#include "AdjListGraph.h"
-#include "MatrixGraph.h"
+#include "Source/AdjListGraph.h"
+#include "Source/MatrixGraph.h"
+#include "Source/DateTime.h"
+
 
 using std::cout;
 using std::cin;
@@ -9,11 +11,11 @@ int main()
 {
     int numberOfVertices = 4;
 
-    AdjListGraph<int, float> adjList(numberOfVertices);
-    Graph<int, float>& graph{adjList};
+/*    AdjListGraph<int, float> adjList(numberOfVertices);
+    Graph<int, float>& graph{adjList};*/
 
-/*    MatrixGraph<int, float> matrix(numberOfVertices);
-    Graph<int, float>& graph{matrix};*/
+    MatrixGraph<int, float> matrix(numberOfVertices);
+    Graph<int, float>& graph{matrix};
 
     graph.addEdge(0, 1, 100, 5.5);
     graph.addEdge(0, 2, 200, 1.2);

@@ -8,6 +8,6 @@ using std::cout;
 using std::endl;
 using std::map;
 
-void printError(int error);
+void printError(uint error);
 
 #endif //OOOP_LAB1_ERRORS_H

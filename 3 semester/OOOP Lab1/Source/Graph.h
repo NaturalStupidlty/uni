@@ -4,14 +4,15 @@
 #include "Errors.h"
 
 // Базовий клас графу
-template <typename vertexT, typename edgeT> class Graph
+template <typename vertexT, typename edgeT>
+class Graph
 {
 protected:
     // Кількість вершин
-    int numberOfVertices{};
+    uint numberOfVertices{};
 
     // Коструктор
-    explicit Graph(int numberOfVertices = 1)
+    explicit Graph(uint numberOfVertices = 1)
     {;
         if (numberOfVertices > 0)
         {
@@ -25,24 +26,26 @@ protected:
     }
 
     // Віртуальний деструктор для коректної
-    // роботи з вказівниками на базовий клас
+    // роботи з вказівниками/посиланнями на базовий клас
     virtual ~Graph() = default;
 
 public:
     // Додавання ребра
-    virtual void addEdge(int startVertex, int endVertex, vertexT vertexData, edgeT edgeData) = 0;
+    virtual void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) = 0;
 
     // Перевірка зв'язності
     virtual bool isConnected() = 0;
 
     // Відстань між двома заданими вершинами
-    virtual int findDistance(int startVertex, int endVertex) = 0;
+    virtual int findDistance(uint startVertex, uint endVertex) = 0;
+
+    virtual Graph<vertexT, edgeT>* getTransposed() = 0;
 
     // BFS обхід
-    virtual void BFS(int vertex) = 0;
+    virtual void BFS(uint vertex) = 0;
 
     // DFS обхід
-    virtual void DFS(int vertex) = 0;
+    virtual void DFS(uint vertex) = 0;
 };
 
 #endif //OOOP_LAB1_GRAPH_H

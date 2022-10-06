@@ -8,7 +8,8 @@
 using std::vector;
 
 // Клас для графу, представленого матрицею суміжності
-template <typename vertexT, typename edgeT> class MatrixGraph: public Graph<vertexT, edgeT>
+template <typename vertexT, typename edgeT>
+class MatrixGraph: public Graph<vertexT, edgeT>
 {
 private:
     // Матриця суміжності
@@ -36,7 +37,7 @@ private:
 
 public:
     // Конструктор
-    explicit MatrixGraph(int numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
+    explicit MatrixGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
     {
         for (int i = 0; i < numberOfVertices; ++i)
         {
@@ -55,29 +56,29 @@ public:
     virtual ~MatrixGraph() = default;
 
     // Додавання ребра
-    void addEdge(int startVertex, int endVertex, vertexT vertexData, edgeT edgeData) override
+    void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) override
     {
-        if (startVertex >= 0 and endVertex >= 0)
+        if (startVertex < this->numberOfVertices and endVertex < this->numberOfVertices)
         {
             Data<vertexT, edgeT> edge(vertexData, edgeData, endVertex);
             this->adjacencyMatrix[startVertex][endVertex] = edge;
         }
         else
         {
-            int error = 2;
+            uint error = 2;
             printError(error);
         }
     }
 
     // Знайти транспонований граф
-    MatrixGraph<vertexT, edgeT> getTransposed()
+    MatrixGraph<vertexT, edgeT>* getTransposed() override
     {
-        MatrixGraph<vertexT, edgeT> transposedGraph(this->numberOfVertices);
-        for (int i = 0; i < adjacencyMatrix.size(); ++i)
+        auto* transposedGraph = new MatrixGraph<vertexT, edgeT>(this->numberOfVertices);
+        for (int i = 0; i < this->adjacencyMatrix.size(); ++i)
         {
-            for(int j = 0; j < adjacencyMatrix.size(); ++j)
+            for(int j = 0; j < this->adjacencyMatrix.size(); ++j)
             {
-                transposedGraph.adjacencyMatrix[i][j] = adjacencyMatrix[j][i];
+                transposedGraph->adjacencyMatrix[i][j] = this->adjacencyMatrix[j][i];
             }
         }
         return transposedGraph;
@@ -93,13 +94,19 @@ public:
         // DFS перший раз
         for (i = 0; i < this->numberOfVertices; ++i)
         {
-            for (j = 0; this->numberOfVertices; ++j)
+            bool flag = true;
+            for (j = 0; j < this->numberOfVertices; ++j)
             {
                 if (adjacencyMatrix[i][j].number >= 0)
                 {
                     DFSUtil(adjacencyMatrix[i][j], visited);
+                    flag = false;
                     break;
                 }
+            }
+            if (!flag)
+            {
+                break;
             }
         }
 
@@ -113,12 +120,12 @@ public:
         }
 
         // Транспонуємо граф
-        MatrixGraph<vertexT, edgeT> transposedGraph = getTransposed();
+        MatrixGraph<vertexT, edgeT>* transposedGraph = getTransposed();
 
         visited.resize(this->numberOfVertices,false);
 
         // DFS другий раз
-        DFSUtil(adjacencyMatrix[i][j], visited);
+        DFSUtil(transposedGraph->adjacencyMatrix[i][j], visited);
 
         // Перевіряжмо чи відвідали всі вершини
         for (int k = 0; k < this->numberOfVertices; ++k)
@@ -132,7 +139,7 @@ public:
     }
 
     // Знаходження відстані між двома вершинами
-    int findDistance(int startVertex, int endVertex) override
+    int findDistance(uint startVertex, uint endVertex) override
     {
         vector<bool> visited;
         vector<int> distance;
@@ -140,7 +147,7 @@ public:
         distance.resize(this->numberOfVertices,0);
 
         // Черга для BFS
-        queue<int> queue;
+        queue<uint> queue;
 
         // Відвідуємо поточний вузол та додаємо до черги
         visited[startVertex] = true;
@@ -169,7 +176,7 @@ public:
     }
 
     // BFS обхід
-    void BFS(int vertex) override
+    void BFS(uint vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних
@@ -216,7 +223,7 @@ public:
     }
 
     // DFS обхід (функція виклику)
-    void DFS(int vertex) override
+    void DFS(uint vertex) override
     {
         // Спочатку шукаємо початкову вершину,
         // щоб отримати доступ до її даних

@@ -9,19 +9,19 @@ public:
     vertexT vertexData;
     edgeT edgeData;
     // Конструктор
-    explicit Data(vertexT vertexData, edgeT edgeData, int number = 0);
-    explicit Data(edgeT edgeData, int number = 0);
+    explicit Data(vertexT vertexData, edgeT edgeData, uint number = 0);
+    explicit Data(edgeT edgeData, uint number = 0);
     explicit Data();
 };
 
-template <typename vertexT, typename edgeT> Data<vertexT, edgeT>::Data(vertexT vertexData, edgeT edgeData, int n)
+template <typename vertexT, typename edgeT> Data<vertexT, edgeT>::Data(vertexT vertexData, edgeT edgeData, uint n)
 {
     this->vertexData = vertexData;
     this->edgeData = edgeData;
     this->number = n;
 }
 
-template <typename vertexT, typename edgeT> Data<vertexT, edgeT>::Data(edgeT edgeData, int n)
+template <typename vertexT, typename edgeT> Data<vertexT, edgeT>::Data(edgeT edgeData, uint n)
 {
     this->edgeData = edgeData;
     this->number = n;
