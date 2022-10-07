@@ -3,4 +3,4 @@ project(OOOP_Lab1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(OOOP_Lab1 main.cpp Source/Graph.h Source/AdjListGraph.h Source/Data.h Source/MatrixGraph.h Source/Errors.cpp Source/Errors.h Source/DateTime.h Source/DateTime.cpp Source/DateTimeConstants.h Source/STime.h Source/STime.cpp)
+add_executable(OOOP_Lab1 main.cpp Source/Headers/Graph.h Source/Headers/AdjListGraph.h Source/Headers/Data.h Source/Headers/MatrixGraph.h Source/Cpp/Errors.cpp Source/Headers/Errors.h Source/Headers/DateTime.h Source/Cpp/DateTime.cpp Source/Headers/DateTimeConstants.h Source/Headers/STime.h Source/Cpp/STime.cpp)

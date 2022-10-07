@@ -1,4 +1,4 @@
-#include "Errors.h"
+#include "../Headers/Errors.h"
 
 const uint CANNOT_CREATE_GRAPH_ERROR_CODE = 1;
 const uint CANNOT_ADD_EDGE_ERROR_CODE = 2;

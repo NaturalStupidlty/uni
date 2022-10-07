@@ -1,6 +1,6 @@
-#include "Source/AdjListGraph.h"
-#include "Source/MatrixGraph.h"
-#include "Source/DateTime.h"
+#include "Source/Headers/AdjListGraph.h"
+#include "Source/Headers/MatrixGraph.h"
+#include "Source/Headers/DateTime.h"
 
 
 using std::cout;
@@ -16,29 +16,26 @@ int main()
     time1.fromUTC();
     cout << "Локальний час зараз: " << endl;
     cout << time1.formatDateTime() << endl;
+    cout << time1.getWeekOfYear() << endl;
 
-    DateTime time2("2022-10-07 00:20:21.420");
-    cout << time2.formatDateTime() << endl;
-
-    time_t now = time(nullptr);
-    tm* t = gmtime(&now);
-    DateTime time3(t);
-    cout << time3.formatDateTime() << endl;
+    DateTime time2 = time1.increaseBy(69, 420, 666, 0, 0 ,0);
+    DateTime time3 = time1.decreaseByMonths(13);
+    DateTime time4("2022-10-07 00:20:21.420");
 
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     int numberOfVertices = 4;
 
-/*    AdjListGraph<int, float> adjList(numberOfVertices);
-    Graph<int, float>& graph{adjList};*/
+/*    AdjListGraph<DateTime, float> adjList(numberOfVertices);
+    Graph<DateTime, float>& graph{adjList};*/
 
-    MatrixGraph<int, float> matrix(numberOfVertices);
-    Graph<int, float>& graph{matrix};
+    MatrixGraph<DateTime, float> matrix(numberOfVertices);
+    Graph<DateTime, float>& graph{matrix};
 
-    graph.addEdge(0, 1, 100, 5.5);
-    graph.addEdge(0, 2, 200, 1.2);
-    graph.addEdge(1, 2, 50, 10.3);
-    graph.addEdge(2, 0, 100, 42.69);
-    graph.addEdge(2, 3, 200, 69.69);
+    graph.addEdge(0, 1, time2, 5.5);
+    graph.addEdge(0, 2, time3, 1.2);
+    graph.addEdge(1, 2, time3, 10.3);
+    graph.addEdge(2, 0, time1, 42.69);
+    graph.addEdge(2, 3, time4, 69.69);
 
     cout << "BSF: ";
     cout << "(Починаючи з вершини номер " << 2 << ")\n";

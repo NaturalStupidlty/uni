@@ -6,9 +6,12 @@
 
 using std::string;
 
-// Заміна структурі tm з додатковим функціоналом
+
+/** ------[ Заміна структурі tm з додатковим функціоналом ]------ **/
+
 class STime
 {
+private:
     int year{};
     int month{};
     int day{};
@@ -22,10 +25,20 @@ class STime
     void setYearsDay(const int *monthTable, const int *lengths, int yearDay);
 
 public:
+    // Конструктори
     STime();
     explicit STime(long long time);
     explicit STime(const tm *time);
     explicit STime(const string &value);
+
+    // Геттери
+    int getYear() const;
+    int getMonth() const;
+    int getDay() const;
+    int getHour() const;
+    int getMinute() const;
+    int getSecond() const;
+    int getMillisecond() const;
 
     // Мілісекунди з 1 січня 1 року
     long long get();
@@ -33,11 +46,23 @@ public:
     // Повертає день у році
     int dayOfYear() const;
 
+    // Додати дні
+    void increaseDay(int days);
+
     // Додати місяці
-    void incMonth(int months) { month += months; }
+    void increaseMonth(int months);
 
     // Додати роки
-    void incYear(int years) { year += years; }
+    void increaseYear(int years);
+
+    // Відняти дні
+    void decreaseDay(int days);
+
+    // Відняти місяці
+    void decreaseMonth(int months);
+
+    // Відняти роки
+    void decreaseYear(int years);
 
     // Вивести дату у форматі yyyy-MM-dd
     string formatDate() const;

@@ -1,6 +1,5 @@
-#include "STime.h"
-#include "DateTime.h"
-#include "DateTimeConstants.h"
+#include "../Headers/STime.h"
+#include "../Headers/DateTimeConstants.h"
 #include <sstream>
 #include <iomanip>
 
@@ -265,20 +264,6 @@ int STime::monthsAfter(const STime &from) const
     return result;
 }
 
-time_t DateTime::asUnixTime() const
-{
-    if (miliseconds == LLONG_MIN)
-    {
-        return -1;
-    }
-    time_t result = (miliseconds - TIME_T_ZERO) / TIME_MULTIPLIER;
-    if (result < 0)
-    {
-        return -1;
-    }
-    return result;
-}
-
 void STime::asTime(tm *time) const
 {
     time->tm_year = year - TM_START_YEAR;
@@ -287,4 +272,69 @@ void STime::asTime(tm *time) const
     time->tm_hour = hour;
     time->tm_min = minute;
     time->tm_sec = second;
+}
+
+void STime::increaseDay(int days)
+{
+    day += days;
+}
+
+void STime::increaseMonth(int months)
+{
+    month += months;
+}
+
+void STime::increaseYear(int years)
+{
+    year += years;
+}
+
+void STime::decreaseDay(int days)
+{
+    day -= days;
+}
+
+void STime::decreaseMonth(int months)
+{
+    month -= months;
+}
+
+void STime::decreaseYear(int years)
+{
+    year -= years;
+}
+
+int STime::getYear() const
+{
+    return this->year;
+}
+
+int STime::getMonth() const
+{
+    return this->month;
+}
+
+int STime::getDay() const
+{
+    return this->day;
+}
+
+int STime::getHour() const
+{
+    return this->hour;
+}
+
+int STime::getMinute() const
+{
+    return this->minute;
+}
+
+int STime::getSecond() const
+{
+    return this->second;
+}
+
+int STime::getMillisecond() const
+{
+    return this->millisecond;
 }

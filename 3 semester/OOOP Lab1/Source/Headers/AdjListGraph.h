@@ -15,7 +15,8 @@ using std::list;
 using std::cout;
 using std::endl;
 
-// Клас для графу, представленого списком суміжності
+/** ------[ Клас для графа, представленого списком суміжності ]------ **/
+
 template <typename vertexT, typename edgeT>
 class AdjListGraph: public Graph<vertexT, edgeT>
 {
@@ -30,7 +31,9 @@ private:
         visited[vertex.number] = true;
         if (print)
         {
-            cout << vertex.number;
+            cout << "Дані у вершині: " << vertex.vertexData.formatDateTime() << endl;
+            cout << "Дані у ребрі: " << vertex.edgeData << endl;
+            cout << "Номер вершини: "<< vertex.number << endl;
         }
 
         // Рекурсивно проходимо інші вершини
@@ -110,7 +113,7 @@ public:
         // DFS другий раз
         DFSUtil(*(transposedGraph->adjacencyList[0].begin()), visited);
 
-        // Перевіряжмо чи відвідали всі вершини
+        // Перевіряємо чи відвідали всі вершини
         for (int i = 0; i < this->numberOfVertices; ++i)
         {
             if (!visited[i])
@@ -188,7 +191,9 @@ public:
         {
             // Видалення вузла з черги
             w = queue.front();
-            cout << w.number;
+            cout << "Дані у вершині: " << w.vertexData.formatDateTime() << endl;
+            cout << "Дані у ребрі: " << w.edgeData << endl;
+            cout << "Номер вершини: "<< w.number << endl;
             queue.pop();
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
@@ -228,38 +233,6 @@ public:
         vector<bool> visited(this->numberOfVertices, false);
         DFSUtil(w, visited, true);
     }
-
-/*
-    // Перевірка на часткову зв'язність ????????????????
-    virtual bool isUnilaterallyConnected()
-    {
-        // список вершин, від яких не відходять зв'язки
-        vector<int> emptyList;
-        for (int i = 0; i < adj.size(); ++i)
-        {
-            if (adj[i].empty())
-            {
-                emptyList.push_back(i);
-            }
-        }
-
-        for (int l = 0; l < emptyList.size(); ++l)
-        {
-            for (int i = 0; i < adj.size(); ++i)
-            {
-                for (auto it = adj[i].begin(); it != adj[i].end(); ++it)
-                {
-                    if (it->number == emptyList[l])
-                    {
-                        emptyList.erase(emptyList.begin()+l);
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
-    }
-*/
 };
 
 #endif //OOOP_LAB1_ADJLISTGRAPH_H

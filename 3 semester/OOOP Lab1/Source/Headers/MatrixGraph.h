@@ -7,7 +7,8 @@
 
 using std::vector;
 
-// Клас для графу, представленого матрицею суміжності
+/** ------[ Клас для графа, представленого матрицею суміжності ]------ **/
+
 template <typename vertexT, typename edgeT>
 class MatrixGraph: public Graph<vertexT, edgeT>
 {
@@ -22,7 +23,9 @@ private:
         visited[vertex.number] = true;
         if (print)
         {
-            cout << vertex.number;
+            cout << "Дані у вершині: " << vertex.vertexData.formatDateTime() << endl;
+            cout << "Дані у ребрі: " << vertex.edgeData << endl;
+            cout << "Номер вершини: "<< vertex.number << endl;
         }
 
         // Рекурсивно проходимо інші вершини
@@ -90,12 +93,11 @@ public:
         // Ні одна вершина ще не відвідана
         vector<bool> visited(this->numberOfVertices, false);
 
-        int i, j;
         // DFS перший раз
-        for (i = 0; i < this->numberOfVertices; ++i)
+        for (int i = 0; i < this->numberOfVertices; ++i)
         {
             bool flag = true;
-            for (j = 0; j < this->numberOfVertices; ++j)
+            for (int j = 0; j < this->numberOfVertices; ++j)
             {
                 if (adjacencyMatrix[i][j].number >= 0)
                 {
@@ -125,9 +127,25 @@ public:
         visited.resize(this->numberOfVertices,false);
 
         // DFS другий раз
-        DFSUtil(transposedGraph->adjacencyMatrix[i][j], visited);
+        for (int i = 0; i < this->numberOfVertices; ++i)
+        {
+            bool flag = true;
+            for (int j = 0; j < this->numberOfVertices; ++j)
+            {
+                if (transposedGraph->adjacencyMatrix[i][j].number >= 0)
+                {
+                    DFSUtil(transposedGraph->adjacencyMatrix[i][j], visited);
+                    flag = false;
+                    break;
+                }
+            }
+            if (!flag)
+            {
+                break;
+            }
+        }
 
-        // Перевіряжмо чи відвідали всі вершини
+        // Перевіряємо чи відвідали всі вершини
         for (int k = 0; k < this->numberOfVertices; ++k)
         {
             if (!visited[k])
@@ -186,6 +204,7 @@ public:
             if (adjacencyMatrix[i][vertex].number == vertex)
             {
                 w = adjacencyMatrix[i][vertex];
+                break;
             }
         }
 
@@ -204,7 +223,9 @@ public:
         {
             // Видалення вузла з черги
             w = queue.front();
-            cout << w.number;
+            cout << "Дані у вершині: " << w.vertexData.formatDateTime() << endl;
+            cout << "Дані у ребрі: " << w.edgeData << endl;
+            cout << "Номер вершини: "<< w.number << endl;
             queue.pop();
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини w.
@@ -233,6 +254,7 @@ public:
             if (adjacencyMatrix[i][vertex].number == vertex)
             {
                 w = adjacencyMatrix[i][vertex];
+                break;
             }
         }
 
@@ -240,26 +262,6 @@ public:
         vector<bool> visited(this->numberOfVertices, false);
         DFSUtil(w, visited, true);
     }
-
-/*
-    // Перевірка на часткову зв'язність
-    bool isUnilaterallyConnected()
-    {
-        for (int i = 0; i < matrix.size(); ++i)
-        {
-
-            for (int j = 0; j < matrix[i].size(); ++j)
-            {
-                if ((i > j && matrix[i][j].number == -1)
-                    or (i < j && matrix[i][j].number == -1))
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-*/
 };
 
 #endif //OOOP_LAB1_MATRIXGRAPH_H

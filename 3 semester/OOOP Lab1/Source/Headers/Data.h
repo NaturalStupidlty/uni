@@ -1,7 +1,8 @@
 #ifndef OOOP_LAB1_DATA_H
 #define OOOP_LAB1_DATA_H
 
-// Структура для зберігання даних у вершинах графа
+/** ------[ Структура для зберігання даних у вершинах графа ]------ **/
+
 template <typename vertexT, typename edgeT> struct Data
 {
 public:

@@ -3,7 +3,7 @@
 
 #include "Errors.h"
 
-// Базовий клас графу
+/** ------[ Базовий клас графа ]------ **/
 template <typename vertexT, typename edgeT>
 class Graph
 {
@@ -11,7 +11,7 @@ protected:
     // Кількість вершин
     uint numberOfVertices{};
 
-    // Коструктор
+    // Конструктор
     explicit Graph(uint numberOfVertices = 1)
     {;
         if (numberOfVertices > 0)
