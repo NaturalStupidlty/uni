@@ -9,6 +9,23 @@ using std::endl;
 
 int main()
 {
+    DateTime time1;
+    time1.setNow();
+    cout << "UTC час зараз: " << endl;
+    cout << time1.formatDateTime() << endl;
+    time1.fromUTC();
+    cout << "Локальний час зараз: " << endl;
+    cout << time1.formatDateTime() << endl;
+
+    DateTime time2("2022-10-07 00:20:21.420");
+    cout << time2.formatDateTime() << endl;
+
+    time_t now = time(nullptr);
+    tm* t = gmtime(&now);
+    DateTime time3(t);
+    cout << time3.formatDateTime() << endl;
+
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     int numberOfVertices = 4;
 
 /*    AdjListGraph<int, float> adjList(numberOfVertices);
