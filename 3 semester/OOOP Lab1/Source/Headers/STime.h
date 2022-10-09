@@ -176,7 +176,7 @@ public:
      */
     int monthsAfter(const STime &from) const;
 
-    /** Встановити час за структурою tm
+    /** Отримати час за структурою tm
      *
      * @param time - struct std::tm
      */

@@ -120,21 +120,21 @@ STime::STime (long long time): valid(true)
     int leap = getLeapDays(year);
 
     // День року для цього року
-    long long days = time - (long long)year * 365 - leap;
+    long long days = time - year * 365 - leap;
 
     // День повинен бути у форматі [0; 365]
     while (days < 0)
     {
         year--;
         leap = getLeapDays(year);
-        days = time - (long long)year * 365 - leap;
+        days = time - year * 365 - leap;
     }
 
     while (days > 365)
     {
         year++;
         leap = getLeapDays(year);
-        days = time - (long long)year * 365 - leap;
+        days = time - year * 365 - leap;
     }
 
     // Ділимо дні на місяці

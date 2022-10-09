@@ -11,8 +11,7 @@ using std::string;
 
 DateTime::DateTime ()
 {
-    milliseconds = 0;
-    setNow();
+    milliseconds = LLONG_MIN;
 }
 
 DateTime::DateTime (const DateTime &value)
@@ -199,12 +198,12 @@ int DateTime::getWeekOfYear() const
 
 DateTime &DateTime::increaseBy(int seconds, int minutes, int hours, int days, int months, int years)
 {
-    this->increaseBySeconds(seconds);
-    this->increaseByMinutes(minutes);
-    this->increaseByHours(hours);
-    this->increaseByDays(days);
-    this->increaseByMonths(months);
     this->increaseByYears(years);
+    this->increaseByMonths(months);
+    this->increaseByDays(days);
+    this->increaseByHours(hours);
+    this->increaseByMinutes(minutes);
+    this->increaseBySeconds(seconds);
     return *this;
 }
 
@@ -269,71 +268,48 @@ DateTime& DateTime::increaseByYears(int years)
 
 DateTime &DateTime::decreaseBy(int seconds, int minutes, int hours, int days, int months, int years)
 {
+    this->decreaseByYears(years);
     this->decreaseBySeconds(seconds);
     this->decreaseByMinutes(minutes);
     this->decreaseByHours(hours);
     this->decreaseByDays(days);
     this->decreaseByMonths(months);
-    this->decreaseByYears(years);
     return *this;
 }
 
 DateTime& DateTime::decreaseBySeconds(int seconds)
 {
-    if (milliseconds != LLONG_MIN)
-
-    {
-        milliseconds -= (long long) seconds * TIME_MULTIPLIER;
-    }
+    this->increaseBySeconds(-seconds);
     return *this;
 }
 
 DateTime& DateTime::decreaseByMinutes(int minutes)
 {
-    if (milliseconds != LLONG_MIN)
-    {
-        milliseconds -= (long long) minutes * SECS_IN_MINUTE * TIME_MULTIPLIER;
-    }
+    this->increaseByMinutes(-minutes);
     return *this;
 }
 
 DateTime& DateTime::decreaseByHours(int hours)
 {
-    if (milliseconds != LLONG_MIN)
-    {
-        milliseconds -= (long long) hours * SECS_IN_HOUR * TIME_MULTIPLIER;
-    }
+    this->increaseByHours(-hours);
     return *this;
 }
 
 DateTime& DateTime::decreaseByDays(int days)
 {
-    if (milliseconds != LLONG_MIN)
-    {
-        milliseconds -= (long long) days * MILLISECONDS_IN_DAY;
-    }
+    this->increaseByDays(-days);
     return *this;
 }
 
 DateTime& DateTime::decreaseByMonths(int months)
 {
-    if (milliseconds != LLONG_MIN)
-    {
-        STime time(milliseconds);
-        time.increaseMonth(months);
-        milliseconds = time.get();
-    }
+    this->increaseByMonths(-months);
     return *this;
 }
 
 DateTime& DateTime::decreaseByYears(int years)
 {
-    if (milliseconds != LLONG_MIN)
-    {
-        STime time(milliseconds);
-        time.increaseYear(years);
-        milliseconds = time.get();
-    }
+    this->increaseByYears(-years);
     return *this;
 }
 

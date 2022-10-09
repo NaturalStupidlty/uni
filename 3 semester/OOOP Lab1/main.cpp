@@ -32,11 +32,12 @@ int main(int argc, char** argv)
     DateTime time3 = time1.decreaseByMonths(13);
     DateTime time4("2022-10-07 00:20:21.420");
 
+    DateTime time66("2022-10-10 00-36-55");
+    DateTime time77 = time66.decreaseByHours(3);
+    time66.toUTC();
+    cout << time66.formatDateTime() << " " << time77.formatDateTime() << " "<< endl;
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     int numberOfVertices = 4;
-
-/*    AdjListGraph<DateTime, float> adjList(numberOfVertices);
-    Graph<DateTime, float>& graph{adjList};*/
 
     MatrixGraph<DateTime, float> matrix(numberOfVertices);
     Graph<DateTime, float>& graph{matrix};

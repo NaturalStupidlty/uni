@@ -143,3 +143,23 @@ TEST_CASE("isConnected MatrixGraph testing")
 
     CHECK(graph.findDistance(1, 5) == 2);
 }
+
+TEST_CASE("getTransposed MatrixGraph testing")
+{
+    int numberOfVertices = 4;
+    MatrixGraph<double, float> graph(numberOfVertices);
+
+    graph.addEdge(0, 1, 1, 5.5);
+    graph.addEdge(0, 2, 2, 1.2);
+    graph.addEdge(1, 2, 3, 10.3);
+    graph.addEdge(2, 0, 4, 42.69);
+    graph.addEdge(2, 3, 5, 69.69);
+
+    MatrixGraph<double, float>* transposedGraph = graph.getTransposed();
+
+    REQUIRE((*transposedGraph)[1][0] == Data<double, float>(1, 5.5, 1));
+    REQUIRE((*transposedGraph)[2][0] == Data<double, float>(2, 1.2, 2));
+    REQUIRE((*transposedGraph)[2][1] == Data<double, float>(3, 10.3, 2));
+    REQUIRE((*transposedGraph)[0][2] == Data<double, float>(4, 42.69, 0));
+    REQUIRE((*transposedGraph)[3][2] == Data<double, float>(5, 69.69, 3));
+}
