@@ -70,8 +70,6 @@ Data<vertexT, edgeT>::Data(edgeT edgeData, uint number)
 template<typename vertexT, typename edgeT>
 Data<vertexT, edgeT>::Data()
 {
-    this->vertexData = 0;
-    this->edgeData = 0;
     this->number = -1;
 }
 

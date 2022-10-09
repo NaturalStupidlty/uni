@@ -56,7 +56,7 @@ public:
      *
      * @param numberOfVertices - кількість вершин
      */
-   explicit AdjListGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
+    explicit AdjListGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
    {
        adjacencyList.resize(numberOfVertices);
    }
@@ -99,6 +99,7 @@ public:
                if((*it).number == endVertex)
                {
                    adjacencyList[startVertex].erase(it);
+                   break;
                }
            }
        }
@@ -291,5 +292,6 @@ public:
         return this->adjacencyList;
     }
 };
+
 
 #endif //OOOP_LAB1_ADJLISTGRAPH_H

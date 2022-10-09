@@ -4,8 +4,12 @@
 #include <vector>
 #include "Graph.h"
 #include "Data.h"
+#include <queue>
 
 using std::vector;
+using std::cout;
+using std::endl;
+using std::queue;
 
 /** ------[ Клас для графа, представленого матрицею суміжності ]------ */
 
@@ -325,5 +329,6 @@ public:
         return adjacencyMatrix[i];
     }
 };
+
 
 #endif //OOOP_LAB1_MATRIXGRAPH_H
