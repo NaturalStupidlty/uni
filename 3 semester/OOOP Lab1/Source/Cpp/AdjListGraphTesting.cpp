@@ -83,3 +83,34 @@ TEST_CASE("isConnected AdjListGraph testing")
 
     CHECK(graph.isConnected());
 }
+
+TEST_CASE("isConnected AdjListGraph testing")
+{
+    int numberOfVertices = 7;
+    AdjListGraph<double, float> graph(numberOfVertices);
+
+    graph.addEdge(0, 1, 44, 1);
+    graph.addEdge(0, 2, 33, 2);
+    graph.addEdge(0, 4, 22, 4);
+
+    graph.addEdge(1, 2, 55, 1);
+    graph.addEdge(1, 0, 66, 1);
+
+    graph.addEdge(2, 0, 11, 2);
+    graph.addEdge(2, 5, 22, 3);
+    graph.addEdge(2, 1, 23, 1);
+
+    graph.addEdge(3, 4, 88, 1);
+
+    graph.addEdge(4, 0, 44, 4);
+    graph.addEdge(4, 3, 33, 1);
+    graph.addEdge(4, 5, 22, 1);
+    graph.addEdge(4, 6, 22, 2);
+
+    graph.addEdge(5, 4, 11, 1);
+    graph.addEdge(5, 2, 22, 3);
+
+    graph.addEdge(6, 4, 99, 2);
+
+    CHECK(graph.findDistance(1, 5) == 2);
+}

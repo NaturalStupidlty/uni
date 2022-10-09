@@ -219,7 +219,6 @@ public:
             // Видалення вузла з черги
             startVertex = queue.front();
             queue.pop();
-            distance[startVertex] = distance[startVertex] + 1;
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
             // Якщо сусідня вершина не відвідана,
@@ -230,7 +229,9 @@ public:
                 {
                     queue.push(adjacencyMatrix[startVertex][i].number);
                     visited[adjacencyMatrix[startVertex][i].number] = true;
+                    distance[i] = distance[startVertex] + 1;
                 }
+
             }
         }
         return distance[endVertex];

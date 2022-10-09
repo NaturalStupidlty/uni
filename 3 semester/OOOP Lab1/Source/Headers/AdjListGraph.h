@@ -172,7 +172,7 @@ public:
      */
     int findDistance(uint startVertex, uint endVertex) override
     {
-        vector<bool> visited(this->numberOfVertices,false);
+        vector<bool> visited(this->numberOfVertices, false);
         vector<int> distance(this->numberOfVertices, 0);
 
         // Черга для BFS
@@ -187,7 +187,6 @@ public:
             // Видалення вузла з черги
             startVertex = queue.front();
             queue.pop();
-            distance[startVertex] = distance[startVertex] + 1;
 
             // Отримуємо всі суміжні вершини вилученої з черги вершини s.
             // Якщо сусідня вершина не відвідана,
@@ -198,7 +197,9 @@ public:
                 {
                     visited[adjacent.number] = true;
                     queue.push(adjacent.number);
+                    distance[adjacent.number] = distance[startVertex] + 1;
                 }
+
             }
         }
         return distance[endVertex];
@@ -292,6 +293,5 @@ public:
         return this->adjacencyList;
     }
 };
-
 
 #endif //OOOP_LAB1_ADJLISTGRAPH_H
