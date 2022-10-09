@@ -8,14 +8,18 @@ using std::ostringstream;
 using std::setfill;
 using std::setw;
 
-// Перевіряємо, чи рік високосний
+ /** Перевірка чи рік високосний
+  *
+  * @param year - рік
+  * @return - 1, якщо так та 0, якщо ні
+  */
 inline bool isLeap (int year)
 {
     // За Григоріанським календарем
     return (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
 }
 
-// Кількість днів у високосному році
+/** Кількість днів у високосному році */
 inline int getLeapDays(int years)
 {
     // За Григоріанським календарем
@@ -93,6 +97,7 @@ STime::STime(const string &value)
 STime::STime (long long time): valid(true)
 {
     millisecond = time % TIME_MULTIPLIER;
+
     // Ігноруємо мілісекунди
     time /= TIME_MULTIPLIER;
 
@@ -178,22 +183,22 @@ long long STime::get()
     year += month / MONTH_COUNT;
     month %= MONTH_COUNT;
 
-    int mdays;
+    int monthDays;
     if (isLeap(year))
     {
-        mdays = MONTH_STARTS_LEAP[month];
+        monthDays = MONTH_STARTS_LEAP[month];
     }
     else
     {
-        mdays = MONTH_STARTS[month];
+        monthDays = MONTH_STARTS[month];
     }
 
     // Кількість днів з 01.01.01
-    long long result = year * 365 // у не високосних роках
-                       + getLeapDays(year)         // днів у високосних
-                       + mdays                     // день початку місяця
-                       + day                       // днів у місяці
-                       - 1;                        // місяць починається з 1, а не 0
+    long long result = year * 365           // у не високосних роках
+                       + getLeapDays(year)  // днів у високосних
+                       + monthDays          // день початку місяця
+                       + day                // днів у місяці
+                       - 1;                 // місяць починається з 1, а не 0
 
     result *= SECS_IN_DAY;
     result += hour * SECS_IN_HOUR;
@@ -207,26 +212,26 @@ long long STime::get()
 
 string STime::formatDate() const
 {
-    ostringstream res;
-    res << setfill('0') << year
+    ostringstream date;
+    date << setfill('0') << year
         << '-' << setw(2) << (month + 1)
         << '-' << setw(2) << day;
-    return res.str();
+    return date.str();
 }
 
 string STime::formatDateTime() const
 {
-    ostringstream res;
-    res << setfill('0') << year
+    ostringstream date;
+    date << setfill('0') << year
         << '-' << setw(2) << (month + 1)
         << '-' << setw(2) << day
         << ' ' << setw(2) << hour
         << ':' << setw(2) << minute
         << ':' << setw(2) << second;
 
-    if (millisecond) res << '.' << setw(3) << millisecond;
+    if (millisecond) date << '.' << setw(3) << millisecond;
 
-    return res.str();
+    return date.str();
 }
 
 int STime::dayOfYear() const

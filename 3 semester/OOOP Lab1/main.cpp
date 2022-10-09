@@ -2,13 +2,23 @@
 #include "Source/Headers/MatrixGraph.h"
 #include "Source/Headers/DateTime.h"
 
+#define DOCTEST_CONFIG_IMPLEMENT
+#include "Source/Headers/doctest.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
 
-int main()
+int main(int argc, char** argv)
 {
+    doctest::Context context;
+    context.applyCommandLine(argc, argv);
+    int res = context.run();
+    if(context.shouldExit())
+    {
+        return res;
+    }
+
     DateTime time1;
     time1.setNow();
     cout << "UTC час зараз: " << endl;

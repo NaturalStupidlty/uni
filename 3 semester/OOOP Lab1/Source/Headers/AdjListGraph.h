@@ -7,7 +7,6 @@
 #include <vector>
 #include "Data.h"
 #include "Graph.h"
-#include "Errors.h"
 
 using std::vector;
 using std::queue;
@@ -15,25 +14,31 @@ using std::list;
 using std::cout;
 using std::endl;
 
-/** ------[ Клас для графа, представленого списком суміжності ]------ **/
+/** ------[ Клас для графа, представленого списком суміжності ]------ */
 
 template <typename vertexT, typename edgeT>
 class AdjListGraph: public Graph<vertexT, edgeT>
 {
 private:
-    // Список суміжних вершин
+    /** Список суміжних вершин */
     vector<list<Data<vertexT, edgeT>>> adjacencyList;
 
-    // DFS обхід (допоміжна функція)
+     /**DFS обхід графа у вигляді списку суміжності (допоміжна функція)
+      * використовується як у алгоритмах, так і щоб показати граф.
+      * Саме тому має додатковий параметр
+      * bool print = false
+      *
+      * @param vertex - вершина для пошуку у глибину
+      * @param visited - масив позначок відвіданих вершин
+      * @param print - чи роздруковувати номери елементів графа при обході
+      */
     void DFSUtil(Data<vertexT, edgeT> vertex, vector<bool> &visited, bool print = false)
     {
         // Відвідуємо поточну вершину
         visited[vertex.number] = true;
         if (print)
         {
-            cout << "Дані у вершині: " << vertex.vertexData.formatDateTime() << endl;
-            cout << "Дані у ребрі: " << vertex.edgeData << endl;
-            cout << "Номер вершини: "<< vertex.number << endl;
+            cout << " " << vertex.number << " ";
         }
 
         // Рекурсивно проходимо інші вершини
@@ -47,32 +52,43 @@ private:
     }
 
 public:
-    // Конструктор
-    explicit AdjListGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
-    {
-        adjacencyList.resize(numberOfVertices);
-    }
+    /** Конструктор графа у вигляді списку суміжності
+     *
+     * @param numberOfVertices - кількість вершин
+     */
+   explicit AdjListGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
+   {
+       adjacencyList.resize(numberOfVertices);
+   }
 
-    // Віртуальний деструктор для коректної
-    // роботи з вказівниками/посиланнями на базовий клас
+   /** Віртуальний деструктор графа у вигляді списку суміжності
+    * для коректної роботи з вказівниками на базовий клас */
     virtual ~AdjListGraph() = default;
 
-    // Додавання ребра
-    void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) override
-    {
-        if (startVertex < this->numberOfVertices and endVertex < this->numberOfVertices)
-        {
-            Data<vertexT, edgeT> edge(vertexData, edgeData, endVertex);
-            adjacencyList[startVertex].push_back(edge);
-        }
-        else
-        {
-            uint error = 2;
-            printError(error);
-        }
-    }
+    /** Додавання ребра для графа у вигляді списку суміжності
+     *
+     * @param startVertex - початкова вершина ребра
+     * @param endVertex - кінцева вершина ребра
+     * @param vertexData - дані для збереження у вершині
+     * @param edgeData - дані для збереження у ребрі
+     */
+   void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) override
+   {
+       if (startVertex < this->numberOfVertices and endVertex < this->numberOfVertices)
+       {
+           Data<vertexT, edgeT> edge(vertexData, edgeData, endVertex);
+           adjacencyList[startVertex].push_back(edge);
+       }
+       else
+       {
+           cout << "CANNOT ADD THIS EDGE" << endl;
+       }
+   }
 
-    // Знайти транспонований граф
+    /** Знайти транспонований граф у вигляді списку суміжності
+     *
+     * @return - транспонований граф типу AdjListGraph<vertexT, edgeT>
+     */
     AdjListGraph<vertexT, edgeT>* getTransposed() override
     {
         auto* newGraph = new AdjListGraph<vertexT, edgeT>(this->numberOfVertices);
@@ -87,44 +103,52 @@ public:
         return newGraph;
     }
 
-    // Перевірка зв'язності
-    bool isConnected() override
-    {
-        // Ні одна вершина ще не відвідана
-        vector<bool> visited(this->numberOfVertices, false);
+    /** Перевірка зв'язності орієнтованого графа у вигляді списку суміжності
+     *
+     * @return - 1, якщо граф зв'язний; 0, якщо граф НЕ зв'язний
+     */
+   bool isConnected() override
+   {
+       // Ні одна вершина ще не відвідана
+       vector<bool> visited(this->numberOfVertices, false);
 
-        // DFS перший раз
-        DFSUtil(*(this->adjacencyList[0].begin()), visited);
+       // DFS перший раз
+       DFSUtil(*(this->adjacencyList[0].begin()), visited);
 
-        // Перевіряємо чи відвідали всі вершини
-        for (int i = 0; i < this->numberOfVertices; ++i)
-        {
-            if (!visited[i])
-            {
-                return false;
-            }
-        }
+       // Перевіряємо чи відвідали всі вершини
+       for (int i = 0; i < this->numberOfVertices; ++i)
+       {
+           if (!visited[i])
+           {
+               return false;
+           }
+       }
 
-        // Транспонуємо граф
-        AdjListGraph<vertexT, edgeT>* transposedGraph = getTransposed();
+       // Транспонуємо граф
+       AdjListGraph<vertexT, edgeT>* transposedGraph = getTransposed();
 
-        visited.resize(this->numberOfVertices,false);
+       visited.resize(this->numberOfVertices,false);
 
-        // DFS другий раз
-        DFSUtil(*(transposedGraph->adjacencyList[0].begin()), visited);
+       // DFS другий раз
+       DFSUtil(*(transposedGraph->adjacencyList[0].begin()), visited);
 
-        // Перевіряємо чи відвідали всі вершини
-        for (int i = 0; i < this->numberOfVertices; ++i)
-        {
-            if (!visited[i])
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+       // Перевіряємо чи відвідали всі вершини
+       for (int i = 0; i < this->numberOfVertices; ++i)
+       {
+           if (!visited[i])
+           {
+               return false;
+           }
+       }
+       return true;
+   }
 
-    // Знаходження відстані між двома вершинами
+    /** Знаходження відстані між двома вершинами графа у вигляді списку суміжності
+     *
+     * @param startVertex - початкова вершина
+     * @param endVertex - кінцева вершина
+     * @return - найменшу кількість ребер між заданими вершинами
+     */
     int findDistance(uint startVertex, uint endVertex) override
     {
         vector<bool> visited(this->numberOfVertices,false);
@@ -159,59 +183,63 @@ public:
         return distance[endVertex];
     }
 
-    // BFS обхід
-    void BFS(uint vertex) override
-    {
-        // Спочатку шукаємо початкову вершину,
-        // щоб отримати доступ до її даних
-        Data<vertexT, edgeT> w;
-        for (int i = 0; i < adjacencyList.size(); ++i)
-        {
-            for (Data<vertexT, edgeT> adjacent: adjacencyList[i])
-            {
-                if (adjacent.number == vertex)
-                {
-                    w = adjacent;
-                    break;
-                }
-            }
-        }
+    /** BFS обхід графа у вигляді списку суміжності
+     *
+     * @param vertex - початкова вершина для обходу
+     */
+   void BFS(uint vertex) override
+   {
+       // Спочатку шукаємо початкову вершину,
+       // щоб отримати доступ до її даних
+       Data<vertexT, edgeT> w;
+       for (int i = 0; i < adjacencyList.size(); ++i)
+       {
+           for (Data<vertexT, edgeT> adjacent: adjacencyList[i])
+           {
+               if (adjacent.number == vertex)
+               {
+                   w = adjacent;
+                   break;
+               }
+           }
+       }
 
-        // Ні одна вершина ще не відвідана
-        vector<bool> visited(this->numberOfVertices, false);
+       // Ні одна вершина ще не відвідана
+       vector<bool> visited(this->numberOfVertices, false);
 
-        // Черга для BFS
-        queue<Data<vertexT, edgeT>> queue;
+       // Черга для BFS
+       queue<Data<vertexT, edgeT>> queue;
 
-        // Відвідуємо поточний вузол та додаємо до черги
-        visited[w.number] = true;
-        queue.push(w);
+       // Відвідуємо поточний вузол та додаємо до черги
+       visited[w.number] = true;
+       queue.push(w);
 
-        while(!queue.empty())
-        {
-            // Видалення вузла з черги
-            w = queue.front();
-            cout << "Дані у вершині: " << w.vertexData.formatDateTime() << endl;
-            cout << "Дані у ребрі: " << w.edgeData << endl;
-            cout << "Номер вершини: "<< w.number << endl;
-            queue.pop();
+       while(!queue.empty())
+       {
+           // Видалення вузла з черги
+           w = queue.front();
+           cout << "Номер вершини: "<< w.number << endl;
+           queue.pop();
 
-            // Отримуємо всі суміжні вершини вилученої з черги вершини s.
-            // Якщо сусідня вершина не відвідана,
-            // відвідуємо її й додаємо до черги.
-            for (Data<vertexT, edgeT> adjacent: adjacencyList[w.number])
-            {
-                if (!visited[adjacent.number])
-                {
-                    visited[adjacent.number] = true;
-                    queue.push(adjacent);
-                }
-            }
-        }
-        cout << endl;
-    }
+           // Отримуємо всі суміжні вершини вилученої з черги вершини s.
+           // Якщо сусідня вершина не відвідана,
+           // відвідуємо її й додаємо до черги.
+           for (Data<vertexT, edgeT> adjacent: adjacencyList[w.number])
+           {
+               if (!visited[adjacent.number])
+               {
+                   visited[adjacent.number] = true;
+                   queue.push(adjacent);
+               }
+           }
+       }
+       cout << endl;
+   }
 
-    // DFS обхід (функція виклику)
+    /** DFS обхід графа у вигляді списку суміжності (функція виклику)
+     *
+     * @param vertex - початкова вершина для обходу
+     */
     void DFS(uint vertex) override
     {
         // Спочатку шукаємо початкову вершину,
@@ -232,6 +260,15 @@ public:
         // Ні одна вершина ще не відвідана
         vector<bool> visited(this->numberOfVertices, false);
         DFSUtil(w, visited, true);
+    }
+
+    /** Геттер
+     *
+     * @return - vector<list<Data<vertexT, edgeT>>> список суміжних вершин
+     */
+    vector<list<Data<vertexT, edgeT>>> getAdjacencyList()
+    {
+        return this->adjacencyList;
     }
 };
 

@@ -3,9 +3,11 @@
 #include "../Headers/STime.h"
 #include <climits>
 
+#include "../Headers/doctest.h"
+
 using std::string;
 
-/** ------[ Конструктори ]------ **/
+/** ------[ Конструктори ]------ */
 
 DateTime::DateTime ()
 {
@@ -36,23 +38,23 @@ DateTime::DateTime (const tm *time)
     set(time);
 }
 
-/** ------[ Підтримка часових зон ]------ **/
+/** ------[ Підтримка часових зон ]------ */
 
 // Різниця між локальним часом та UTC у мілісекундах
 long long getTimezone()
 {
-    static long long tz(0);
+    static long long milliseconds(0);
 
     // Ідея полягає у тому, що ми спочатку конвертуємо поточний час
     // time_t в UTC у структуру tm, а потім назад у локальний
-    time_t t = time(nullptr);
-    tm* utc = gmtime(&t);
+    time_t currentTime = time(nullptr);
+    tm* utcTime = gmtime(&currentTime);
 
     // Не відомо, наскільки годин переводять час
-    utc->tm_isdst = -1;
-    time_t tu = mktime(utc);
-    tz = (tu - t) * TIME_MULTIPLIER;
-    return tz;
+    utcTime->tm_isdst = -1;
+    time_t localTime = mktime(utcTime);
+    milliseconds = (localTime - currentTime) * TIME_MULTIPLIER;
+    return milliseconds;
 }
 
 void DateTime::toUTC()
@@ -71,7 +73,7 @@ void DateTime::fromUTC()
     }
 }
 
-/** ------[ Присвоєння часу ]------ **/
+/** ------[ Присвоєння часу ]------ */
 
 void DateTime::setNow()
 {
@@ -98,11 +100,11 @@ void DateTime::set (const time_t &time)
 
 void DateTime::set (const tm *time)
 {
-    STime t(time);
-    milliseconds = t.get();
+    STime utilTime(time);
+    milliseconds = utilTime.get();
 }
 
-/** ------[ Отримати час ]------ **/
+/** ------[ Отримати час ]------ */
 
 bool DateTime::isValid() const
 {
@@ -179,14 +181,14 @@ int DateTime::getWeekOfYear() const
     STime time(milliseconds);
 
     int days = time.dayOfYear();
-    int dow = this->getWeekDay();
+    int dayOfWeek = this->getWeekDay();
 
     time.decreaseMonth(time.getMonth());
     time.decreaseDay(time.getDay());
-    int dowJan1 = (time.get() / MILLISECONDS_IN_DAY + 6) % 7;
+    int dayOfWeekJan1 = (time.get() / MILLISECONDS_IN_DAY + 6) % 7;
 
     int weekNum = ((days + 6) / 7);
-    if (dow < dowJan1)
+    if (dayOfWeek < dayOfWeekJan1)
     {
         ++weekNum;
     }
@@ -416,16 +418,16 @@ int DateTime::monthsBetween(const DateTime &date1, const DateTime &date2)
         return 0;
     }
 
-    STime d1(date1.milliseconds);
-    STime d2(date2.milliseconds);
+    STime utilDate1(date1.milliseconds);
+    STime utilDate2(date2.milliseconds);
 
     if (date1 < date2)
     {
-        return d2.monthsAfter(d1);
+        return utilDate2.monthsAfter(utilDate1);
     }
     else
     {
-        return d1.monthsAfter(d2);
+        return utilDate1.monthsAfter(utilDate2);
     }
 }
 
@@ -458,9 +460,9 @@ DateTime &DateTime::operator + (const DateTime &date)
     return *this;
 }
 
-DateTime &DateTime::operator = (int number)
+DateTime &DateTime::operator = (int numberOfMilliseconds)
 {
-    this->milliseconds = (long long int)number;
+    this->milliseconds = (long long int)numberOfMilliseconds;
     return *this;
 }
 

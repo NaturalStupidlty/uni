@@ -7,25 +7,31 @@
 
 using std::vector;
 
-/** ------[ Клас для графа, представленого матрицею суміжності ]------ **/
+/** ------[ Клас для графа, представленого матрицею суміжності ]------ */
 
 template <typename vertexT, typename edgeT>
 class MatrixGraph: public Graph<vertexT, edgeT>
 {
 private:
-    // Матриця суміжності
+    /** Матриця суміжності */
     vector<vector<Data<vertexT, edgeT>>> adjacencyMatrix;
 
-    // DFS обхід (допоміжна функція)
+    /** DFS обхід графа у вигляді матриці суміжності (допоміжна функція)
+     * використовується як у алгоритмах, так і щоб показати граф.
+     * Саме тому має додатковий параметр
+     * bool print = false
+     *
+     * @param vertex - вершина для пошуку у глибину
+     * @param visited - масив позначок відвіданих вершин
+     * @param print - чи роздруковувати номери елементів графа при обході
+     */
     void DFSUtil(Data<vertexT, edgeT> vertex, std::vector<bool> &visited, bool print = false)
     {
         // Відвідуємо поточну вершину
         visited[vertex.number] = true;
         if (print)
         {
-            cout << "Дані у вершині: " << vertex.vertexData.formatDateTime() << endl;
-            cout << "Дані у ребрі: " << vertex.edgeData << endl;
-            cout << "Номер вершини: "<< vertex.number << endl;
+            cout << " " << vertex.number << " ";
         }
 
         // Рекурсивно проходимо інші вершини
@@ -39,7 +45,10 @@ private:
     }
 
 public:
-    // Конструктор
+    /** Конструктор для графа у вигляді матриці суміжності
+     *
+     * @param numberOfVertices - кількість вершин
+     */
     explicit MatrixGraph(uint numberOfVertices) : Graph<vertexT, edgeT>(numberOfVertices)
     {
         for (int i = 0; i < numberOfVertices; ++i)
@@ -54,11 +63,17 @@ public:
         }
     }
 
-    // Віртуальний деструктор для коректної
-    // роботи з вказівниками на базовий клас
+    /** Віртуальний деструктор графа у вигляді матриці суміжності
+     * для коректної роботи з вказівниками на базовий клас */
     virtual ~MatrixGraph() = default;
 
-    // Додавання ребра
+    /** Додавання ребра для графа у вигляді матриці суміжності
+     *
+     * @param startVertex - початкова вершина ребра
+     * @param endVertex - кінцева вершина ребра
+     * @param vertexData - дані для збереження у вершині
+     * @param edgeData - дані для збереження у ребрі
+     */
     void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) override
     {
         if (startVertex < this->numberOfVertices and endVertex < this->numberOfVertices)
@@ -68,12 +83,14 @@ public:
         }
         else
         {
-            uint error = 2;
-            printError(error);
+            cout << "CANNOT ADD THIS EDGE" << endl;
         }
     }
 
-    // Знайти транспонований граф
+    /** Знайти транспонований граф у вигляді матриці суміжності
+     *
+     * @return - транспонований граф того ж типу даних
+     */
     MatrixGraph<vertexT, edgeT>* getTransposed() override
     {
         auto* transposedGraph = new MatrixGraph<vertexT, edgeT>(this->numberOfVertices);
@@ -87,7 +104,10 @@ public:
         return transposedGraph;
     }
 
-    // Перевірка зв'язності
+    /** Перевірка зв'язності орієнтованого графа графа у вигляді матриці суміжності
+     *
+     * @return - true, якщо граф зв'язний та false, якщо граф НЕ зв'язний
+     */
     bool isConnected() override
     {
         // Ні одна вершина ще не відвідана
@@ -156,7 +176,12 @@ public:
         return true;
     }
 
-    // Знаходження відстані між двома вершинами
+    /** Знаходження відстані між двома вершинами графа у вигляді матриці суміжності
+     *
+     * @param startVertex - початкова вершина
+     * @param endVertex - кінцева вершина
+     * @return - найменшу кількість ребер між заданими вершинами
+     */
     int findDistance(uint startVertex, uint endVertex) override
     {
         vector<bool> visited;
@@ -193,7 +218,10 @@ public:
         return distance[endVertex];
     }
 
-    // BFS обхід
+    /** BFS обхід графа у вигляді матриці суміжності
+     *
+     * @param vertex - початкова вершина для обходу
+     */
     void BFS(uint vertex) override
     {
         // Спочатку шукаємо початкову вершину,
@@ -243,7 +271,10 @@ public:
         cout << endl;
     }
 
-    // DFS обхід (функція виклику)
+    /** DFS обхід графа у вигляді матриці суміжності  (функція виклику)
+     *
+     * @param vertex - початкова вершина для обходу
+     */
     void DFS(uint vertex) override
     {
         // Спочатку шукаємо початкову вершину,

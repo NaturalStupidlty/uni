@@ -11,7 +11,7 @@
   {
   public:
   vertexT vertexData;
-  edgeT edgeData;}` 
+  edgeT edgeData}` 
 - Додавання та видалення вершин `void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData)`
 - Перевірка на зв’язність графу `bool isConnected()`
 - Визначення відстані між двома вершинами графу `int findDistance(uint startVertex, uint endVertex)`
