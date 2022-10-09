@@ -85,6 +85,26 @@ public:
        }
    }
 
+    /** Видалення ребра для графа у вигляді списку суміжності
+      *
+      * @param startVertex - початкова вершина ребра
+      * @param endVertex - кінцева вершина ребра
+      */
+    void removeEdge(uint startVertex, uint endVertex) override
+    {
+       if (startVertex < this->numberOfVertices)
+       {
+           for (auto it = adjacencyList[startVertex].begin(); it != adjacencyList[startVertex].end(); ++it)
+           {
+               if((*it).number == endVertex)
+               {
+                   adjacencyList[startVertex].erase(it);
+               }
+           }
+       }
+        cout << "CANNOT REMOVE THIS EDGE" << endl;
+    }
+
     /** Знайти транспонований граф у вигляді списку суміжності
      *
      * @return - транспонований граф типу AdjListGraph<vertexT, edgeT>

@@ -41,6 +41,13 @@ public:
      */
     virtual void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData) = 0;
 
+    /** Видалення ребра
+     *
+     * @param startVertex - початкова вершина ребра
+     * @param endVertex - кінцева вершина ребра
+     */
+    virtual void removeEdge(uint startVertex, uint endVertex) = 0;
+
     /** Знайти транспонований граф
      *
      * @return - транспонований граф того ж типу даних

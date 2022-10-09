@@ -87,6 +87,20 @@ public:
         }
     }
 
+    /** Видалення ребра для графа у вигляді матриці суміжності
+     *
+     * @param startVertex - початкова вершина ребра
+     * @param endVertex - кінцева вершина ребра
+     */
+    void removeEdge(uint startVertex, uint endVertex)
+    {
+        if (startVertex < this->numberOfVertices)
+        {
+            adjacencyMatrix[startVertex][endVertex] = Data<vertexT, edgeT>();
+        }
+        cout << "CANNOT REMOVE THIS EDGE" << endl;
+    }
+
     /** Знайти транспонований граф у вигляді матриці суміжності
      *
      * @return - транспонований граф того ж типу даних
