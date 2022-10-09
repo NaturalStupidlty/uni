@@ -14,7 +14,6 @@ public:
     explicit Data(vertexT vertexData, edgeT edgeData, uint number = 0);
     explicit Data(edgeT edgeData, uint number = 0);
     explicit Data();
-    friend bool operator == (const Data<vertexT, edgeT> &data1, const Data<vertexT, edgeT> &data2);
 };
 
 /** Перевантажений оператор ==
@@ -26,7 +25,7 @@ public:
  * @return - true, якщо елементи рівні, false у іншому випадку
  */
 template <typename vertexT, typename edgeT>
-bool operator == (const Data<vertexT, edgeT> &data1, const Data<vertexT, edgeT> &data2)
+inline bool operator == (const Data<vertexT, edgeT> &data1, const Data<vertexT, edgeT> &data2)
 {
     return data1.number == data2.number
     && data1.vertexData == data2.vertexData

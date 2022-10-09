@@ -92,7 +92,7 @@ public:
      * @param startVertex - початкова вершина ребра
      * @param endVertex - кінцева вершина ребра
      */
-    void removeEdge(uint startVertex, uint endVertex)
+    void removeEdge(uint startVertex, uint endVertex) override
     {
         if (startVertex < this->numberOfVertices)
         {
@@ -265,8 +265,6 @@ public:
         {
             // Видалення вузла з черги
             w = queue.front();
-            cout << "Дані у вершині: " << w.vertexData.formatDateTime() << endl;
-            cout << "Дані у ребрі: " << w.edgeData << endl;
             cout << "Номер вершини: "<< w.number << endl;
             queue.pop();
 
@@ -306,6 +304,25 @@ public:
         // Ні одна вершина ще не відвідана
         vector<bool> visited(this->numberOfVertices, false);
         DFSUtil(w, visited, true);
+    }
+
+    /** Геттер
+     *
+     * @return - vector<vector<Data<vertexT, edgeT>>> матриця суміжності
+     */
+    vector<vector<Data<vertexT, edgeT>>> getAdjacencyMatrix()
+    {
+        return this->adjacencyMatrix;
+    }
+
+    /** Перевантажений оператор []
+     *
+     * @param i - індекс
+     * @return - вектор рядочок матриці суміжності
+     */
+    vector<Data<vertexT, edgeT>>& operator [] (const int& i)
+    {
+        return adjacencyMatrix[i];
     }
 };
 
