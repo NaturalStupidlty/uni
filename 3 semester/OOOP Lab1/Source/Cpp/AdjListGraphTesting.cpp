@@ -40,7 +40,7 @@ TEST_CASE("addEdge AdjListGraph testing")
     }
 }
 
-TEST_CASE("removeEdge MatrixGraph testing")
+TEST_CASE("removeEdge AdjListGraph testing")
 {
     int numberOfVertices = 2;
     AdjListGraph<int, float> graph(numberOfVertices);
@@ -63,4 +63,23 @@ TEST_CASE("removeEdge MatrixGraph testing")
             ++it;
         }
     }
+}
+
+TEST_CASE("isConnected AdjListGraph testing")
+{
+    int numberOfVertices = 4;
+    AdjListGraph<std::string, float> graph(numberOfVertices);
+
+    std::string string1 = "one";
+    std::string string2 = "two";
+    std::string string3 = "three";
+    std::string string4 = "four";
+
+    graph.addEdge(0, 1, string1, 5.5);
+    graph.addEdge(0, 2, string3, 1.2);
+    graph.addEdge(1, 2, string3, 10.3);
+    graph.addEdge(2, 0, string1, 42.69);
+    graph.addEdge(2, 3, string4, 69.69);
+
+    CHECK(graph.isConnected());
 }

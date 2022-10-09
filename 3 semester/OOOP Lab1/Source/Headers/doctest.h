@@ -530,8 +530,6 @@ DOCTEST_MSVC_SUPPRESS_WARNING_POP
 
 #ifdef DOCTEST_CONFIG_INCLUDE_TYPE_TRAITS
 #include <type_traits>
-#include "Data.h"
-
 #endif // DOCTEST_CONFIG_INCLUDE_TYPE_TRAITS
 
 namespace doctest {
@@ -1538,7 +1536,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
         // https://github.com/catchorg/Catch2/issues/870
         // https://github.com/catchorg/Catch2/issues/565
         template <typename L>
-        Data<int, float> operator<<(L&& operand) {
+        Expression_lhs<L> operator<<(L&& operand) {
             return Expression_lhs<L>(static_cast<L&&>(operand), m_at);
         }
 

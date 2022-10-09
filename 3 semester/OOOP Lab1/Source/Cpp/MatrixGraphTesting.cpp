@@ -51,7 +51,10 @@ TEST_CASE("addEdge MatrixGraph testing")
     {
         for (int j = 0; j < numberOfVertices; ++j)
         {
-            REQUIRE(graph[i][j] == matrixCheck[i][j]);
+            if (graph[i][j].number != -1)
+            {
+                REQUIRE(graph[i][j] == matrixCheck[i][j]);
+            }
         }
     }
 }
@@ -82,7 +85,10 @@ TEST_CASE("removeEdge MatrixGraph testing")
     {
         for (int j = 0; j < numberOfVertices; ++j)
         {
-            REQUIRE(graph[i][j] == matrixCheck[i][j]);
+            if (graph[i][j].number != -1)
+            {
+                REQUIRE(graph[i][j] == matrixCheck[i][j]);
+            }
         }
     }
 }
