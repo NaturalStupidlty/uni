@@ -12,7 +12,6 @@ using std::endl;
 using std::queue;
 
 /** ------[ Клас для графа, представленого матрицею суміжності ]------ */
-
 template <typename vertexT, typename edgeT>
 class MatrixGraph: public Graph<vertexT, edgeT>
 {

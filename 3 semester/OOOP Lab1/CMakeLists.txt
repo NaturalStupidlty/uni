@@ -14,6 +14,6 @@ add_executable(OOOP_Lab1 main.cpp
         Source/Headers/STime.h
         Source/Cpp/STime.cpp
         Source/Headers/doctest.h
-        Source/Cpp/MatrixGraphTesting.cpp
-        Source/Cpp/AdjListGraphTesting.cpp
-        Source/Cpp/DateTimeTesting.cpp)
+        "Source/Cpp/UNIT TESTS/MatrixGraphTesting.cpp"
+        "Source/Cpp/UNIT TESTS/AdjListGraphTesting.cpp"
+        "Source/Cpp/UNIT TESTS/DateTimeTesting.cpp")

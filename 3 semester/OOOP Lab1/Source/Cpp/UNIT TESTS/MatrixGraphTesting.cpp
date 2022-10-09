@@ -1,7 +1,7 @@
 #include <list>
 #include <vector>
-#include "../Headers/MatrixGraph.h"
-#include "../Headers/doctest.h"
+#include "../../Headers/MatrixGraph.h"
+#include "../../Headers/doctest.h"
 
 /** Тестування MatrixGraph */
 

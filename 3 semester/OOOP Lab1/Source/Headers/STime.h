@@ -7,7 +7,6 @@
 using std::string;
 
 /** ------[ Заміна структурі tm з додатковим функціоналом ]------ */
-
 class STime
 {
 private:

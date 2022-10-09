@@ -2,7 +2,6 @@
 #define OOOP_LAB1_DATA_H
 
 /** ------[ Структура для зберігання даних у вершинах графа ]------ */
-
 template <typename vertexT, typename edgeT>
 struct Data
 {
@@ -73,5 +72,4 @@ Data<vertexT, edgeT>::Data()
 {
     this->number = -1;
 }
-
 #endif //OOOP_LAB1_DATA_H

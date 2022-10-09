@@ -1,5 +1,5 @@
-#include "../Headers/doctest.h"
-#include "../Headers/AdjListGraph.h"
+#include "../../Headers/doctest.h"
+#include "../../Headers/AdjListGraph.h"
 
 #include <list>
 #include <vector>

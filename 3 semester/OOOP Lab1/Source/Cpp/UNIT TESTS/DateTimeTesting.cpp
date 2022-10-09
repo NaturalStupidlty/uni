@@ -1,5 +1,5 @@
-#include "../Headers/doctest.h"
-#include "../Headers/DateTime.h"
+#include "../../Headers/doctest.h"
+#include "../../Headers/DateTime.h"
 
 TEST_CASE("isValid DateTime testing")
 {

@@ -9,7 +9,6 @@
 using std::string;
 
 /** ------[ Клас для зберігання інформації про дату й час ]------ */
-
 class DateTime
 {
 private:
