@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="DBOLab1_master"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DBOLab1_master">
+				<Option output="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/DBOLab1_master" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tylerdurden/CLionProjects/DBOLab1/Headers"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 DBOLab1_master"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DBOLab1_master/fast">
+				<Option output="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/DBOLab1_master" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/tylerdurden/CLionProjects/DBOLab1/Headers"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 DBOLab1_master/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Constants.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Directors.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Errors.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Functions.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Menu.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Movies.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Headers/Utils.h">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Directors.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Errors.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Functions.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Menu.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Movies.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Utils.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/main.cpp">
+			<Option target="DBOLab1_master"/>
+		</Unit>
+		<Unit filename="/Users/tylerdurden/CLionProjects/DBOLab1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
