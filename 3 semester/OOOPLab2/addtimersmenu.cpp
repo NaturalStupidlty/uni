@@ -9,13 +9,16 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // колір фону - чорний
     this->setStyleSheet("background-color: black;");
 
+    // Обмеження на інпут спінбоксів
     ui->spinBox->setRange(0, maxHours);
     ui->spinBox_2->setRange(0, 59);
     ui->spinBox_3->setRange(0, 59);
     ui->spinBox_4->setRange(0, 999);
 
+    // startTimersButton - пуск таймерів
     connect(ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
 }
 
@@ -29,6 +32,12 @@ QTime addTimersMenu::getEndTime()
     return endTime;
 }
 
+void addTimersMenu::startTimers()
+{
+    setTime();
+    addTimersMenu::accept();
+}
+
 void addTimersMenu::setTime()
 {
     int hours = ui->spinBox->text().toInt();
@@ -37,10 +46,4 @@ void addTimersMenu::setTime()
     int miliseconds = ui->spinBox_4->text().toInt();
 
     endTime.setHMS(hours, minutes, seconds, miliseconds);
-}
-
-void addTimersMenu::startTimers()
-{
-    setTime();
-    addTimersMenu::accept();
 }

@@ -1,25 +1,40 @@
 #include "timer.h"
 
-Timer::Timer(QTime time, QLabel name)
+Timer::Timer()
 {
-    this->time = time;
-    this->name = name.text();
+    endTime.setHMS(0, 0, 0);
+    name = " ";
+    zeroTime.setHMS(0, 0, 0);
 }
 
-Timer::Timer(QTime time, QString name)
+Timer::Timer(QTime time)
 {
-    this->time = time;
-    this->name = name;
+    endTime = time;
+    name = " ";
+    zeroTime.setHMS(0, 0, 0);
 }
 
-QTime Timer::getTime()
+Timer::Timer(QTime time, QString timerName)
 {
-    return time;
+    endTime = time;
+    name = timerName;
+    zeroTime.setHMS(0, 0, 0);
 }
 
-void Timer::setTime(QTime newTime)
+Timer::~Timer()
 {
-    time = newTime;
+    delete time;
+}
+
+
+QTime Timer::getEndTime()
+{
+    return endTime;
+}
+
+QTime Timer::getZeroTime()
+{
+    return zeroTime;
 }
 
 QString Timer::getName()
@@ -27,13 +42,60 @@ QString Timer::getName()
     return name;
 }
 
+
+void Timer::setEndTime(QTime newTime)
+{
+    endTime = newTime;
+}
+
 void Timer::setName(QString newName)
 {
     name = newName;
 }
 
-Timer::Timer()
+
+void Timer::createTimer(QLabel* timeLeft)
 {
-    this->time.setHMS(0,0,0);
-    this->name = "\0";
+    // Показати час
+    time = timeLeft;
+    start();
 }
+
+void Timer::pause()
+{
+    stopped = true;
+}
+
+void Timer::cont()
+{
+    stopped = false;
+    start();
+}
+
+
+void Timer::updateTime()
+{
+    // Зворотній відлік по 1 мілісекунді
+    endTime = endTime.addMSecs(-1);
+    if (endTime == zeroTime || stopped)
+    {
+        time->setText(endTime.toString("hh:mm:ss.zzz"));
+        stop();
+    }
+    else
+    {
+        time->setText(endTime.toString("hh:mm:ss.zzz"));
+        QTimer::singleShot(1, this, SLOT(updateTime()));
+    }
+}
+
+void Timer::start()
+{
+    QTimer::singleShot(0, this, SLOT(updateTime()));
+}
+
+void Timer::stop()
+{
+    timer.stop();
+}
+

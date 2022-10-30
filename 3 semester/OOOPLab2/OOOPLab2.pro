@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     addtimersmenu.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    timer.cpp
 
 HEADERS += \
     addtimersmenu.h \
-    mainwindow.h
+    mainwindow.h \
+    timer.h
 
 FORMS += \
     addtimersmenu.ui \

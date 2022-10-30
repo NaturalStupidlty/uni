@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
-#include <QTime>
+#include "timer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,31 +19,22 @@ public:
 public slots:
 
 private slots:
-    // Слот, що показує час
-    void displayTime();
-
     // Меню додавання таймерів
     void timersMenu();
 
-    // Додати таймери
-    void addTimers();
+    // Призупинити таймер
+    void pauseTimer();
 
-    // Зупинити таймер
-    void stopTimer();
+    // Відновити таймер
+    void continueTimer();
 
 private:
-    // Юзер інтерфейс
+    // Інтерфейс
     Ui::MainWindow *ui;
 
-    // Таймер
-    QTimer timer;
+    // Об'єкт таймера
+    Timer timer;
 
-    // Час закінчення таймера
-    QTime endTime;
-
-    // Нульовий час
-    // (потрібний для завершення роботи таймера)
-    QTime zeroTime;
 };
 
 #endif // MAINWINDOW_H
