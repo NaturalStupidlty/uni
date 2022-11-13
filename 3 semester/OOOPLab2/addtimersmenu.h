@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QTime>
+#include <QLabel>
 
 namespace Ui {
 class addTimersMenu;
@@ -18,6 +19,10 @@ public:
 
     // Гетери
     QTime getEndTime();
+    uint getNumberOfTimers();
+    QLabel* getTimerName();
+
+    bool isAlarm();
 
 private slots:
     // Запуск таймерів
@@ -28,10 +33,18 @@ private:
     Ui::addTimersMenu *ui;
 
     // Обмеження на введення кількості годин
-    const ulong maxHours = 999999999999999999;
+    const ulong maxHours = INT_MAX;
+    // Обмеження на введення кількості таймерів
+    const ulong maxTimers = INT_MAX;
 
     // Час завершення таймера
     QTime endTime;
+    // Кількість таймерів
+    uint numberOfTimers;
+    // Назва таймера
+    QLabel* timerName;
+    // будильник
+    bool alarm;
 
     // Встановити endTime за даними, що
     // були введені в spinBoxes

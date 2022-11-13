@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QTime>
 #include <QTimer>
-#include <QLabel>
+#include "timerinfo.h"
 
 class Timer : public QObject
 {
@@ -13,29 +13,22 @@ public:
     // Конструктори
     Timer();
     Timer(QTime time);
-    Timer(QTime time, QString timerName);
 
     // Деструктор
-    ~Timer();
-
-
-
-    // Часу залишилося
-    QLabel* time;
-
-
+    ~Timer(){delete info;};
 
     // Гетери
     QTime getEndTime();
     QTime getZeroTime();
-    QString getName();
 
     // Сетери
     void setEndTime(QTime newTime);
-    void setName(QString newName);
 
     // Додати новий таймер
-    void createTimer(QLabel* timeLeft);
+    void start();
+
+    // Чи таймер зупинений
+    bool stopped = false;
 
     // Призупинити таймер
     void pause();
@@ -43,15 +36,13 @@ public:
     // Відновити таймер
     void cont();
 
-private:
-    // Чи таймер зупинений
-    bool stopped = false;
+    // TODO: може через гетер
+    // інформація про таймер
+    TimerInfo* info;
 
+private:
     // Час закінчення таймера
     QTime endTime;
-
-    // Назва таймера
-    QString name;
 
     // Нульовий час
     // (потрібний для завершення роботи таймера)
@@ -59,9 +50,6 @@ private:
 
     // Таймер для відліку
     QTimer timer;
-
-    // Почати таймер
-    void start();
 
     // Зупинити таймер
     void stop();

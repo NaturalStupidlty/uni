@@ -1,8 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
 #include "timer.h"
+
+#include <QMainWindow>
+#include <QGroupBox>
+#include <vector>
+
+using std::vector;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,9 +37,12 @@ private:
     // Інтерфейс
     Ui::MainWindow *ui;
 
-    // Об'єкт таймера
-    Timer timer;
+    // Таймери
+    vector<Timer*> timers;
 
+    // Для зберігання таймерів
+    QGroupBox* timersBox;
+    QGroupBox* alarmsBox;
 };
 
 #endif // MAINWINDOW_H

@@ -12,12 +12,14 @@ SOURCES += \
     addtimersmenu.cpp \
     main.cpp \
     mainwindow.cpp \
-    timer.cpp
+    timer.cpp \
+    timerinfo.cpp
 
 HEADERS += \
     addtimersmenu.h \
     mainwindow.h \
-    timer.h
+    timer.h \
+    timerinfo.h
 
 FORMS += \
     addtimersmenu.ui \

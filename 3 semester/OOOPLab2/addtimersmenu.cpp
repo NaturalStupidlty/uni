@@ -9,14 +9,17 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    timerName = new QLabel;
+
     // колір фону - чорний
     this->setStyleSheet("background-color: black;");
 
     // Обмеження на інпут спінбоксів
-    ui->spinBox->setRange(0, maxHours);
-    ui->spinBox_2->setRange(0, 59);
-    ui->spinBox_3->setRange(0, 59);
-    ui->spinBox_4->setRange(0, 999);
+    ui->spinBoxNumberOfTimers->setRange(0, maxTimers);
+    ui->spinBoxHours->setRange(0, maxHours);
+    ui->spinBoxMinutes->setRange(0, 59);
+    ui->spinBoxSeconds->setRange(0, 59);
+    ui->spinBoxMiliseconds->setRange(0, 999);
 
     // startTimersButton - пуск таймерів
     connect(ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
@@ -25,11 +28,27 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
 addTimersMenu::~addTimersMenu()
 {
     delete ui;
+    delete timerName;
 }
 
 QTime addTimersMenu::getEndTime()
 {
     return endTime;
+}
+
+uint addTimersMenu::getNumberOfTimers()
+{
+    return numberOfTimers;
+}
+
+QLabel* addTimersMenu::getTimerName()
+{
+    return timerName;
+}
+
+bool addTimersMenu::isAlarm()
+{
+    return alarm;
 }
 
 void addTimersMenu::startTimers()
@@ -40,10 +59,14 @@ void addTimersMenu::startTimers()
 
 void addTimersMenu::setTime()
 {
-    int hours = ui->spinBox->text().toInt();
-    int minutes = ui->spinBox_2->text().toInt();
-    int seconds = ui->spinBox_3->text().toInt();
-    int miliseconds = ui->spinBox_4->text().toInt();
+    int hours = ui->spinBoxHours->text().toInt();
+    int minutes = ui->spinBoxMinutes->text().toInt();
+    int seconds = ui->spinBoxSeconds->text().toInt();
+    int miliseconds = ui->spinBoxMiliseconds->text().toInt();
 
     endTime.setHMS(hours, minutes, seconds, miliseconds);
+    numberOfTimers = ui->spinBoxNumberOfTimers->text().toInt();
+    timerName->setText(ui->timerName->text());
+    alarm = ui->checkedAlarm->isChecked();
+
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>483</height>
+    <width>933</width>
+    <height>576</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,7 +35,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Старт</string>
+           <string>Далі</string>
           </property>
          </widget>
         </item>
@@ -75,7 +75,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Стоп</string>
+           <string>Пауза</string>
           </property>
          </widget>
         </item>
@@ -84,116 +84,159 @@
       <item>
        <layout class="QHBoxLayout" name="Timers">
         <item>
-         <layout class="QVBoxLayout" name="Alarms">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="alarms">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
             </property>
-            <property name="font">
-             <font>
-              <family>Montserrat</family>
-              <pointsize>24</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Будильники:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="alarmsList">
             <item>
-             <widget class="QScrollBar" name="verticalScrollBar">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+             <widget class="QLabel" name="alarms">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Montserrat</family>
+                <pointsize>24</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Будильники:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="nearestTimerText">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Montserrat</family>
+                <pointsize>24</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Найближчий таймер:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="timers">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Montserrat</family>
+                <pointsize>24</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Таймери:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="nearestTimer">
           <item>
-           <widget class="QLabel" name="nearestTimerText">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>Montserrat</family>
-              <pointsize>24</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Найближчий таймер:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="timerTime">
-            <property name="font">
-             <font>
-              <family>JetBrains Mono NL</family>
-              <pointsize>64</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="regularTimers">
-          <item>
-           <widget class="QLabel" name="timers">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>Montserrat</family>
-              <pointsize>24</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Таймери:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="regularTimersList">
+           <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QScrollBar" name="verticalScrollBar_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+             <layout class="QVBoxLayout" name="Alarms" stretch="0">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetDefaultConstraint</enum>
               </property>
-             </widget>
+              <property name="rightMargin">
+               <number>20</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="alarmsBox">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetDefaultConstraint</enum>
+                </property>
+                <item>
+                 <layout class="QVBoxLayout" name="alarmsList"/>
+                </item>
+                <item>
+                 <widget class="QScrollBar" name="verticalScrollBar">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="nearestTimer">
+              <item>
+               <widget class="QLabel" name="timerTime">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>JetBrains Mono NL</family>
+                  <pointsize>64</pointsize>
+                  <stylestrategy>PreferAntialias</stylestrategy>
+                 </font>
+                </property>
+                <property name="focusPolicy">
+                 <enum>Qt::NoFocus</enum>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="regularTimers">
+              <property name="leftMargin">
+               <number>20</number>
+              </property>
+              <item>
+               <layout class="QHBoxLayout" name="regularTimersBox">
+                <item>
+                 <layout class="QVBoxLayout" name="regularTimersList"/>
+                </item>
+                <item>
+                 <widget class="QScrollBar" name="verticalScrollBar_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -210,8 +253,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>705</width>
-     <height>24</height>
+     <width>933</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>
