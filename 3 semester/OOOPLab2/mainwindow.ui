@@ -166,7 +166,7 @@
                <enum>QLayout::SetDefaultConstraint</enum>
               </property>
               <property name="rightMargin">
-               <number>20</number>
+               <number>0</number>
               </property>
               <item>
                <layout class="QHBoxLayout" name="alarmsBox">
@@ -175,13 +175,6 @@
                 </property>
                 <item>
                  <layout class="QVBoxLayout" name="alarmsList"/>
-                </item>
-                <item>
-                 <widget class="QScrollBar" name="verticalScrollBar">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
                 </item>
                </layout>
               </item>
@@ -220,19 +213,12 @@
             <item>
              <layout class="QVBoxLayout" name="regularTimers">
               <property name="leftMargin">
-               <number>20</number>
+               <number>0</number>
               </property>
               <item>
                <layout class="QHBoxLayout" name="regularTimersBox">
                 <item>
                  <layout class="QVBoxLayout" name="regularTimersList"/>
-                </item>
-                <item>
-                 <widget class="QScrollBar" name="verticalScrollBar_2">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
                 </item>
                </layout>
               </item>
@@ -254,7 +240,7 @@
      <x>0</x>
      <y>0</y>
      <width>933</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

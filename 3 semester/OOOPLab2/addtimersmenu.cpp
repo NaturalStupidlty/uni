@@ -23,6 +23,8 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
 
     // startTimersButton - пуск таймерів
     connect(ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
+    // backButton - вихід
+    connect(ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 addTimersMenu::~addTimersMenu()
@@ -55,6 +57,11 @@ void addTimersMenu::startTimers()
 {
     setTime();
     addTimersMenu::accept();
+}
+
+void addTimersMenu::goBack()
+{
+
 }
 
 void addTimersMenu::setTime()

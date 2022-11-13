@@ -27,7 +27,7 @@ public:
 private slots:
     // Запуск таймерів
     void startTimers();
-
+    void goBack();
 private:
     // Інтерфейс
     Ui::addTimersMenu *ui;

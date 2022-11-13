@@ -8,6 +8,7 @@
 #include <QGroupBox>
 #include <QTimer>
 #include <QTime>
+#include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,18 +19,12 @@ MainWindow::MainWindow(QWidget *parent)
     // Колір фону - чорний
     this->setStyleSheet("background-color: black;");
 
-    // Сховати скрол бари
-    this->ui->verticalScrollBar->setHidden(true);
-    this->ui->verticalScrollBar_2->setHidden(true);
-
     // поки нульовий таймер
     this->ui->timerTime->setText("00:00:00:000");
 
     // Бокси для зберігання таймерів
     this->timersBox = new QGroupBox(tr("Regular timers list"));
     this->alarmsBox = new QGroupBox(tr("Alarms list"));
-
-    this->timersBox->setMaximumHeight(ui->verticalScrollBar_2->maximumHeight());
 
     // setTimerButton викликає timersMenu
     connect(ui->setTimerButton, SIGNAL(clicked(bool)), this, SLOT(timersMenu()));
@@ -57,10 +52,17 @@ void MainWindow::timersMenu()
     // Створюємо меню
     addTimersMenu menu;
     menu.setModal(true);
-    menu.exec();
+
+    // Назад
+    if (!menu.exec())
+    {
+        return;
+    }
 
     int n = menu.getNumberOfTimers();
     QLabel* name = menu.getTimerName();
+    QScrollArea* scroll = new QScrollArea;
+    QVBoxLayout* newBoxLayout = new QVBoxLayout;
 
     for (int i = 0; i < n; i++)
     {
@@ -72,26 +74,18 @@ void MainWindow::timersMenu()
                 timer->info->setName(name->text());
                 timer->info->setAlarm(menu.isAlarm());
 
-                QGroupBox* newBox = new QGroupBox();
-                QVBoxLayout* newBoxLayout = new QVBoxLayout;
-
-                //newBox->setStyleSheet("background-color: black;");
-
                 newBoxLayout->addWidget(timer->info->getName());
                 newBoxLayout->addWidget(timer->info->getTime());
-                newBox->setLayout(newBoxLayout);
 
                 if (timer->info->isAlarm())
                 {
-                    this->ui->verticalScrollBar->show();
-                    ui->alarmsList->addWidget(newBox);
-                    newBox->setMaximumWidth(this->ui->timers->width());
+                    ui->alarmsList->addWidget(scroll);
+                    scroll->setMaximumWidth(ui->alarms->width());
                 }
                 else
                 {
-                    this->ui->verticalScrollBar_2->show();
-                    ui->regularTimersList->addWidget(newBox);
-                    newBox->setMaximumWidth(this->ui->alarms->width());
+                    ui->regularTimersList->addWidget(scroll);
+                    scroll->setMaximumWidth(ui->timers->width());
                 }
                 this->timers.emplace_back(timer);
         }
@@ -101,6 +95,7 @@ void MainWindow::timersMenu()
 
         }
     }
+    scroll->setLayout(newBoxLayout);
 }
 
 void MainWindow::pauseTimer()

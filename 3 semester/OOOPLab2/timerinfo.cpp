@@ -13,6 +13,8 @@ TimerInfo::TimerInfo(QString time, QString name)
     this->name = new QLabel;
     this->time->setText(time);
     this->name->setText(name);
+    this->time->setAlignment(Qt::AlignCenter);
+    this->name->setAlignment(Qt::AlignCenter);
 }
 
 TimerInfo::~TimerInfo()
@@ -24,11 +26,13 @@ TimerInfo::~TimerInfo()
 void TimerInfo::setTime(QString newTime)
 {
     this->time->setText(newTime);
+    this->time->setAlignment(Qt::AlignCenter);
 }
 
 void TimerInfo::setName(QString newName)
 {
     this->name->setText(newName);
+    this->name->setAlignment(Qt::AlignCenter);
 }
 
 void TimerInfo::setAlarm(bool alarm)
