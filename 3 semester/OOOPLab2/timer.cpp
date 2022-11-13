@@ -1,4 +1,5 @@
 #include "timer.h"
+#include <QMessageBox>
 
 Timer::Timer()
 {
@@ -62,6 +63,10 @@ void Timer::updateTime()
 
 void Timer::stop()
 {
-    timer.stop();
+    QMessageBox timerOver;
+    timerOver.setWindowTitle("Час таймера вийшов.");
+    timerOver.setText((this->info->getName())->text());
+    timerOver.exec();
+    this->timer.stop();
 }
 
