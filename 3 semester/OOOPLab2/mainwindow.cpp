@@ -4,7 +4,6 @@
 #include "timerinfo.h"
 
 #include <QMessageBox>
-#include <QGroupBox>
 #include <QTimer>
 #include <QTime>
 
@@ -18,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Колір фону - чорний
     this->setStyleSheet("background-color: black;");
 
+    // Колір кнопок
     this->ui->continueTimerButton->setStyleSheet("color: rgb(69,69,69)");
     this->ui->pauseTimerButton->setStyleSheet("color: rgb(69,69,69)");
 
@@ -25,14 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->timerTime->setText("00:00:00:000");
 
     // Для зберігання таймерів
-    this->timersBox = new QGroupBox(tr("Regular timers list"));
-    this->alarmsBox = new QGroupBox(tr("Alarms list"));
+    this->timersLayout = new QVBoxLayout;
+    this->alarmsLayout = new QVBoxLayout;
 
-    this->scrollAlarms = new QScrollArea;
-    this->scrollTimers = new QScrollArea;
-
-    this->scrollAlarmsLayout = new QVBoxLayout;
-    this->scrollTimersLayout = new QVBoxLayout;
+    this->alarmsLayout->setAlignment(Qt::AlignCenter);
+    this->timersLayout->setAlignment(Qt::AlignCenter);
 
     // setTimerButton викликає timersMenu
     connect(this->ui->setTimerButton, SIGNAL(clicked(bool)), this, SLOT(timersMenu()));
@@ -47,12 +44,8 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete this->ui;
-    delete this->timersBox;
-    delete this->alarmsBox;
-    delete this->scrollAlarms;
-    delete this->scrollTimers;
-    delete this->scrollAlarmsLayout;
-    delete this->scrollTimersLayout;
+    delete this->timersLayout;
+    delete this->alarmsLayout;
     for (size_t i = 0; i < timers.size(); i++)
     {
         delete this->timers[i];
@@ -83,27 +76,15 @@ void MainWindow::timersMenu()
 
             if (timer->info->isAlarm())
             {
-                ui->alarmsList->addWidget(scrollAlarms);
-                scrollAlarmsLayout->addWidget(timer->info->getName());
-                scrollAlarmsLayout->addWidget(timer->info->getTime());
-
-                scrollAlarmsLayout->setAlignment(Qt::AlignCenter);
-                scrollAlarms->setMinimumWidth(ui->alarms->width());
-                scrollAlarms->setMaximumWidth(ui->alarms->width());
-
-                scrollAlarms->setLayout(scrollAlarmsLayout);
+                this->alarmsLayout->addWidget(timer->info->getName());
+                this->alarmsLayout->addWidget(timer->info->getTime());
+                this->ui->alarmsList->setLayout(alarmsLayout);
             }
             else
             {
-                ui->regularTimersList->addWidget(scrollTimers);
-                scrollTimersLayout->addWidget(timer->info->getName());
-                scrollTimersLayout->addWidget(timer->info->getTime());
-
-                scrollTimersLayout->setAlignment(Qt::AlignCenter);
-                scrollTimers->setMinimumWidth(ui->timers->width());
-                scrollTimers->setMaximumWidth(ui->timers->width());
-
-                scrollTimers->setLayout(scrollTimersLayout);
+                this->timersLayout->addWidget(timer->info->getName());
+                this->timersLayout->addWidget(timer->info->getTime());
+                this->ui->regularTimersList->setLayout(timersLayout);
             }
             this->timers.emplace_back(timer);
     }
@@ -128,6 +109,3 @@ void MainWindow::continueTimer()
 {
     timers[0]->cont();
 }
-
-
-

@@ -5,9 +5,7 @@
 
 #include <vector>
 #include <QMainWindow>
-#include <QGroupBox>
-#include <QScrollArea>
-#include <QVBoxLayout>
+#include <QLayout>
 
 using std::vector;
 
@@ -26,9 +24,10 @@ public:
 public slots:
 
 private slots:
-    // Меню додавання таймерів
+    // Додавання таймерів
     void timersMenu();
 
+    //
     void selectTimer();
 
     // Призупинити таймер
@@ -45,14 +44,8 @@ private:
     vector<Timer*> timers;
 
     // Для зберігання таймерів
-    QGroupBox* timersBox;
-    QGroupBox* alarmsBox;
-
-    QScrollArea* scrollAlarms;
-    QScrollArea* scrollTimers;
-
-    QVBoxLayout* scrollAlarmsLayout;
-    QVBoxLayout* scrollTimersLayout;
+    QVBoxLayout* timersLayout;
+    QVBoxLayout* alarmsLayout;
 };
 
 #endif // MAINWINDOW_H

@@ -21,6 +21,7 @@ public:
     QTime getEndTime();
     QLabel* getTimerName();
 
+    // Чи це будильник
     bool isAlarm();
 
 private slots:

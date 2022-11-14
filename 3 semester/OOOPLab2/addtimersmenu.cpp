@@ -7,46 +7,50 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::addTimersMenu)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 
-    timerName = new QLabel;
+    this->timerName = new QLabel;
 
     // колір фону - чорний
     this->setStyleSheet("background-color: black;");
+    this->ui->timerName->setStyleSheet("border: 1px solid black");
+    this->ui->spinBoxHours->setStyleSheet("border: 1px solid black");
+    this->ui->spinBoxMinutes->setStyleSheet("border: 1px solid black");
+    this->ui->spinBoxSeconds->setStyleSheet("border: 1px solid black");
+    this->ui->spinBoxMiliseconds->setStyleSheet("border: 1px solid black");
 
-    // Обмеження на інпут спінбоксів
-    ui->spinBoxHours->setRange(0, maxHours);
-    ui->spinBoxMinutes->setRange(0, 59);
-    ui->spinBoxSeconds->setRange(0, 59);
-    ui->spinBoxMiliseconds->setRange(0, 999);
-
-    ui->timerName->setMaxLength(maxTimerNameLenght);
+    // Обмеження на інпути
+    this->ui->spinBoxHours->setRange(0, maxHours);
+    this->ui->spinBoxMinutes->setRange(0, 59);
+    this->ui->spinBoxSeconds->setRange(0, 59);
+    this->ui->spinBoxMiliseconds->setRange(0, 999);
+    this->ui->timerName->setMaxLength(maxTimerNameLenght);
 
     // startTimersButton - пуск таймерів
-    connect(ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
+    connect(this->ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
     // backButton - вихід
-    connect(ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(this->ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 addTimersMenu::~addTimersMenu()
 {
-    delete ui;
-    delete timerName;
+    delete this->ui;
+    delete this->timerName;
 }
 
 QTime addTimersMenu::getEndTime()
 {
-    return endTime;
+    return this->endTime;
 }
 
 QLabel* addTimersMenu::getTimerName()
 {
-    return timerName;
+    return this->timerName;
 }
 
 bool addTimersMenu::isAlarm()
 {
-    return alarm;
+    return this->alarm;
 }
 
 void addTimersMenu::startTimers()
@@ -57,12 +61,12 @@ void addTimersMenu::startTimers()
 
 void addTimersMenu::setTime()
 {
-    int hours = ui->spinBoxHours->value();
-    int minutes = ui->spinBoxMinutes->value();
-    int seconds = ui->spinBoxSeconds->value();
-    int miliseconds = ui->spinBoxMiliseconds->value();
+    int hours = this->ui->spinBoxHours->value();
+    int minutes = this->ui->spinBoxMinutes->value();
+    int seconds = this->ui->spinBoxSeconds->value();
+    int miliseconds =this-> ui->spinBoxMiliseconds->value();
 
-    endTime.setHMS(hours, minutes, seconds, miliseconds);
-    timerName->setText(ui->timerName->text());
-    alarm = ui->checkedAlarm->isChecked();
+    this->endTime.setHMS(hours, minutes, seconds, miliseconds);
+    this->timerName->setText(this->ui->timerName->text());
+    this->alarm = this->ui->checkedAlarm->isChecked();
 }

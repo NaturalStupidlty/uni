@@ -30,8 +30,8 @@
         <property name="font">
          <font>
           <family>Montserrat</family>
-          <pointsize>24</pointsize>
-          <bold>true</bold>
+          <pointsize>36</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="tabletTracking">
@@ -53,15 +53,26 @@
         <item>
          <widget class="QSpinBox" name="spinBoxHours">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+            <pointsize>24</pointsize>
+           </font>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelHours">
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+           </font>
+          </property>
           <property name="text">
            <string>год</string>
           </property>
@@ -70,15 +81,26 @@
         <item>
          <widget class="QSpinBox" name="spinBoxMinutes">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+            <pointsize>24</pointsize>
+           </font>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelMinutes">
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+           </font>
+          </property>
           <property name="text">
            <string>хв</string>
           </property>
@@ -87,15 +109,26 @@
         <item>
          <widget class="QSpinBox" name="spinBoxSeconds">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+            <pointsize>24</pointsize>
+           </font>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelSeconds">
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+           </font>
+          </property>
           <property name="text">
            <string>с</string>
           </property>
@@ -104,15 +137,26 @@
         <item>
          <widget class="QSpinBox" name="spinBoxMiliseconds">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+            <pointsize>24</pointsize>
+           </font>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="labelMiliseconds">
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+           </font>
+          </property>
           <property name="text">
            <string>мс</string>
           </property>
@@ -129,8 +173,8 @@
         <property name="font">
          <font>
           <family>Montserrat</family>
-          <pointsize>24</pointsize>
-          <bold>true</bold>
+          <pointsize>36</pointsize>
+          <bold>false</bold>
          </font>
         </property>
         <property name="tabletTracking">
@@ -157,6 +201,18 @@
         </property>
         <item>
          <widget class="QLineEdit" name="timerName">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Montserrat</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
           <property name="inputMask">
            <string notr="true"/>
           </property>
@@ -188,7 +244,7 @@
         <property name="font">
          <font>
           <family>Montserrat</family>
-          <pointsize>14</pointsize>
+          <pointsize>18</pointsize>
          </font>
         </property>
         <property name="text">
@@ -207,7 +263,7 @@
         <property name="font">
          <font>
           <family>Montserrat</family>
-          <pointsize>18</pointsize>
+          <pointsize>24</pointsize>
          </font>
         </property>
         <property name="text">
@@ -226,7 +282,7 @@
         <property name="font">
          <font>
           <family>Montserrat</family>
-          <pointsize>18</pointsize>
+          <pointsize>24</pointsize>
          </font>
         </property>
         <property name="text">

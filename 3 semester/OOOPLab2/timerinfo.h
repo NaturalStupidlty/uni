@@ -12,17 +12,22 @@ public:
     TimerInfo(QString time, QString name);
     ~TimerInfo();
 
+    // Сетери
     void setTime(QString newTime);
     void setName(QString newName);
     void setAlarm(bool alarm);
 
+    // Гетери
     QLabel* getTime();
     QLabel* getName();
     bool isAlarm();
 
 private:
+    // Час, що відображається
     QLabel* time;
+    // Ім'я, що відображається
     QLabel* name;
+    // Чи це будильник
     bool alarm;
 };
 
