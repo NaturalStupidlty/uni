@@ -3,12 +3,11 @@
 #include "addtimersmenu.h"
 #include "timerinfo.h"
 
-
 #include <QMessageBox>
 #include <QGroupBox>
 #include <QTimer>
 #include <QTime>
-#include <QScrollArea>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,31 +18,44 @@ MainWindow::MainWindow(QWidget *parent)
     // Колір фону - чорний
     this->setStyleSheet("background-color: black;");
 
+    this->ui->continueTimerButton->setStyleSheet("color: rgb(69,69,69)");
+    this->ui->pauseTimerButton->setStyleSheet("color: rgb(69,69,69)");
+
     // поки нульовий таймер
     this->ui->timerTime->setText("00:00:00:000");
 
-    // Бокси для зберігання таймерів
+    // Для зберігання таймерів
     this->timersBox = new QGroupBox(tr("Regular timers list"));
     this->alarmsBox = new QGroupBox(tr("Alarms list"));
 
+    this->scrollAlarms = new QScrollArea;
+    this->scrollTimers = new QScrollArea;
+
+    this->scrollAlarmsLayout = new QVBoxLayout;
+    this->scrollTimersLayout = new QVBoxLayout;
+
     // setTimerButton викликає timersMenu
-    connect(ui->setTimerButton, SIGNAL(clicked(bool)), this, SLOT(timersMenu()));
+    connect(this->ui->setTimerButton, SIGNAL(clicked(bool)), this, SLOT(timersMenu()));
 
     // pauseTimerButton призупиняє таймер
-    connect(ui->pauseTimerButton, SIGNAL(clicked(bool)), this, SLOT(pauseTimer()));
+    connect(this->ui->pauseTimerButton, SIGNAL(clicked(bool)), this, SLOT(pauseTimer()));
 
     // continueTimerButton продовжує таймер
-    connect(ui->continueTimerButton, SIGNAL(clicked(bool)), this, SLOT(continueTimer()));
+    connect(this->ui->continueTimerButton, SIGNAL(clicked(bool)), this, SLOT(continueTimer()));
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
-    delete timersBox;
-    delete alarmsBox;
+    delete this->ui;
+    delete this->timersBox;
+    delete this->alarmsBox;
+    delete this->scrollAlarms;
+    delete this->scrollTimers;
+    delete this->scrollAlarmsLayout;
+    delete this->scrollTimersLayout;
     for (size_t i = 0; i < timers.size(); i++)
     {
-        delete timers[i];
+        delete this->timers[i];
     }
 }
 
@@ -59,43 +71,52 @@ void MainWindow::timersMenu()
         return;
     }
 
-    int n = menu.getNumberOfTimers();
+    // Встановлюємо інформацію про таймер
     QLabel* name = menu.getTimerName();
-    QScrollArea* scroll = new QScrollArea;
-    QVBoxLayout* newBoxLayout = new QVBoxLayout;
+    Timer* timer = new Timer(menu.getEndTime());
 
-    for (int i = 0; i < n; i++)
+    if (timer->getEndTime() != timer->getZeroTime())
     {
-        // Встановлюємо час завершення таймера
-        Timer* timer = new Timer(menu.getEndTime());
-        if (timer->getEndTime() != timer->getZeroTime())
-        {
-                timer->start();
-                timer->info->setName(name->text());
-                timer->info->setAlarm(menu.isAlarm());
+            timer->start();
+            timer->info->setName(name->text());
+            timer->info->setAlarm(menu.isAlarm());
 
-                newBoxLayout->addWidget(timer->info->getName());
-                newBoxLayout->addWidget(timer->info->getTime());
+            if (timer->info->isAlarm())
+            {
+                ui->alarmsList->addWidget(scrollAlarms);
+                scrollAlarmsLayout->addWidget(timer->info->getName());
+                scrollAlarmsLayout->addWidget(timer->info->getTime());
 
-                if (timer->info->isAlarm())
-                {
-                    ui->alarmsList->addWidget(scroll);
-                    scroll->setMaximumWidth(ui->alarms->width());
-                }
-                else
-                {
-                    ui->regularTimersList->addWidget(scroll);
-                    scroll->setMaximumWidth(ui->timers->width());
-                }
-                this->timers.emplace_back(timer);
-        }
-        else
-        {
-            QMessageBox::warning(this, "Ти шо бем бем?", "Введений час не може бути рівним нулю");
+                scrollAlarmsLayout->setAlignment(Qt::AlignCenter);
+                scrollAlarms->setMinimumWidth(ui->alarms->width());
+                scrollAlarms->setMaximumWidth(ui->alarms->width());
 
-        }
+                scrollAlarms->setLayout(scrollAlarmsLayout);
+            }
+            else
+            {
+                ui->regularTimersList->addWidget(scrollTimers);
+                scrollTimersLayout->addWidget(timer->info->getName());
+                scrollTimersLayout->addWidget(timer->info->getTime());
+
+                scrollTimersLayout->setAlignment(Qt::AlignCenter);
+                scrollTimers->setMinimumWidth(ui->timers->width());
+                scrollTimers->setMaximumWidth(ui->timers->width());
+
+                scrollTimers->setLayout(scrollTimersLayout);
+            }
+            this->timers.emplace_back(timer);
     }
-    scroll->setLayout(newBoxLayout);
+    else
+    {
+        QMessageBox::warning(this, "Ти шо бем бем?", "Введений час не може бути рівним нулю");
+
+    }
+}
+
+void MainWindow::selectTimer()
+{
+    this->ui->pauseTimerButton->setStyleSheet("color: red");
 }
 
 void MainWindow::pauseTimer()

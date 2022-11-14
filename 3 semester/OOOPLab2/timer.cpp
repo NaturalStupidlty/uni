@@ -68,5 +68,6 @@ void Timer::stop()
     timerOver.setText((this->info->getName())->text());
     timerOver.exec();
     this->timer.stop();
+    delete info;
 }
 

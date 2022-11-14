@@ -19,7 +19,6 @@ public:
 
     // Гетери
     QTime getEndTime();
-    uint getNumberOfTimers();
     QLabel* getTimerName();
 
     bool isAlarm();
@@ -27,20 +26,17 @@ public:
 private slots:
     // Запуск таймерів
     void startTimers();
-    void goBack();
+
 private:
     // Інтерфейс
     Ui::addTimersMenu *ui;
 
     // Обмеження на введення кількості годин
-    const ulong maxHours = INT_MAX;
-    // Обмеження на введення кількості таймерів
-    const ulong maxTimers = INT_MAX;
+    const ulong maxHours = 23;
+    const uint maxTimerNameLenght = 24;
 
     // Час завершення таймера
     QTime endTime;
-    // Кількість таймерів
-    uint numberOfTimers;
     // Назва таймера
     QLabel* timerName;
     // будильник

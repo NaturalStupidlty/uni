@@ -3,8 +3,12 @@
 TimerInfo::TimerInfo(QWidget *parent)
     : QWidget{parent}
 {
-    time = new QLabel;
-    name = new QLabel;
+    this->time = new QLabel;
+    this->name = new QLabel;
+    this->time->setAlignment(Qt::AlignCenter);
+    this->name->setAlignment(Qt::AlignCenter);
+    this->time->setFont(QFont("JetBrains Mono NL", 18));
+    this->name->setFont(QFont("Montserrat", 18));
 }
 
 TimerInfo::TimerInfo(QString time, QString name)
@@ -15,24 +19,24 @@ TimerInfo::TimerInfo(QString time, QString name)
     this->name->setText(name);
     this->time->setAlignment(Qt::AlignCenter);
     this->name->setAlignment(Qt::AlignCenter);
+    this->time->setFont(QFont("JetBrains Mono NL", 18));
+    this->name->setFont(QFont("Montserrat", 18));
 }
 
 TimerInfo::~TimerInfo()
 {
-    delete time;
-    delete name;
+    delete this->time;
+    delete this->name;
 }
 
 void TimerInfo::setTime(QString newTime)
 {
     this->time->setText(newTime);
-    this->time->setAlignment(Qt::AlignCenter);
 }
 
 void TimerInfo::setName(QString newName)
 {
     this->name->setText(newName);
-    this->name->setAlignment(Qt::AlignCenter);
 }
 
 void TimerInfo::setAlarm(bool alarm)
@@ -52,5 +56,5 @@ QLabel* TimerInfo::getName()
 
 bool TimerInfo::isAlarm()
 {
-    return alarm;
+    return this->alarm;
 }
