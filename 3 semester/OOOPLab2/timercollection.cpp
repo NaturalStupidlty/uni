@@ -62,8 +62,19 @@ void TimerCollection::updateTime()
         }
         else if (!this->timers[i]->isStopped())
         {
-            // Зворотній відлік по 1 мілісекунді
-            this->timers[i]->setEndTime(this->timers[i]->getEndTime().addMSecs(-1));
+            // Зворотній відлік:
+            // Поправка на час, що пройшов з моменту останнього оновлення
+            int milisecondsPassed =
+                    (QTime::currentTime().addMSecs
+                     (-(this->timers[i]->getLastUpdateTime()
+                        .msecsSinceStartOfDay())))
+                    .msecsSinceStartOfDay();
+            if (milisecondsPassed > this->timers[i]->getEndTime().msecsSinceStartOfDay())
+            {
+                stop(i);
+            }
+            this->timers[i]->setEndTime(this->timers[i]->getEndTime().addMSecs(-milisecondsPassed));
+            timers[i]->setLastUpdateTime(QTime::currentTime());
             this->timers[i]->setTime(this->timers[i]->getEndTime().toString("hh:mm:ss.zzz"));
         }
     }
@@ -77,5 +88,8 @@ void TimerCollection::stop(int index)
     timerOver.setText((this->timers[index]->getName())->text());
     timerOver.exec();
     delete this->timers[index];
+    Timer* copy = this->timers.back();
+    this->timers[index] = copy;
+    this->timers.pop_back();
 }
 

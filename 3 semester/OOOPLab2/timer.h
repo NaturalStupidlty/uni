@@ -18,6 +18,7 @@ public:
 
     // Гетери
     QTime getEndTime();
+    QTime getLastUpdateTime();
     QLabel* getTime();
     QLabel* getName();
     bool isAlarm();
@@ -25,6 +26,7 @@ public:
 
     // Сетери
     void setEndTime(QTime newTime);
+    void setLastUpdateTime(QTime newUpdateTime);
     void setTime(QString newTime);
     void setName(QString newName);
     void setAlarm(bool alarm);

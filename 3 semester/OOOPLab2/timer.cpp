@@ -9,6 +9,7 @@ Timer::Timer()
     this->name->setAlignment(Qt::AlignCenter);
     this->time->setFont(QFont("JetBrains Mono NL", 18));
     this->name->setFont(QFont("Montserrat", 18));
+    this->lastUpdateTime = QTime::currentTime();
 }
 
 Timer::Timer(QTime time)
@@ -20,6 +21,7 @@ Timer::Timer(QTime time)
     this->name->setAlignment(Qt::AlignCenter);
     this->time->setFont(QFont("JetBrains Mono NL", 18));
     this->name->setFont(QFont("Montserrat", 18));
+    this->lastUpdateTime = QTime::currentTime();
 }
 
 Timer::~Timer()
@@ -33,9 +35,19 @@ QTime Timer::getEndTime()
     return endTime;
 }
 
+QTime Timer::getLastUpdateTime()
+{
+    return this->lastUpdateTime;
+}
+
 void Timer::setEndTime(QTime newTime)
 {
     this->endTime = newTime;
+}
+
+void Timer::setLastUpdateTime(QTime newUpdateTime)
+{
+    this->lastUpdateTime = newUpdateTime;
 }
 
 void Timer::setTime(QString newTime)
