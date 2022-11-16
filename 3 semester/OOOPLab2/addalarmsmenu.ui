@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>addTimersMenu</class>
- <widget class="QDialog" name="addTimersMenu">
+ <class>addAlarmsMenu</class>
+ <widget class="QDialog" name="addAlarmsMenu">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
+    <width>562</width>
     <height>337</height>
    </rect>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>16777215</width>
-    <height>16777215</height>
-   </size>
-  </property>
-  <property name="font">
-   <font>
-    <family>Montserrat</family>
-   </font>
   </property>
   <property name="windowTitle">
    <string>Add timers or alarms</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="1" column="0">
     <widget class="QFrame" name="frame_3">
      <property name="maximumSize">
       <size>
@@ -57,41 +46,38 @@
       </property>
       <item row="0" column="0">
        <layout class="QVBoxLayout" name="verticalLayout_5">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QFrame" name="frame_5">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
+         <widget class="QFrame" name="frame_5">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <widget class="QLabel" name="setTime">
                <property name="font">
@@ -105,7 +91,7 @@
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Час</string>
+                <string>Час до</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -298,9 +284,9 @@
               </layout>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
+           </item>
+          </layout>
+         </widget>
         </item>
         <item>
          <widget class="QFrame" name="frame_4">
@@ -399,7 +385,7 @@
                   <string notr="true"/>
                  </property>
                  <property name="text">
-                  <string>Таймер</string>
+                  <string>Будильник</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>

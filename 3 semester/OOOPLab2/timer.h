@@ -3,8 +3,7 @@
 
 #include <QObject>
 #include <QTime>
-#include <QTimer>
-#include "timerinfo.h"
+#include <QLabel>
 
 class Timer : public QObject
 {
@@ -15,51 +14,40 @@ public:
     Timer(QTime time);
 
     // Деструктор
-    ~Timer(){delete info;};
+    ~Timer();
 
     // Гетери
     QTime getEndTime();
-    QTime getZeroTime();
+    QLabel* getTime();
+    QLabel* getName();
+    bool isAlarm();
+    bool isStopped();
 
     // Сетери
     void setEndTime(QTime newTime);
+    void setTime(QString newTime);
+    void setName(QString newName);
+    void setAlarm(bool alarm);
+    void setStopped(bool stop);
 
-    // Додати новий таймер
-    void start();
+private:
+    // Час, що відображається
+    QLabel* time;
+
+    // Ім'я, що відображається
+    QLabel* name;
+
+    // Чи це будильник
+    bool alarm;
 
     // Чи таймер зупинений
     bool stopped = false;
 
-    // Призупинити таймер
-    void pause();
-
-    // Відновити таймер
-    void cont();
-
-    // TODO: може через гетер
-    // інформація про таймер
-    TimerInfo* info;
-
-private:
     // Час закінчення таймера
     QTime endTime;
 
-    // Нульовий час
-    // (потрібний для завершення роботи таймера)
-    QTime zeroTime;
-
-    // Таймер для відліку
-    QTimer timer;
-
-    // Зупинити таймер
-    void stop();
-public slots:
-
-
-private slots:
-    // Оновити час
-    void updateTime();
-
+    // Час останнього оновлення
+    QTime lastUpdateTime;
 };
 
 #endif // TIMER_H

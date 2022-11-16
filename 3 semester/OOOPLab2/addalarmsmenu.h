@@ -1,21 +1,21 @@
-#ifndef ADDTIMERSMENU_H
-#define ADDTIMERSMENU_H
+#ifndef ADDALARMSMENU_H
+#define ADDALARMSMENU_H
 
 #include <QDialog>
-#include <QTime>
 #include <QLabel>
+#include <QTime>
 
 namespace Ui {
-class addTimersMenu;
+class addAlarmsMenu;
 }
 
-class addTimersMenu : public QDialog
+class addAlarmsMenu : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit addTimersMenu(QWidget *parent = nullptr);
-    ~addTimersMenu();
+    explicit addAlarmsMenu(QWidget *parent = nullptr);
+    ~addAlarmsMenu();
 
     // Гетери
     QTime getEndTime();
@@ -27,7 +27,7 @@ private slots:
 
 private:
     // Інтерфейс
-    Ui::addTimersMenu *ui;
+    Ui::addAlarmsMenu *ui;
 
     // Обмеження на введення кількості годин
     const ulong maxHours = 23;
@@ -43,4 +43,4 @@ private:
     void setTime();
 };
 
-#endif // ADDTIMERSMENU_H
+#endif // ADDALARMSMENU_H

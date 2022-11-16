@@ -1,18 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "addtimersmenu.h"
-#include "timerinfo.h"
+#include "addmenu.h"
 
 #include <QMessageBox>
-#include <QTimer>
-#include <QTime>
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
 
     // Колір фону - чорний
     this->setStyleSheet("background-color: black;");
@@ -21,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->ui->continueTimerButton->setStyleSheet("color: rgb(69,69,69)");
     this->ui->pauseTimerButton->setStyleSheet("color: rgb(69,69,69)");
 
-    // поки нульовий таймер
+    // Поки нульовий таймер
     this->ui->timerTime->setText("00:00:00:000");
 
     // Для зберігання таймерів
@@ -30,6 +26,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->alarmsLayout->setAlignment(Qt::AlignCenter);
     this->timersLayout->setAlignment(Qt::AlignCenter);
+
+//    this->timersView = new QListView;
+//    this->alarmsView = new QListView;
+
+//    this->alarmsView->setModel()
+
+    this->timers.start();
 
     // setTimerButton викликає timersMenu
     connect(this->ui->setTimerButton, SIGNAL(clicked(bool)), this, SLOT(timersMenu()));
@@ -46,47 +49,41 @@ MainWindow::~MainWindow()
     delete this->ui;
     delete this->timersLayout;
     delete this->alarmsLayout;
-    for (size_t i = 0; i < timers.size(); i++)
-    {
-        delete this->timers[i];
-    }
 }
 
 void MainWindow::timersMenu()
 {
     // Створюємо меню
-    addTimersMenu menu;
+    AddMenu menu;
     menu.setModal(true);
-
     // Назад
     if (!menu.exec())
     {
         return;
     }
 
-    // Встановлюємо інформацію про таймер
-    QLabel* name = menu.getTimerName();
+    // Створюємо таймер
     Timer* timer = new Timer(menu.getEndTime());
-
-    if (timer->getEndTime() != timer->getZeroTime())
+    if (timer->getEndTime() != this->timers.getZeroTime())
     {
-            timer->start();
-            timer->info->setName(name->text());
-            timer->info->setAlarm(menu.isAlarm());
+            QLabel* name = menu.getTimerName();
+            timer->setName(name->text());
+            timer->setAlarm(menu.isAlarm());
 
-            if (timer->info->isAlarm())
+            this->timers.add(timer);
+
+            if (timer->isAlarm())
             {
-                this->alarmsLayout->addWidget(timer->info->getName());
-                this->alarmsLayout->addWidget(timer->info->getTime());
+                this->alarmsLayout->addWidget(timer->getName());
+                this->alarmsLayout->addWidget(timer->getTime());
                 this->ui->alarmsList->setLayout(alarmsLayout);
             }
             else
             {
-                this->timersLayout->addWidget(timer->info->getName());
-                this->timersLayout->addWidget(timer->info->getTime());
+                this->timersLayout->addWidget(timer->getName());
+                this->timersLayout->addWidget(timer->getTime());
                 this->ui->regularTimersList->setLayout(timersLayout);
             }
-            this->timers.emplace_back(timer);
     }
     else
     {
@@ -97,15 +94,16 @@ void MainWindow::timersMenu()
 
 void MainWindow::selectTimer()
 {
+    this->timers.setSelectedTimer(0);
     this->ui->pauseTimerButton->setStyleSheet("color: red");
 }
 
 void MainWindow::pauseTimer()
 {
-    timers[0]->pause();
+    this->timers.pause();
 }
 
 void MainWindow::continueTimer()
 {
-    timers[0]->cont();
+    this->timers.cont();
 }

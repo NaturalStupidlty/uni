@@ -1,18 +1,31 @@
 #include "timer.h"
-#include <QMessageBox>
 
 Timer::Timer()
 {
-    endTime.setHMS(0, 0, 0);
-    zeroTime.setHMS(0, 0, 0);
-    info = new TimerInfo("", "");
+    this->endTime.setHMS(0, 0, 0);
+    this->time = new QLabel;
+    this->name = new QLabel;
+    this->time->setAlignment(Qt::AlignCenter);
+    this->name->setAlignment(Qt::AlignCenter);
+    this->time->setFont(QFont("JetBrains Mono NL", 18));
+    this->name->setFont(QFont("Montserrat", 18));
 }
 
 Timer::Timer(QTime time)
 {
-    endTime = time;
-    zeroTime.setHMS(0, 0, 0);
-    info = new TimerInfo("", "");
+    this->endTime = time;
+    this->time = new QLabel;
+    this->name = new QLabel;
+    this->time->setAlignment(Qt::AlignCenter);
+    this->name->setAlignment(Qt::AlignCenter);
+    this->time->setFont(QFont("JetBrains Mono NL", 18));
+    this->name->setFont(QFont("Montserrat", 18));
+}
+
+Timer::~Timer()
+{
+    delete this->time;
+    delete this->name;
 }
 
 QTime Timer::getEndTime()
@@ -20,54 +33,47 @@ QTime Timer::getEndTime()
     return endTime;
 }
 
-QTime Timer::getZeroTime()
-{
-    return zeroTime;
-}
-
 void Timer::setEndTime(QTime newTime)
 {
-    endTime = newTime;
+    this->endTime = newTime;
 }
 
-void Timer::start()
+void Timer::setTime(QString newTime)
 {
-    QTimer::singleShot(0, this, SLOT(updateTime()));
+    this->time->setText(newTime);
 }
 
-void Timer::pause()
+void Timer::setName(QString newName)
 {
-    stopped = true;
+    this->name->setText(newName);
 }
 
-void Timer::cont()
+void Timer::setAlarm(bool alarm)
 {
-    stopped = false;
-    start();
+    this->alarm = alarm;
 }
 
-void Timer::updateTime()
+void Timer::setStopped(bool stop)
 {
-    // Зворотній відлік по 1 мілісекунді
-    endTime = endTime.addMSecs(-1);
-    info->setTime(endTime.toString("hh:mm:ss.zzz"));
-    if (endTime == zeroTime || stopped)
-    {     
-        stop();
-    }
-    else
-    {
-        QTimer::singleShot(1, this, SLOT(updateTime()));
-    }
+    this->stopped = stop;
 }
 
-void Timer::stop()
+QLabel* Timer::getTime()
 {
-    QMessageBox timerOver;
-    timerOver.setWindowTitle("Час таймера вийшов.");
-    timerOver.setText((this->info->getName())->text());
-    timerOver.exec();
-    this->timer.stop();
-    delete info;
+    return this->time;
 }
 
+QLabel* Timer::getName()
+{
+    return this->name;
+}
+
+bool Timer::isAlarm()
+{
+    return this->alarm;
+}
+
+bool Timer::isStopped()
+{
+    return this->stopped;
+}

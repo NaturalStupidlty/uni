@@ -1,9 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "timer.h"
+#include "timercollection.h"
 
-#include <vector>
 #include <QMainWindow>
 #include <QLayout>
 
@@ -27,7 +26,7 @@ private slots:
     // Додавання таймерів
     void timersMenu();
 
-    //
+    // Обрати таймер
     void selectTimer();
 
     // Призупинити таймер
@@ -41,8 +40,10 @@ private:
     Ui::MainWindow *ui;
 
     // Таймери
-    vector<Timer*> timers;
+    TimerCollection timers;
 
+//    QListView* timersView;
+//    QListView* alarmsView;
     // Для зберігання таймерів
     QVBoxLayout* timersLayout;
     QVBoxLayout* alarmsLayout;

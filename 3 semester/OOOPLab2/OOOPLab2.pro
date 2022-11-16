@@ -9,19 +9,25 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addalarmsmenu.cpp \
+    addmenu.cpp \
     addtimersmenu.cpp \
     main.cpp \
     mainwindow.cpp \
     timer.cpp \
-    timerinfo.cpp
+    timercollection.cpp
 
 HEADERS += \
+    addalarmsmenu.h \
+    addmenu.h \
     addtimersmenu.h \
     mainwindow.h \
     timer.h \
-    timerinfo.h
+    timercollection.h
 
 FORMS += \
+    addalarmsmenu.ui \
+    addmenu.ui \
     addtimersmenu.ui \
     mainwindow.ui
 

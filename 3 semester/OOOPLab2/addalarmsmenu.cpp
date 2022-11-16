@@ -1,9 +1,9 @@
-#include "addtimersmenu.h"
-#include "ui_addtimersmenu.h"
+#include "addalarmsmenu.h"
+#include "ui_addalarmsmenu.h"
 
-addTimersMenu::addTimersMenu(QWidget *parent) :
+addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::addTimersMenu)
+    ui(new Ui::addAlarmsMenu)
 {
     this->ui->setupUi(this);
 
@@ -30,35 +30,42 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
     connect(this->ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
-addTimersMenu::~addTimersMenu()
+addAlarmsMenu::~addAlarmsMenu()
 {
     delete this->ui;
     delete this->timerName;
 }
 
-QTime addTimersMenu::getEndTime()
+QTime addAlarmsMenu::getEndTime()
 {
     return this->endTime;
 }
 
-QLabel* addTimersMenu::getTimerName()
+QLabel* addAlarmsMenu::getTimerName()
 {
     return this->timerName;
 }
 
-void addTimersMenu::startTimers()
+void addAlarmsMenu::startTimers()
 {
     setTime();
-    addTimersMenu::accept();
+    addAlarmsMenu::accept();
 }
 
-void addTimersMenu::setTime()
+void addAlarmsMenu::setTime()
 {
     int hours = this->ui->spinBoxHours->value();
     int minutes = this->ui->spinBoxMinutes->value();
     int seconds = this->ui->spinBoxSeconds->value();
-    int miliseconds =this-> ui->spinBoxMiliseconds->value();
+    int miliseconds = this-> ui->spinBoxMiliseconds->value();
 
     this->endTime.setHMS(hours, minutes, seconds, miliseconds);
+    QTime currentTime = QTime::currentTime();
+    if (currentTime > this->endTime)
+    {
+        const int msecsInADay = 86400000;
+        this->endTime = this->endTime.addMSecs(msecsInADay - currentTime.msecsSinceStartOfDay());
+    }
+    this->endTime = this->endTime.addMSecs(-currentTime.msecsSinceStartOfDay());
     this->timerName->setText(this->ui->timerName->text());
 }
