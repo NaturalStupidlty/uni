@@ -42,8 +42,6 @@ private:
     // Таймери
     TimerCollection timers;
 
-//    QListView* timersView;
-//    QListView* alarmsView;
     // Для зберігання таймерів
     QVBoxLayout* timersLayout;
     QVBoxLayout* alarmsLayout;

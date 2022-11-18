@@ -7,6 +7,8 @@
 #include <QObject>
 #include <QTime>
 #include <QTimer>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 class TimerCollection : public QObject
 {
@@ -49,6 +51,9 @@ private:
 
     // Таймер для відліку
     QTimer timer;
+
+    QMediaPlayer* player;
+    QAudioOutput* audioOutput;
 private slots:
     // Оновити час
     void updateTime();

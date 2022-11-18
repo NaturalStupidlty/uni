@@ -27,11 +27,6 @@ MainWindow::MainWindow(QWidget *parent)
     this->alarmsLayout->setAlignment(Qt::AlignCenter);
     this->timersLayout->setAlignment(Qt::AlignCenter);
 
-//    this->timersView = new QListView;
-//    this->alarmsView = new QListView;
-
-//    this->alarmsView->setModel()
-
     this->timers.start();
 
     // setTimerButton викликає timersMenu
@@ -74,15 +69,20 @@ void MainWindow::timersMenu()
 
             if (timer->isAlarm())
             {
+//                this->ui->alarmsList->setItemWidget()
+//                this->ui->alarmsList->addItem(timer->getName()->text());
+//                this->ui->alarmsList->addItem(timer->getTime()->text());
                 this->alarmsLayout->addWidget(timer->getName());
                 this->alarmsLayout->addWidget(timer->getTime());
                 this->ui->alarmsList->setLayout(alarmsLayout);
             }
             else
             {
+//                this->ui->timersList->addItem(timer->getName()->text());
+//                this->ui->timersList->addItem(timer->getTime()->text());
                 this->timersLayout->addWidget(timer->getName());
                 this->timersLayout->addWidget(timer->getTime());
-                this->ui->regularTimersList->setLayout(timersLayout);
+                this->ui->timersList->setLayout(timersLayout);
             }
     }
     else

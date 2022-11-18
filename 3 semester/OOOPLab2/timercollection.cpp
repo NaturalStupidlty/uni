@@ -6,10 +6,14 @@ TimerCollection::TimerCollection(QObject *parent)
 {
     this->zeroTime.setHMS(0, 0, 0);
     this->selectedTimer = -1;
+    this->player = new QMediaPlayer;
+    this->audioOutput = new QAudioOutput;
 }
 
 TimerCollection::~TimerCollection()
 {
+    delete this->player;
+    delete this->audioOutput;
     for (uint i = 0; i < this->timers.size(); i++)
     {
         delete this->timers[i];
@@ -83,10 +87,16 @@ void TimerCollection::updateTime()
 
 void TimerCollection::stop(int index)
 {
+    this->player->setAudioOutput(audioOutput);
+    this->player->setSource(QUrl("qrc:/resource/sounds/sound.mp3"));
+    this->audioOutput->setVolume(10);
+    this->player->play();
+
     QMessageBox timerOver;
     timerOver.setWindowTitle("Час таймера вийшов.");
     timerOver.setText((this->timers[index]->getName())->text());
     timerOver.exec();
+
     delete this->timers[index];
     Timer* copy = this->timers.back();
     this->timers[index] = copy;
