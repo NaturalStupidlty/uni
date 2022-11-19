@@ -31,7 +31,10 @@ private:
 
     // Обмеження на введення кількості годин
     const ulong maxHours = 23;
+    // Обмеження на довжину ім'я таймера
     const uint maxTimerNameLenght = 24;
+    // Кількість мілісекунд в добі
+    const uint msecsInADay = 86400000;
 
     // Час завершення таймера
     QTime endTime;

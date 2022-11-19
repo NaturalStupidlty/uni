@@ -1,26 +1,50 @@
 #include "timer.h"
+#include <QVariant>
 
 Timer::Timer()
 {
     this->endTime.setHMS(0, 0, 0);
+
     this->time = new QLabel;
     this->name = new QLabel;
-    this->time->setAlignment(Qt::AlignCenter);
-    this->name->setAlignment(Qt::AlignCenter);
-    this->time->setFont(QFont("JetBrains Mono NL", 18));
-    this->name->setFont(QFont("Montserrat", 18));
+
+    this->info = new QListWidgetItem;
+    this->info = new QListWidgetItem("00:00:00:000");
+
+    this->info->setTextAlignment(Qt::AlignCenter);
+//    this->time->setAlignment(Qt::AlignCenter);
+//    this->name->setAlignment(Qt::AlignCenter);
+
+      this->info->setFont(QFont("JetBrains Mono NL", 20));
+//    this->time->setFont(QFont("JetBrains Mono NL", 18));
+//    this->name->setFont(QFont("Montserrat", 18));
+
     this->lastUpdateTime = QTime::currentTime();
 }
 
-Timer::Timer(QTime time)
+Timer::Timer(QTime time, QString name, bool alarm)
 {
     this->endTime = time;
+    this->alarm = alarm;
+
     this->time = new QLabel;
     this->name = new QLabel;
-    this->time->setAlignment(Qt::AlignCenter);
-    this->name->setAlignment(Qt::AlignCenter);
-    this->time->setFont(QFont("JetBrains Mono NL", 18));
-    this->name->setFont(QFont("Montserrat", 18));
+
+    this->name->setText(name);
+    this->time->setText(time.toString("00:00:00:000"));
+
+    this->info = new QListWidgetItem("00:00:00:000");
+    QVariant data(name);
+    this->info->setData(Qt::UserRole, data);
+
+    this->info->setTextAlignment(Qt::AlignCenter);
+//    this->time->setAlignment(Qt::AlignCenter);
+//    this->name->setAlignment(Qt::AlignCenter);
+
+    this->info->setFont(QFont("JetBrains Mono NL", 20));
+//    this->time->setFont(QFont("JetBrains Mono NL", 18));
+//    this->name->setFont(QFont("Montserrat", 18));
+
     this->lastUpdateTime = QTime::currentTime();
 }
 
@@ -28,6 +52,7 @@ Timer::~Timer()
 {
     delete this->time;
     delete this->name;
+    delete this->info;
 }
 
 QTime Timer::getEndTime()
@@ -53,11 +78,13 @@ void Timer::setLastUpdateTime(QTime newUpdateTime)
 void Timer::setTime(QString newTime)
 {
     this->time->setText(newTime);
+    this->info->setText(newTime);
 }
 
 void Timer::setName(QString newName)
 {
     this->name->setText(newName);
+    this->info->setData(Qt::UserRole, newName);
 }
 
 void Timer::setAlarm(bool alarm)
@@ -78,6 +105,11 @@ QLabel* Timer::getTime()
 QLabel* Timer::getName()
 {
     return this->name;
+}
+
+QListWidgetItem *Timer::getInfo()
+{
+    return this->info;
 }
 
 bool Timer::isAlarm()

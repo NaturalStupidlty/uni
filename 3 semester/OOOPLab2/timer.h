@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTime>
 #include <QLabel>
+#include <QListWidgetItem>
 
 class Timer : public QObject
 {
@@ -11,7 +12,7 @@ class Timer : public QObject
 public:
     // Конструктори
     Timer();
-    Timer(QTime time);
+    Timer(QTime time, QString name, bool alarm);
 
     // Деструктор
     ~Timer();
@@ -21,6 +22,7 @@ public:
     QTime getLastUpdateTime();
     QLabel* getTime();
     QLabel* getName();
+    QListWidgetItem* getInfo();
     bool isAlarm();
     bool isStopped();
 
@@ -33,10 +35,13 @@ public:
     void setStopped(bool stop);
 
 private:
-    // Час, що відображається
+    // Інформація, що відображається
+    QListWidgetItem* info;
+
+    // Час
     QLabel* time;
 
-    // Ім'я, що відображається
+    // Ім'я
     QLabel* name;
 
     // Чи це будильник

@@ -26,6 +26,7 @@ addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
 
     // startTimersButton - пуск таймерів
     connect(this->ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
+
     // backButton - вихід
     connect(this->ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
 }
@@ -63,8 +64,9 @@ void addAlarmsMenu::setTime()
     QTime currentTime = QTime::currentTime();
     if (currentTime > this->endTime)
     {
-        const int msecsInADay = 86400000;
-        this->endTime = this->endTime.addMSecs(msecsInADay - currentTime.msecsSinceStartOfDay());
+        this->endTime.fromMSecsSinceStartOfDay
+                (msecsInADay - currentTime.msecsSinceStartOfDay()
+                 + this->endTime.msecsSinceStartOfDay());
     }
     this->endTime = this->endTime.addMSecs(-currentTime.msecsSinceStartOfDay());
     this->timerName->setText(this->ui->timerName->text());

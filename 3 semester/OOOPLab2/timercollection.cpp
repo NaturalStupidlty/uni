@@ -5,15 +5,16 @@ TimerCollection::TimerCollection(QObject *parent)
     : QObject{parent}
 {
     this->zeroTime.setHMS(0, 0, 0);
-    this->selectedTimer = -1;
     this->player = new QMediaPlayer;
     this->audioOutput = new QAudioOutput;
+    this->nearestTimer = new Timer(zeroTime, "", false);
 }
 
 TimerCollection::~TimerCollection()
 {
     delete this->player;
     delete this->audioOutput;
+    delete this->nearestTimer;
     for (uint i = 0; i < this->timers.size(); i++)
     {
         delete this->timers[i];
@@ -25,19 +26,44 @@ QTime TimerCollection::getZeroTime()
     return this->zeroTime;
 }
 
-int TimerCollection::getSelectedTimer()
+Timer* TimerCollection::getNearestTimer()
 {
-    return this->selectedTimer;
+    return this->nearestTimer;
 }
 
-void TimerCollection::setSelectedTimer(int index)
+std::vector<int> TimerCollection::getSelectedTimers()
 {
-    this->selectedTimer = index;
+    return this->selectedTimers;
+}
+
+int TimerCollection::getSize()
+{
+    return this->timers.size();
+}
+
+void TimerCollection::setSelectedTimers(std::vector<int> index)
+{
+    this->selectedTimers.clear();
+    for (uint i = 0; i < index.size(); i++)
+    {
+        this->selectedTimers.emplace_back(index[i]);
+    }
 }
 
 void TimerCollection::add(Timer* newTimer)
 {
-    this->timers.emplace_back(newTimer);
+    int seconds = newTimer->getEndTime().msecsSinceStartOfDay();
+    if ((this->nearestTimer->getEndTime() == this->zeroTime)
+        or (seconds <= this->nearestTimer->getEndTime().msecsSinceStartOfDay()))
+    {
+        this->nearestTimer = newTimer;
+    }
+    auto it = this->timers.begin();
+    while (it != this->timers.end() and seconds >= (*it)->getEndTime().msecsSinceStartOfDay())
+    {
+        it++;
+    }
+    this->timers.insert(it, newTimer);
 }
 
 
@@ -48,12 +74,18 @@ void TimerCollection::start()
 
 void TimerCollection::pause()
 {
-    this->timers[selectedTimer]->setStopped(true);
+    for (uint i = 0; i < this->selectedTimers.size(); i++)
+    {
+        this->timers[this->selectedTimers[i]]->setStopped(true);
+    }
 }
 
 void TimerCollection::cont()
 {
-    this->timers[selectedTimer]->setStopped(false);
+    for (uint i = 0; i < this->selectedTimers.size(); i++)
+    {
+        this->timers[this->selectedTimers[i]]->setStopped(false);
+    }
 }
 
 void TimerCollection::updateTime()
@@ -78,7 +110,7 @@ void TimerCollection::updateTime()
                 stop(i);
             }
             this->timers[i]->setEndTime(this->timers[i]->getEndTime().addMSecs(-milisecondsPassed));
-            timers[i]->setLastUpdateTime(QTime::currentTime());
+            this->timers[i]->setLastUpdateTime(QTime::currentTime());
             this->timers[i]->setTime(this->timers[i]->getEndTime().toString("hh:mm:ss.zzz"));
         }
     }
@@ -87,9 +119,11 @@ void TimerCollection::updateTime()
 
 void TimerCollection::stop(int index)
 {
+    this->timers[index]->setTime(zeroTime.toString("hh:mm:ss.zzz"));
+
     this->player->setAudioOutput(audioOutput);
     this->player->setSource(QUrl("qrc:/resource/sounds/sound.mp3"));
-    this->audioOutput->setVolume(10);
+    this->audioOutput->setVolume(0);
     this->player->play();
 
     QMessageBox timerOver;
@@ -97,9 +131,23 @@ void TimerCollection::stop(int index)
     timerOver.setText((this->timers[index]->getName())->text());
     timerOver.exec();
 
+    if (this->nearestTimer == timers[index])
+    {
+        if (this->timers.size() != 1)
+        {
+            this->nearestTimer = this->timers.front();
+        }
+        this->nearestTimer = new Timer(zeroTime, "", false);
+    }
+
     delete this->timers[index];
     Timer* copy = this->timers.back();
     this->timers[index] = copy;
     this->timers.pop_back();
 }
 
+
+Timer*& TimerCollection::operator [](const int& i)
+{
+    return this->timers[i];
+}

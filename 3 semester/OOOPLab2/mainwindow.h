@@ -4,7 +4,7 @@
 #include "timercollection.h"
 
 #include <QMainWindow>
-#include <QLayout>
+#include <QVBoxLayout>
 
 using std::vector;
 
@@ -28,6 +28,11 @@ private slots:
 
     // Обрати таймер
     void selectTimer();
+    // Обрати будильник
+    void selectAlarm();
+    // Допоміжна функція, що встановлює
+    // вибрані елементи списку вибраними таймерами
+    void select(vector<int> indexes, QList<QListWidgetItem*> selectedI);
 
     // Призупинити таймер
     void pauseTimer();
@@ -42,9 +47,8 @@ private:
     // Таймери
     TimerCollection timers;
 
-    // Для зберігання таймерів
-    QVBoxLayout* timersLayout;
-    QVBoxLayout* alarmsLayout;
+    // Для зберігання найближчого таймера
+    QVBoxLayout* nearestTimerLayout;
 };
 
 #endif // MAINWINDOW_H

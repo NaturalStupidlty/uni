@@ -19,10 +19,12 @@ public:
 
     // Гетери
     QTime getZeroTime();
-    int getSelectedTimer();
+    Timer* getNearestTimer();
+    std::vector<int> getSelectedTimers();
+    int getSize();
 
     // Сетери
-    void setSelectedTimer(int index);
+    void setSelectedTimers(std::vector<int> index);
 
     // Додати таймер
     void add(Timer* newTimer);
@@ -38,12 +40,18 @@ public:
 
     // Зупинити таймер
     void stop(int index);
+
+    // Отримати таймер за індексом
+    Timer *&operator [](const int& i);
 private:
     // Таймери
     std::vector<Timer*> timers;
 
-    // Індекс обраного таймера
-    int selectedTimer;
+    // Найближчий таймер
+    Timer* nearestTimer;
+
+    // Індекси обраних елементів
+    std::vector<int> selectedTimers;
 
     // Нульовий час
     // (потрібний для завершення роботи таймера)
@@ -52,6 +60,7 @@ private:
     // Таймер для відліку
     QTimer timer;
 
+    // Для звуку завершення таймера
     QMediaPlayer* player;
     QAudioOutput* audioOutput;
 private slots:

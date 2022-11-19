@@ -22,9 +22,11 @@ public:
     QLabel* getTimerName();
     bool isAlarm();
 
-
 private slots:
+    // Додавання таймера
     void addTimer();
+
+    //Додавання будильника
     void addAlarm();
 
 private:
@@ -33,8 +35,10 @@ private:
 
     // Час завершення таймера
     QTime endTime;
+
     // Назва таймера
     QLabel* timerName;
+
     // Чи це будильник
     bool alarm;
 };

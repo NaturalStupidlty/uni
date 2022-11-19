@@ -18,11 +18,11 @@ addTimersMenu::addTimersMenu(QWidget *parent) :
     this->ui->spinBoxMiliseconds->setStyleSheet("border: 1px solid black");
 
     // Обмеження на інпути
-    this->ui->spinBoxHours->setRange(0, maxHours);
+    this->ui->spinBoxHours->setRange(0, this->maxHours);
     this->ui->spinBoxMinutes->setRange(0, 59);
     this->ui->spinBoxSeconds->setRange(0, 59);
     this->ui->spinBoxMiliseconds->setRange(0, 999);
-    this->ui->timerName->setMaxLength(maxTimerNameLenght);
+    this->ui->timerName->setMaxLength(this->maxTimerNameLenght);
 
     // startTimersButton - пуск таймерів
     connect(this->ui->startTimersButton, SIGNAL(clicked()), this, SLOT(startTimers()));
