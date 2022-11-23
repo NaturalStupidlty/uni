@@ -7,8 +7,6 @@ Timer::Timer()
 
     this->time = new QLabel;
     this->name = new QLabel;
-
-    this->info = new QListWidgetItem;
     this->info = new QListWidgetItem("00:00:00:000");
 
     this->info->setTextAlignment(Qt::AlignCenter);
@@ -27,8 +25,8 @@ Timer::Timer(QTime time, QString name, bool alarm)
     this->endTime = time;
     this->alarm = alarm;
 
-    this->time = new QLabel;
     this->name = new QLabel;
+    this->time = new QLabel;
 
     this->name->setText(name);
     this->time->setText(time.toString("00:00:00:000"));
@@ -92,9 +90,9 @@ void Timer::setAlarm(bool alarm)
     this->alarm = alarm;
 }
 
-void Timer::setStopped(bool stop)
+void Timer::setPaused(bool stop)
 {
-    this->stopped = stop;
+    this->paused = stop;
 }
 
 QLabel* Timer::getTime()
@@ -117,7 +115,7 @@ bool Timer::isAlarm()
     return this->alarm;
 }
 
-bool Timer::isStopped()
+bool Timer::isPaused()
 {
-    return this->stopped;
+    return this->paused;
 }

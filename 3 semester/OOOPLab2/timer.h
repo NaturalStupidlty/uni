@@ -24,7 +24,7 @@ public:
     QLabel* getName();
     QListWidgetItem* getInfo();
     bool isAlarm();
-    bool isStopped();
+    bool isPaused();
 
     // Сетери
     void setEndTime(QTime newTime);
@@ -32,7 +32,7 @@ public:
     void setTime(QString newTime);
     void setName(QString newName);
     void setAlarm(bool alarm);
-    void setStopped(bool stop);
+    void setPaused(bool stop);
 
 private:
     // Інформація, що відображається
@@ -48,7 +48,7 @@ private:
     bool alarm;
 
     // Чи таймер зупинений
-    bool stopped = false;
+    bool paused = false;
 
     // Час закінчення таймера
     QTime endTime;

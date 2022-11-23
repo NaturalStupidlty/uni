@@ -33,8 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->ui->continueTimerButton, SIGNAL(clicked(bool)), this, SLOT(continueTimer()));
 
     // Вибір таймерів
-    connect(this->ui->timersList, SIGNAL(itemSelectionChanged()), this, SLOT(selectTimer()));
-    connect(this->ui->alarmsList, SIGNAL(itemSelectionChanged()), this, SLOT(selectAlarm()));
+    //connect(this->ui->timersList, SIGNAL(itemSelectionChanged()), this, SLOT(selectTimer()));
+    //connect(this->ui->alarmsList, SIGNAL(itemSelectionChanged()), this, SLOT(selectAlarm()));
 }
 
 MainWindow::~MainWindow()
@@ -62,11 +62,11 @@ void MainWindow::timersMenu()
 
             if (timer->isAlarm())
             {
-                  this->ui->alarmsList->addItem(timer->getInfo());
+                this->ui->alarmsList->addItem(timer->getInfo());
             }
             else
             {
-                  this->ui->timersList->addItem(timer->getInfo());
+                this->ui->timersList->addItem(timer->getInfo());
             }
     }
     else
@@ -93,25 +93,23 @@ void MainWindow::timersMenu()
 
 void MainWindow::selectTimer()
 {
-    vector<int> indexes;
-
-    QList<QListWidgetItem*> selectedI{this->ui->timersList->selectedItems()};
-    select(indexes, selectedI);
+    select(this->ui->timersList);
 }
 
 void MainWindow::selectAlarm()
 {
-    vector<int> indexes;
-
-    QList<QListWidgetItem*> selectedI{this->ui->alarmsList->selectedItems()};
-    select(indexes, selectedI);
+    select(this->ui->alarmsList);
 }
 
-void MainWindow::select(vector<int> indexes, QList<QListWidgetItem*> selectedI)
+void MainWindow::select(QListWidget* items)
 {
-    for (auto listItem: selectedI)
+    vector<int> indexes;
+    for (int i = 0; i < items->count(); i++)
     {
-        indexes.emplace_back(selectedI.indexOf(listItem));
+        if (items->item(i)->isSelected())
+        {
+            indexes.emplace_back(i);
+        }
     }
 
     this->timers.setSelectedTimers(indexes);
@@ -120,13 +118,13 @@ void MainWindow::select(vector<int> indexes, QList<QListWidgetItem*> selectedI)
 
     for (uint i = 0; i < indexes.size(); i++)
     {
-        if (this->timers[indexes[i]]->isStopped() == false)
+        if (this->timers[indexes[i]]->isPaused() == false)
         {
-            this->ui->pauseTimerButton->setStyleSheet("color: red");
+            this->ui->pauseTimerButton->setStyleSheet("color: rgb(220,20,60)");
         }
         else
         {
-            this->ui->continueTimerButton->setStyleSheet("color: green");
+            this->ui->continueTimerButton->setStyleSheet("color: rgb(50,205,50)");
         }
     }
 }
@@ -136,7 +134,7 @@ void MainWindow::pauseTimer()
     if (this->timers.getSelectedTimers().size())
     {
         this->ui->pauseTimerButton->setStyleSheet("color: rgb(69,69,69)");
-        this->ui->continueTimerButton->setStyleSheet("color: green");
+        this->ui->continueTimerButton->setStyleSheet("color: rgb(50,205,50)");
     }
     this->timers.pause();
 }
@@ -146,7 +144,7 @@ void MainWindow::continueTimer()
     if (this->timers.getSelectedTimers().size())
     {
         this->ui->continueTimerButton->setStyleSheet("color: rgb(69,69,69)");
-        this->ui->pauseTimerButton->setStyleSheet("color: red");
+        this->ui->pauseTimerButton->setStyleSheet("color: rgb(220,20,60)");
     }
     this->timers.cont();
 }

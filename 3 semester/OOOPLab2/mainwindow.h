@@ -32,7 +32,7 @@ private slots:
     void selectAlarm();
     // Допоміжна функція, що встановлює
     // вибрані елементи списку вибраними таймерами
-    void select(vector<int> indexes, QList<QListWidgetItem*> selectedI);
+    void select(QListWidget* items);
 
     // Призупинити таймер
     void pauseTimer();
