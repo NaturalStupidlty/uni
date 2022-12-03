@@ -3,6 +3,7 @@
 #include "addmenu.h"
 
 #include <QMessageBox>
+#include <QDesktopServices>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->ui->continueTimerButton, SIGNAL(clicked(bool)), this, SLOT(continueTimer()));
 
     // Вибір таймерів
-    //connect(this->ui->timersList, SIGNAL(itemSelectionChanged()), this, SLOT(selectTimer()));
-    //connect(this->ui->alarmsList, SIGNAL(itemSelectionChanged()), this, SLOT(selectAlarm()));
+    connect(this->ui->timersList, SIGNAL(itemSelectionChanged()), this, SLOT(selectTimer()));
+    connect(this->ui->alarmsList, SIGNAL(itemSelectionChanged()), this, SLOT(selectAlarm()));
 }
 
 MainWindow::~MainWindow()
@@ -53,7 +54,6 @@ void MainWindow::timersMenu()
     {
         return;
     }
-
     // Створюємо таймер
     Timer* timer = new Timer(menu.getEndTime(), menu.getTimerName()->text(), menu.isAlarm());
     if (timer->getEndTime() != this->timers.getZeroTime())
@@ -89,6 +89,10 @@ void MainWindow::timersMenu()
         this->nearestTimerLayout->addWidget(this->timers.getNearestTimer()->getTime());
         this->ui->nearestTimer->setLayout(this->nearestTimerLayout);
     }
+    // Відкриваємо програму
+    QProcess::startDetached(menu.getProgramPath());
+    // Відкриваємо документ
+    QDesktopServices::openUrl(QUrl::fromLocalFile(menu.getDocumentPath()));
 }
 
 void MainWindow::selectTimer()

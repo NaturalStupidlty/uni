@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <QVBoxLayout>
+#include <QProcess>
 
 using std::vector;
 

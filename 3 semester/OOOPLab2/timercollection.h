@@ -50,6 +50,9 @@ private:
     // Найближчий таймер
     Timer* nearestTimer;
 
+    // час, коли зупинили найближчий таймер
+    QTime nearestTimerPauseTime;
+
     // Індекси обраних елементів
     std::vector<int> selectedTimers;
 

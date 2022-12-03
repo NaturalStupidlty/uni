@@ -7,7 +7,8 @@ TimerCollection::TimerCollection(QObject *parent)
     this->zeroTime.setHMS(0, 0, 0);
     this->player = new QMediaPlayer;
     this->audioOutput = new QAudioOutput;
-    this->nearestTimer = new Timer(zeroTime, "", false);
+    this->nearestTimer = new Timer(this->zeroTime, "", false);
+    this->nearestTimerPauseTime = this->zeroTime;
 }
 
 TimerCollection::~TimerCollection()
@@ -58,13 +59,12 @@ void TimerCollection::add(Timer* newTimer)
     {
         this->nearestTimer = newTimer;
     }
-//    auto it = this->timers.begin();
-//    while (it != this->timers.end() and seconds >= (*it)->getEndTime().msecsSinceStartOfDay())
-//    {
-//        it++;
-//    }
-//    this->timers.insert(it, newTimer);
-    this->timers.push_back(newTimer);
+    auto it = this->timers.begin();
+    while (it != this->timers.end() and seconds >= (*it)->getEndTime().msecsSinceStartOfDay())
+    {
+        it++;
+    }
+    this->timers.insert(it, newTimer);
 }
 
 
@@ -78,6 +78,10 @@ void TimerCollection::pause()
     for (uint i = 0; i < this->selectedTimers.size(); i++)
     {
         this->timers[this->selectedTimers[i]]->setPaused(true);
+        if (this->timers[this->selectedTimers[i]] == this->nearestTimer)
+        {
+            this->nearestTimerPauseTime = QTime::currentTime();
+        }
     }
 }
 
@@ -113,7 +117,11 @@ void TimerCollection::updateTime()
             }
             this->timers[i]->setEndTime(this->timers[i]->getEndTime().addMSecs(-milisecondsPassed));
             this->timers[i]->setLastUpdateTime(QTime::currentTime());
-            this->timers[i]->setTime(this->timers[i]->getEndTime().toString("hh:mm:ss.zzz"));
+            if (this->timers[i]->getEndTime().msecsSinceStartOfDay() < this->nearestTimer->getEndTime().msecsSinceStartOfDay())
+            {
+                this->nearestTimer = this->timers[i];
+            }
+            this->timers[i]->setTime(this->timers[i]->getEndTime().toString("hh:mm:ss:zzz"));
         }
     }
     QTimer::singleShot(1, this, SLOT(updateTime()));
@@ -121,7 +129,7 @@ void TimerCollection::updateTime()
 
 void TimerCollection::stop(int index)
 {
-    this->timers[index]->setTime(zeroTime.toString("hh:mm:ss.zzz"));
+    this->timers[index]->setTime(zeroTime.toString("hh:mm:ss:zzz"));
 
     this->player->setAudioOutput(audioOutput);
     this->player->setSource(QUrl("qrc:/resource/sounds/sound.mp3"));

@@ -20,6 +20,8 @@ public:
     // Гетери
     QTime getEndTime();
     QLabel* getTimerName();
+    QString getProgramPath();
+    QString getDocumentPath();
     bool isAlarm();
 
 private slots:
@@ -28,6 +30,10 @@ private slots:
 
     //Додавання будильника
     void addAlarm();
+
+    // Показати ти сховати поля введення
+    void showHideExecuteProgramPath(int check);
+    void showHideOpenDocumentPath(int check);
 
 private:
     // Інтерфейс
