@@ -281,6 +281,7 @@
                  <font>
                   <family>Montserrat</family>
                   <pointsize>24</pointsize>
+                  <bold>true</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -322,13 +323,13 @@
                  <bool>false</bool>
                 </property>
                 <property name="dragEnabled">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="dragDropOverwriteMode">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="dragDropMode">
-                 <enum>QAbstractItemView::NoDragDrop</enum>
+                 <enum>QAbstractItemView::DragDrop</enum>
                 </property>
                 <property name="defaultDropAction">
                  <enum>Qt::MoveAction</enum>
@@ -337,7 +338,7 @@
                  <enum>QAbstractItemView::MultiSelection</enum>
                 </property>
                 <property name="selectionBehavior">
-                 <enum>QAbstractItemView::SelectItems</enum>
+                 <enum>QAbstractItemView::SelectRows</enum>
                 </property>
                 <property name="itemAlignment">
                  <set>Qt::AlignCenter</set>

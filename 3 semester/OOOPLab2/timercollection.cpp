@@ -1,5 +1,6 @@
 #include "timercollection.h"
 #include <QMessageBox>
+#include <QApplication>
 
 TimerCollection::TimerCollection(QObject *parent)
     : QObject{parent}
@@ -59,12 +60,13 @@ void TimerCollection::add(Timer* newTimer)
     {
         this->nearestTimer = newTimer;
     }
-    auto it = this->timers.begin();
-    while (it != this->timers.end() and seconds >= (*it)->getEndTime().msecsSinceStartOfDay())
-    {
-        it++;
-    }
-    this->timers.insert(it, newTimer);
+//    auto it = this->timers.begin();
+//    while (it != this->timers.end() and seconds >= (*it)->getEndTime().msecsSinceStartOfDay())
+//    {
+//        it++;
+//    }
+//    this->timers.insert(it, newTimer);
+    this->timers.emplace_back(newTimer);
 }
 
 
@@ -142,6 +144,8 @@ void TimerCollection::stop(int index)
         timerOver.setWindowTitle("Час таймера вийшов.");
         timerOver.setText((this->timers[index]->getName())->text());
         timerOver.exec();
+        QWidget* widget = QApplication::activeWindow();
+        QApplication::alert(widget);
     }
 
     if (this->nearestTimer == timers[index])

@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     this->ui->setupUi(this);
+    this->setWindowIcon(QIcon("qrc:/resource/icons/icon.png"));
 
     // Колір фону - чорний
     this->setStyleSheet("background-color: black;");
@@ -21,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Для зберігання найближчого таймера
     this->nearestTimerLayout = new QVBoxLayout;
 
-    this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(99,99,99);}");
+    this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(69,69,69);}");
     this->ui->doNotDisturb->setChecked(false);
 
     // Запуск відліку
@@ -172,6 +173,6 @@ void MainWindow::doNotDisturb()
     }
     else
     {
-        this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(99,99,99);}");
+        this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(69,69,69);}");
     }
 }
