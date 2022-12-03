@@ -5,13 +5,13 @@
 ## Завдання:
 ### Список 1: структури даних та алгоритми.
 #### 7. (****) Графи на основі списку суміжності, матриці суміжності (збереження даних у вершинах та ребрах графів). Додавання та видалення вершин/ребер. Перевірка на зв'язність графу. Визначення відстані між двома вершинами графу.
-- Графи на основі списку суміжності, матриці суміжності. 
-Реалізовано базовий `class Graph` та підкласи `class AdjListGraph` i `class MatrixGraph`
+- Графи на основі списку суміжності, матриці суміжності.
+  Реалізовано базовий `class Graph` та підкласи `class AdjListGraph` i `class MatrixGraph`
 - Збереження даних у вершинах та ребрах графів реалізовано за допомогою `struct Data
   {
   public:
   vertexT vertexData;
-  edgeT edgeData}` 
+  edgeT edgeData}`
 - Додавання та видалення ребер `void addEdge(uint startVertex, uint endVertex, vertexT vertexData, edgeT edgeData)` і `void removeEdge(uint startVertex, uint endVertex)`
 - Перевірка на зв'язність графу `bool isConnected()`
 - Визначення відстані між двома вершинами графу `int findDistance(uint startVertex, uint endVertex)`
@@ -24,7 +24,7 @@
 - Інформація про дату (рік, місяць, день) та час (години, хвилини, секунди) `class DateTime`
 - Перевірка правильності дати та часу відповідно до григоріанського календаря **РЕАЛІЗОВАНО ВИПРАВЛЕННЯ НЕКОРЕКТНИХ ВВЕДЕНЬ ДАТИ**. Дефолтний конструктор `DateTime ()` встановлює некоректний час для подальшої його перевірки за допомогою функції `bool isValid() const`. Створення самого об'єкту дати/часу реалізовано як на основі `time_t`, `struct tm` та введеній користувачем даті у вказаному форматі. Для останнього випадку конструктор `explicit DateTime (const string &value)` створює за допомогою метода `set` об'єкт типу `STime`, для якого потім здійснюється виклик методу `.get()` **який вже й займається обробкою помилок введення дати**. Наприклад введення дати з місяцем під номер 13 (місяців усього 12) призведе до збільшення лічильника років на 1 та зменшення кількості місяців у даті на 12.
 - Різниця між двома моментами часу у заданих одиницях. Реалізовано за допомогою методів, які знаходять різницю у конкретних одиницях:
-  
+
 -      // Кількість мілісекунд між датами
        static long long int millisecondsBetween(const DateTime &date1, const DateTime &date2);
 
@@ -50,17 +50,17 @@
 - Досить зручно додавати та віднімати дати за допомогою перевантажених операторів
 -           DateTime& operator - (const DateTime &date);
             DateTime& operator + (const DateTime &date);
-- Окрім того, реалізовані конструктор копій та перевантажені оператори присвоєння та порівняння. 
+- Окрім того, реалізовані конструктор копій та перевантажені оператори присвоєння та порівняння.
 -           DateTime& operator = (const DateTime &date) = default;
-- 
-            friend bool operator == (const DateTime &date1, const DateTime &date2);
-            friend bool operator < (const DateTime &date1, const DateTime &date2);
-            friend bool operator != (const DateTime &date1, const DateTime &date2);
-            friend bool operator <= (const DateTime &date1, const DateTime &date2);
-            friend bool operator > (const DateTime &date1, const DateTime &date2);
-            friend bool operator >= (const DateTime &date1, const DateTime &date2);
+-
+          friend bool operator == (const DateTime &date1, const DateTime &date2);
+          friend bool operator < (const DateTime &date1, const DateTime &date2);
+          friend bool operator != (const DateTime &date1, const DateTime &date2);
+          friend bool operator <= (const DateTime &date1, const DateTime &date2);
+          friend bool operator > (const DateTime &date1, const DateTime &date2);
+          friend bool operator >= (const DateTime &date1, const DateTime &date2);
 ##### +* за обчислення додаткових параметрів, наприклад, номер тижня в місяці та в році
-- Додано функції 
+- Додано функції
 -      // Отримати день року
        int getDayOfYear() const;
 
