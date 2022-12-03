@@ -20,6 +20,7 @@ public:
     // Гетери
     QTime getEndTime();
     QLabel* getTimerName();
+    QString getTimerSound();
     QString getProgramPath();
     QString getDocumentPath();
     bool isAlarm();
@@ -49,6 +50,8 @@ private:
 
     // Назва таймера
     QLabel* timerName;
+
+    QString timerSound;
 
     // Чи це будильник
     bool alarm;

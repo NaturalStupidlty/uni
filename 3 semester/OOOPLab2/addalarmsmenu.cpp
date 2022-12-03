@@ -1,5 +1,8 @@
 #include "addalarmsmenu.h"
 #include "ui_addalarmsmenu.h"
+#include "timer.h"
+
+#include <QFileDialog>
 
 addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +11,8 @@ addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
     this->ui->setupUi(this);
 
     this->timerName = new QLabel;
+    Timer temporary;
+    this->ui->findSoundPath->setText(temporary.getDefaultSound());
 
     // колір фону - чорний
     this->setStyleSheet("background-color: black;");
@@ -16,6 +21,7 @@ addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
     this->ui->spinBoxMinutes->setStyleSheet("border: 1px solid black");
     this->ui->spinBoxSeconds->setStyleSheet("border: 1px solid black");
     this->ui->spinBoxMiliseconds->setStyleSheet("border: 1px solid black");
+    this->ui->findSoundPath->setStyleSheet("border: 1px solid black");
 
     // Обмеження на інпути
     this->ui->spinBoxHours->setRange(0, maxHours);
@@ -29,6 +35,9 @@ addAlarmsMenu::addAlarmsMenu(QWidget *parent) :
 
     // backButton - вихід
     connect(this->ui->backButton, SIGNAL(clicked()), this, SLOT(close()));
+
+    // Обрати шлях
+    connect(this->ui->findSoundButton, SIGNAL(clicked()), this, SLOT(findSound()));
 }
 
 addAlarmsMenu::~addAlarmsMenu()
@@ -47,10 +56,25 @@ QLabel* addAlarmsMenu::getTimerName()
     return this->timerName;
 }
 
+QString addAlarmsMenu::getTimerSound()
+{
+    return this->ui->findSoundPath->text();
+}
+
 void addAlarmsMenu::startTimers()
 {
     setTime();
     addAlarmsMenu::accept();
+}
+
+void addAlarmsMenu::findSound()
+{
+    this->ui->findSoundPath->setText(QFileDialog::getOpenFileName(this, "Оберіть свій звук для таймера"));
+    if (this->ui->findSoundPath->text() == "")
+    {
+        Timer temporary;
+        this->ui->findSoundPath->setText(temporary.getDefaultSound());
+    }
 }
 
 void addAlarmsMenu::setTime()

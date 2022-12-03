@@ -20,10 +20,14 @@ public:
     // Гетери
     QTime getEndTime();
     QLabel* getTimerName();
+    QString getTimerSound();
 
 private slots:
     // Запуск таймерів
     void startTimers();
+
+    // Знайти звук
+    void findSound();
 
 private:
     // Інтерфейс

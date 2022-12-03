@@ -22,6 +22,8 @@ public:
     QTime getLastUpdateTime();
     QLabel* getTime();
     QLabel* getName();
+    QString getSound();
+    QString getDefaultSound();
     QListWidgetItem* getInfo();
     bool isAlarm();
     bool isPaused();
@@ -31,6 +33,7 @@ public:
     void setLastUpdateTime(QTime newUpdateTime);
     void setTime(QString newTime);
     void setName(QString newName);
+    void setSound(QString newSound);
     void setAlarm(bool alarm);
     void setPaused(bool stop);
 
@@ -43,6 +46,9 @@ private:
 
     // Ім'я
     QLabel* name;
+
+    QString sound;
+    QString defaultSound = "qrc:/resource/sounds/sound.mp3";
 
     // Чи це будильник
     bool alarm;

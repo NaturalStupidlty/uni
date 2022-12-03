@@ -132,7 +132,7 @@ void TimerCollection::stop(int index)
     this->timers[index]->setTime(zeroTime.toString("hh:mm:ss:zzz"));
 
     this->player->setAudioOutput(audioOutput);
-    this->player->setSource(QUrl("qrc:/resource/sounds/sound.mp3"));
+    this->player->setSource(QUrl(this->timers[index]->getSound()));
     this->audioOutput->setVolume(0);
     this->player->play();
 

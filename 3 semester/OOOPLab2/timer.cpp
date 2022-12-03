@@ -4,6 +4,7 @@
 Timer::Timer()
 {
     this->endTime.setHMS(0, 0, 0);
+    this->sound = this->defaultSound;
 
     this->time = new QLabel;
     this->name = new QLabel;
@@ -24,6 +25,7 @@ Timer::Timer(QTime time, QString name, bool alarm)
 {
     this->endTime = time;
     this->alarm = alarm;
+    this->sound = this->defaultSound;
 
     this->name = new QLabel;
     this->time = new QLabel;
@@ -85,6 +87,11 @@ void Timer::setName(QString newName)
     this->info->setData(Qt::UserRole, newName);
 }
 
+void Timer::setSound(QString newSound)
+{
+    this->sound = newSound;
+}
+
 void Timer::setAlarm(bool alarm)
 {
     this->alarm = alarm;
@@ -103,6 +110,16 @@ QLabel* Timer::getTime()
 QLabel* Timer::getName()
 {
     return this->name;
+}
+
+QString Timer::getSound()
+{
+    return this->sound;
+}
+
+QString Timer::getDefaultSound()
+{
+    return this->defaultSound;
 }
 
 QListWidgetItem *Timer::getInfo()

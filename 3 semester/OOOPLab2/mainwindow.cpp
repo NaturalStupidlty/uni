@@ -56,6 +56,10 @@ void MainWindow::timersMenu()
     }
     // Створюємо таймер
     Timer* timer = new Timer(menu.getEndTime(), menu.getTimerName()->text(), menu.isAlarm());
+    if (menu.getTimerSound() != timer->getDefaultSound())
+    {
+        timer->setSound(menu.getTimerSound());
+    }
     if (timer->getEndTime() != this->timers.getZeroTime())
     {
             this->timers.add(timer);

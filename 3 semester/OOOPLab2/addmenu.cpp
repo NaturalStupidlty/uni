@@ -18,6 +18,8 @@ AddMenu::AddMenu(QWidget *parent) :
 
     // колір фону - чорний
     this->setStyleSheet("background-color: black;");
+    this->ui->executeProgramPath->setStyleSheet("border: 1px solid black");
+    this->ui->openDocumentPath->setStyleSheet("border: 1px solid black");
 
     // alarmButton - додати будильник
     connect(this->ui->alarmButton, SIGNAL(clicked()), this, SLOT(addAlarm()));
@@ -50,6 +52,11 @@ QLabel* AddMenu::getTimerName()
     return this->timerName;
 }
 
+QString AddMenu::getTimerSound()
+{
+    return this->timerSound;
+}
+
 QString AddMenu::getProgramPath()
 {
     return this->ui->executeProgramPath->text();
@@ -75,6 +82,7 @@ void AddMenu::addTimer()
     }
     this->timerName->setText(menu.getTimerName()->text());
     this->endTime = menu.getEndTime();
+    this->timerSound = menu.getTimerSound();
     this->alarm = false;
     AddMenu::accept();
 }
@@ -89,6 +97,7 @@ void AddMenu::addAlarm()
     }
     this->timerName->setText(menu.getTimerName()->text());
     this->endTime = menu.getEndTime();
+    this->timerSound = menu.getTimerSound();
     this->alarm = true;
     AddMenu::accept();
 }
