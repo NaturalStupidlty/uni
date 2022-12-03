@@ -35,6 +35,11 @@ private slots:
     void showHideExecuteProgramPath(int check);
     void showHideOpenDocumentPath(int check);
 
+    // Обрати програму
+    void findProgram();
+    // Обрати документ
+    void findDocument();
+
 private:
     // Інтерфейс
     Ui::AddMenu *ui;

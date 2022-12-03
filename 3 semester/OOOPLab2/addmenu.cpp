@@ -3,14 +3,16 @@
 #include "addtimersmenu.h"
 #include "addalarmsmenu.h"
 
+#include <QFileDialog>
+
 AddMenu::AddMenu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddMenu)
 {
     this->ui->setupUi(this);
 
-    this->ui->executeProgramPath->hide();
-    this->ui->openDocumentPath->hide();
+    this->ui->executeProgramWidget->hide();
+    this->ui->openDocumentWidget->hide();
 
     this->timerName = new QLabel;
 
@@ -26,6 +28,10 @@ AddMenu::AddMenu(QWidget *parent) :
     // Показати введення шляху
     connect(this->ui->executeProgram, SIGNAL(stateChanged(int)), this, SLOT(showHideExecuteProgramPath(int)));
     connect(this->ui->openDocument, SIGNAL(stateChanged(int)), this, SLOT(showHideOpenDocumentPath(int)));
+
+    // Обрати шлях
+    connect(this->ui->findProgramButton, SIGNAL(clicked()), this, SLOT(findProgram()));
+    connect(this->ui->findDocumentButton, SIGNAL(clicked()), this, SLOT(findDocument()));
 }
 
 AddMenu::~AddMenu()
@@ -91,11 +97,11 @@ void AddMenu::showHideExecuteProgramPath(int check)
 {
     if (check)
     {
-        this->ui->executeProgramPath->show();
+        this->ui->executeProgramWidget->show();
     }
     else
     {
-        this->ui->executeProgramPath->hide();
+        this->ui->executeProgramWidget->hide();
     }
 }
 
@@ -103,10 +109,20 @@ void AddMenu::showHideOpenDocumentPath(int check)
 {
     if (check)
     {
-        this->ui->openDocumentPath->show();
+        this->ui->openDocumentWidget->show();
     }
     else
     {
-        this->ui->openDocumentPath->hide();
+        this->ui->openDocumentWidget->hide();
     }
+}
+
+void AddMenu::findProgram()
+{
+    this->ui->executeProgramPath->setText(QFileDialog::getOpenFileName(this, "Оберіть програму, яку потрібно запустити", "/Applications"));
+}
+
+void AddMenu::findDocument()
+{
+    this->ui->openDocumentPath->setText(QFileDialog::getOpenFileName(this, "Оберіть файл, який потрібно відкрити"));
 }
