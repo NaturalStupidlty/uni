@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/resource">
         <file>sounds/sound.mp3</file>
+        <file>sounds/radar.mp3</file>
     </qresource>
 </RCC>

@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Для зберігання найближчого таймера
     this->nearestTimerLayout = new QVBoxLayout;
 
+    this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(99,99,99);}");
+    this->ui->doNotDisturb->setChecked(false);
+
     // Запуск відліку
     this->timers.start();
 
@@ -36,6 +39,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Вибір таймерів
     connect(this->ui->timersList, SIGNAL(itemSelectionChanged()), this, SLOT(selectTimer()));
     connect(this->ui->alarmsList, SIGNAL(itemSelectionChanged()), this, SLOT(selectAlarm()));
+
+    // Режим "Не турбувати"
+    connect(this->ui->doNotDisturb, SIGNAL(clicked()), this, SLOT(doNotDisturb()));
 }
 
 MainWindow::~MainWindow()
@@ -155,4 +161,17 @@ void MainWindow::continueTimer()
         this->ui->pauseTimerButton->setStyleSheet("color: rgb(220,20,60)");
     }
     this->timers.cont();
+}
+
+void MainWindow::doNotDisturb()
+{
+    this->timers.setDoNotDisturb(this->ui->doNotDisturb->isChecked());
+    if (this->ui->doNotDisturb->isChecked())
+    {
+        this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(255, 255, 255);}");
+    }
+    else
+    {
+        this->ui->doNotDisturb->setStyleSheet("QPushButton{color: rgb(99,99,99);}");
+    }
 }

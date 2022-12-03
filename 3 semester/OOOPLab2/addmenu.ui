@@ -157,6 +157,22 @@
          </layout>
         </item>
         <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QFrame" name="additionalSettings">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -185,7 +201,7 @@
              <property name="font">
               <font>
                <family>Montserrat</family>
-               <pointsize>24</pointsize>
+               <pointsize>20</pointsize>
               </font>
              </property>
              <property name="text">
@@ -197,6 +213,22 @@
             </widget>
            </item>
            <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QCheckBox" name="executeProgram">
              <property name="font">
               <font>
@@ -205,7 +237,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Запуск програми</string>
+              <string>    Запуск програми</string>
              </property>
             </widget>
            </item>
@@ -289,7 +321,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Відкриття документу</string>
+              <string>    Відкриття документу</string>
              </property>
             </widget>
            </item>

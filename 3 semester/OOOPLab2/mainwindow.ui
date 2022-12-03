@@ -245,14 +245,53 @@
              </layout>
             </item>
             <item>
-             <widget class="QWidget" name="nearestTimer" native="true">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <widget class="QWidget" name="nearestTimer" native="true">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="doNotDisturb">
+                <property name="font">
+                 <font>
+                  <family>Montserrat</family>
+                  <pointsize>24</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Не турбувати 😴</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <layout class="QVBoxLayout" name="regularTimers">

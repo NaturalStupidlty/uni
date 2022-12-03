@@ -133,13 +133,16 @@ void TimerCollection::stop(int index)
 
     this->player->setAudioOutput(audioOutput);
     this->player->setSource(QUrl(this->timers[index]->getSound()));
-    this->audioOutput->setVolume(0);
+    this->audioOutput->setVolume(soundVolume * !isSilent);
     this->player->play();
 
-    QMessageBox timerOver;
-    timerOver.setWindowTitle("Час таймера вийшов.");
-    timerOver.setText((this->timers[index]->getName())->text());
-    timerOver.exec();
+    if (!isSilent)
+    {
+        QMessageBox timerOver;
+        timerOver.setWindowTitle("Час таймера вийшов.");
+        timerOver.setText((this->timers[index]->getName())->text());
+        timerOver.exec();
+    }
 
     if (this->nearestTimer == timers[index])
     {
@@ -156,6 +159,10 @@ void TimerCollection::stop(int index)
     this->timers.pop_back();
 }
 
+void TimerCollection::setDoNotDisturb(bool isSilent)
+{
+    this->isSilent = isSilent;
+}
 
 Timer*& TimerCollection::operator [](const int& i)
 {

@@ -41,6 +41,8 @@ public:
     // Зупинити таймер
     void stop(int index);
 
+    void setDoNotDisturb(bool isSilent);
+
     // Отримати таймер за індексом
     Timer *&operator [](const int& i);
 private:
@@ -66,6 +68,9 @@ private:
     // Для звуку завершення таймера
     QMediaPlayer* player;
     QAudioOutput* audioOutput;
+
+    bool isSilent = false;
+    int soundVolume = 10;
 private slots:
     // Оновити час
     void updateTime();

@@ -29,8 +29,10 @@ private slots:
 
     // Обрати таймер
     void selectTimer();
+
     // Обрати будильник
     void selectAlarm();
+
     // Допоміжна функція, що встановлює
     // вибрані елементи списку вибраними таймерами
     void select(QListWidget* items);
@@ -40,6 +42,8 @@ private slots:
 
     // Відновити таймер
     void continueTimer();
+
+    void doNotDisturb();
 
 private:
     // Інтерфейс
