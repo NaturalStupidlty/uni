@@ -1,56 +1,56 @@
 #ifndef ALGORITHMSLAB2_RABINKARP_H
 #define ALGORITHMSLAB2_RABINKARP_H
 
+#include <string>
 #include <vector>
 #include <iostream>
 
+using std::string;
 using std::vector;
 using std::pair;
-
 
 class RabinKarp
 {
 private:
     // Дільник
-    const long long mod = 257;
+    long long mod = 1e9 + 7;
     // Кількість символів у алфавіті
-    const long long radix = 256;
+    uint radix = 24;
     // Найбільший степінь для хешування
-    long long highestPower = 1;
-    // n
-    uint textSize = 0;
-    // m
-    uint patternSize = 0;
+    uint maxRowPower = 1;
+    uint maxColumnPower = 1;
 
+    // Розміри матриці
+    uint textRows{};
+    uint textColumns{};
+    uint patternRows{};
+    uint patternColumns{};
+
+private:
     // повертає radix в степені n під mod
     // О(log N), N = number
-    long long powerUnderMod(int number);
+    long long powerUnderMod(uint number);
 
     // Перевіряє, чи всі значення pattern
     // збігаються з відповідною частиною text
     // O(N^2), N = patternSize
-    bool check(vector<vector<char>> &text,
-               vector<vector<char>> &pattern,
-               uint row,
-               uint column) const;
+    bool check(vector<string> &text, vector<string> &pattern, long long row, uint column) const;
 
     // Знаходить хеш перших patternSize рядків
     // O(N*M), matrix is N*N, M = patternSize
-    vector<long long> findHash(vector<vector<char>> &matrix) const;
+    vector<long long> findHash(vector<string> &matrix) const;
 
-    // O(N), N = patternSize
-    void rollingHash(vector<long long> &textHash, long long &textMatrixHash) const;
+    // Rolling hash для рядочків
+    // O(1)
+    void rollingHash(vector<long long> &textHash, long long &textMatrixHash, uint row);
 
     // Rolling hash для стовпчиків
     // O(N), N = patternSize
-    void columnRollingHash(vector<vector<char>> &text,
-                           vector<long long> &textHash,
-                           uint row) const;
+    void columnRollingHash(vector<string> &text, vector<long long> &textHash, uint row) const;
+
 public:
-    // Знайти всі входження pattern до text
-    // у вигляді індексів верхніх лівих кутів входжень
-    // O((N-M)^2*M), N = textSize, M = patternSize
-    vector<pair<uint, uint>> rabinKarpSearch(vector<vector<char>> &text,
-                         vector<vector<char>> &pattern);
+    RabinKarp() = default;
+    vector<pair<uint, uint>> rabinKarpSearch(vector<string> &text, vector<string> &pattern);
+    vector<pair<uint, uint>> naiveSearch(vector<string> &text, vector<string> &pattern) const;
 };
 #endif //ALGORITHMSLAB2_RABINKARP_H

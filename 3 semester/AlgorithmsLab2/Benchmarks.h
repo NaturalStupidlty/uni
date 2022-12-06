@@ -11,50 +11,39 @@ using std::endl;
 
 void testRabinKarpSearch()
 {
-    cout << endl;
-    vector<vector<char>> text;
-
-    srand(0);
-
-    int size = 10;
-    for (int i = 0; i < size; i++)
+    vector<string> text;
+    int n = 1280, m = 5;
+    for (int i = 0; i < n; i++)
     {
-        vector <char> temp;
-        for (int j = 0; j < size; j++)
-        {
-            temp.emplace_back((char)(rand() % 26 + 65));
+        string row;
+        for (int j = 0; j < n; j++) {
+            row += ((char) (rand() % 26 + 65));
         }
-        text.emplace_back(temp);
+        text.emplace_back(row);
     }
-    int n = 5;
-    int index = rand() % (size - n);
-    int jndex = rand() % (size - n);
 
+    int index = rand() % (n - m);
+    int jndex = rand() % (n - m);
 
-    for (int i = 0; i < size; i++)
+    vector<string> pattern;
+    for (int k = index; k < index + m; k++)
     {
-        for (int k = 0; k < size; k++)
+        string row = text[k].substr(jndex, jndex + m);
+        pattern.emplace_back(row);
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = 0; k < n; k++)
         {
             cout << text[i][k] << " ";
         }
         cout << endl;
     }
-
-    vector<vector<char>> pattern;
-    for (int k = index; k < index + n; k++)
-    {
-        vector<char>::const_iterator first = text[k].begin() + jndex;
-        vector<char>::const_iterator last = text[k].begin() + jndex + n;
-        vector<char> temp(first, last);
-        pattern.emplace_back(temp);
-    }
-
-
     cout << index << " " << jndex << endl;
-
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < m; i++)
     {
-        for (int k = 0; k < n; k++)
+        for (int k = 0; k < m; k++)
         {
             cout << pattern[i][k] << " ";
         }
@@ -62,22 +51,41 @@ void testRabinKarpSearch()
     }
 
     vector<pair<uint, uint>> occurrences;
-    RabinKarp patternSearch;
+    RabinKarp solver;
     auto start = high_resolution_clock::now();
-
-    occurrences = patternSearch.rabinKarpSearch(text, pattern);
+    occurrences = solver.rabinKarpSearch(text, pattern);
+    auto stop = high_resolution_clock::now();
 
     cout << "Паттерн входить до тексту " << occurrences.size() << " разів." << endl;
     for (int i = 0; i < occurrences.size(); i++)
     {
-        cout << "Входження номер " << i << endl;
+        cout << "Входження номер " << i + 1<< endl;
         cout << "(" << occurrences[i].first << "; " << occurrences[i].second << ")" << endl;
     }
 
-    auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     long long int res = duration.count();
-    cout << "Середній час виконання алгоритму Рабіна-Карпа: ";
+    cout << "Час виконання алгоритму Рабіна-Карпа: ";
+    cout << res / 1000000 << " секунд, "
+         << (res % 1000000) / 1000 << " мілісекунд i "
+         << res % 1000 << " мікросекунд" << endl;
+    cout << endl;
+
+    vector<pair<uint, uint>> occurrences2;
+    start = high_resolution_clock::now();
+    occurrences = solver.naiveSearch(text, pattern);
+    stop = high_resolution_clock::now();
+
+    cout << "Паттерн входить до тексту " << occurrences.size() << " разів." << endl;
+    for (int i = 0; i < occurrences.size(); i++)
+    {
+        cout << "Входження номер " << i + 1<< endl;
+        cout << "(" << occurrences[i].first << "; " << occurrences[i].second << ")" << endl;
+    }
+
+    duration = duration_cast<microseconds>(stop - start);
+    res = duration.count();
+    cout << "Час виконання наївного алгоритму: ";
     cout << res / 1000000 << " секунд, "
          << (res % 1000000) / 1000 << " мілісекунд i "
          << res % 1000 << " мікросекунд" << endl;
