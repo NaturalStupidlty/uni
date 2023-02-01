@@ -49,6 +49,7 @@ void testRabinKarpSearch()
         }
         cout << endl;
     }
+    cout << endl;
 
     vector<pair<uint, uint>> occurrences;
     RabinKarp solver;

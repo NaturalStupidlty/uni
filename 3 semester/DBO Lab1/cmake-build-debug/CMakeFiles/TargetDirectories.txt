@@ -1,3 +1,3 @@
-/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir

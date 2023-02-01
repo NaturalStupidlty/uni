@@ -70,7 +70,7 @@ private:
     QAudioOutput* audioOutput;
 
     bool isSilent = false;
-    int soundVolume = 10;
+    int soundVolume = 30;
 private slots:
     // Оновити час
     void updateTime();

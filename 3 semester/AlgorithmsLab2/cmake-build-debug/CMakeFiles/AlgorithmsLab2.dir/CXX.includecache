@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/Benchmarks.h
+RabinKarp.h
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/RabinKarp.h
+chrono
+-
+iostream
+-
+
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/RabinKarp.cpp
+RabinKarp.h
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/RabinKarp.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/RabinKarp.h
+string
+-
+vector
+-
+iostream
+-
+
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/main.cpp
+Benchmarks.h
+/Users/tylerdurden/GitHub/uni/3 semester/AlgorithmsLab2/Benchmarks.h
+

@@ -8,13 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Directors.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Directors.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Errors.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Errors.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Functions.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Functions.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Menu.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Menu.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Movies.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Movies.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Utils.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Utils.cpp.o"
-  "/Users/tylerdurden/CLionProjects/DBOLab1/main.cpp" "/Users/tylerdurden/CLionProjects/DBOLab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/main.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Directors.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Directors.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Errors.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Errors.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Functions.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Functions.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Menu.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Menu.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Movies.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Movies.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Utils.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/Sources/Utils.cpp.o"
+  "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/main.cpp" "/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/cmake-build-debug/CMakeFiles/DBOLab1_master.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

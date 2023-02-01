@@ -66,7 +66,37 @@ Movies.h
 vector
 -
 
-/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Menu.cpp
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Directors.cpp
+Directors.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Directors.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Errors.cpp
+Errors.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Errors.h
+Constants.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Constants.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Functions.cpp
+Functions.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Functions.h
+Utils.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Utils.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Menu.cpp
 Menu.h
-/Users/tylerdurden/CLionProjects/DBOLab1/Sources/Menu.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Menu.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Movies.cpp
+Movies.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Movies.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Utils.cpp
+Utils.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Sources/Utils.h
+
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/main.cpp
+Menu.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Menu.h
+Functions.h
+/Users/tylerdurden/GitHub/uni/3 semester/DBO Lab1/Functions.h
 

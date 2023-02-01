@@ -15,7 +15,7 @@ private:
     // Дільник
     long long mod = 1e9 + 7;
     // Кількість символів у алфавіті
-    uint radix = 24;
+    uint radix = 26;
     // Найбільший степінь для хешування
     uint maxRowPower = 1;
     uint maxColumnPower = 1;
@@ -33,11 +33,11 @@ private:
 
     // Перевіряє, чи всі значення pattern
     // збігаються з відповідною частиною text
-    // O(N^2), N = patternSize
+    // O(M1 * M2), M1 = patternRows, M2 = patternColumns
     bool check(vector<string> &text, vector<string> &pattern, long long row, uint column) const;
 
     // Знаходить хеш перших patternSize рядків
-    // O(N*M), matrix is N*N, M = patternSize
+    // O(N2*), N2 = matrix columns, M1 = patternRows
     vector<long long> findHash(vector<string> &matrix) const;
 
     // Rolling hash для рядочків
@@ -45,11 +45,14 @@ private:
     void rollingHash(vector<long long> &textHash, long long &textMatrixHash, uint row);
 
     // Rolling hash для стовпчиків
-    // O(N), N = patternSize
+    // O(N), N = textHash.size()
     void columnRollingHash(vector<string> &text, vector<long long> &textHash, uint row) const;
 
 public:
     RabinKarp() = default;
+    // Алгоритм Рабіна-Карпа
+    // Повертає індекси лівих верхніх кутів входжень
+    // O((N1-M1) * (N2 - M2) * (M1 * M2)), N1 = textRows, N2 = textColumns, M1 = patternRows, M2 = patternColumns
     vector<pair<uint, uint>> rabinKarpSearch(vector<string> &text, vector<string> &pattern);
     vector<pair<uint, uint>> naiveSearch(vector<string> &text, vector<string> &pattern) const;
 };
