@@ -26,9 +26,9 @@ class HashTable:
         self.p = nextprime(self.table_size)
 
         # Fill the hash table
-        self.fill_table()
+        self.__fill_table()
 
-    def fill_table(self):
+    def __fill_table(self):
         for key in self.data:
             h = self.hash(key, self.a, self.b)
             if self.table[h] is None:
@@ -60,7 +60,16 @@ class HashTable:
             k = k[0]
         return floor(((a * k + b) % self.p) % self.table_size)
 
+    def show(self, show_coefficients=False):
+        for index, value in enumerate(self.table):
+            print("Index: ", index, " | Item: ", value)
+        if show_coefficients:
+            print("a: ", self.a)
+            print("b: ", self.b)
+            print("Sub table a: ", self.sub_a)
+            print("Sub table b: ", self.sub_b)
+
 
 numbers = [Fraction(1, 2), Fraction(3, 4), Fraction(2, 3), Fraction(4, 3), Fraction(3, 2)]
 table = HashTable(numbers)
-print(table.table)
+table.show(True)
