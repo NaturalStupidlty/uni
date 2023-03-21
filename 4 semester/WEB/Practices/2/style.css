@@ -1,0 +1,80 @@
+body 
+{
+  font-family: 'Times New Roman', serif;
+}
+
+h1 
+{
+  margin-bottom: 0;
+}
+
+fieldset 
+{
+  margin-bottom: 1%;
+  padding: 1%;
+}
+
+legend 
+{
+  padding: 0 0.1875em;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+label 
+{
+  width: 6.875em;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0.375em;
+}
+
+em 
+{
+  font-weight: bold;
+  font-style: normal;
+  color: #f00000;
+}
+
+input:focus 
+{
+  background: #EAEAEA;
+}
+
+input, textarea 
+{
+  font-size: 1em;
+  width: 50%;
+}
+
+textarea 
+{
+  height: 10.25em;
+}
+
+select 
+{
+  font-size: 1em;
+  width: 51.5%;
+}
+
+input[type=checkbox] 
+{
+  width: 1em;
+}
+
+input[type=submit] 
+{
+  font-size: 1em;
+  width: 6em;
+}
+
+.form_block
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50%;
+  padding: 0 1.875em;
+}

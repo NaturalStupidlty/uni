@@ -1,0 +1,108 @@
+.form1
+{
+	position: fixed;
+	top: 4%;
+	left: 2%;
+	width: 40%;
+	height: 70%;
+}
+
+.form2
+{
+	position: fixed;
+	top: 4%;
+	right: 2%;
+	width: 40%;
+	height: 70%;
+}
+
+.form3
+{
+	position: fixed;
+	top: 25%;
+	right: 30%;
+	width: 40%;
+	height: 70%;
+}
+
+.tablePos
+{
+	position: absolute;
+	width:94%;
+	height:90%;
+	left:5%;
+	top:5%;	
+}
+
+.imgBord
+{
+	border: 1.5px solid white;
+}
+
+.trans
+{
+	transform:translate(0,2%);
+}
+
+.text
+{
+	color:lightblue;
+	font-size: 20px;
+	font-weight: 600;
+	color: white;
+}
+
+.backText
+{
+	background: white;
+	font-size: 2.5vh;
+}
+
+.textColor1
+{
+	color: red;
+}
+
+.textColor1:hover
+{
+	color: green;
+}
+
+.textColor2
+{
+	color: green;
+}
+
+.textColor2:hover
+{
+	color: red;
+}
+
+
+.backColor1
+{
+	background: blue;
+}
+
+.backColor1:hover
+{
+	background: green;
+}
+
+
+.backColor2
+{
+	background: green;
+}
+
+.backColor2:hover
+{
+	background: blue;
+}
+
+
+.imgPos2
+{
+	float: left;
+	margin-right: 2vh;
+}

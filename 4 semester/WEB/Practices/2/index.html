@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" /> 
+    <title>Form</title>
+  </head>
+  <body class="form_block">
+    <div >
+      <form>
+        <h1>Форма заявки на роботу в зоопарку</h1>
+
+        <p><i>Будь ласка, заповніть форму. Обов'язкові поля відмічені</i><em>*</em></p>
+        <fieldset>
+          <legend>Контактна інформація</legend>
+            <label>Ім'я <em>*</em></label>
+            <input><br>
+            <label>Телефон</label>
+            <input><br>
+            <label>Email <em>*</em></label>
+            <input><br>
+        </fieldset>
+        <fieldset>
+          <legend>Персональна інформація</legend>
+            <label>Вік<em>*</em></label>
+            <input><br>
+            <label>Стать</label>
+            <select>
+              <option>Жінка</option>
+              <option>Чоловік</option>
+            </select><br>
+            <label>Перерахуйте особисті якості</label>
+            <textarea></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Виберіть улюблених тварин</legend>
+          <label><input type="checkbox"> Зебра</label>
+          <label><input type="checkbox"> Слон</label>
+          <label><input type="checkbox"> Тигр</label>
+          <label><input type="checkbox"> Людина</label>
+          <label><input type="checkbox"> Скунс</label>
+          <label><input type="checkbox"> Лев</label>
+          <label><input type="checkbox"> Носоріг</label>
+          <label><input type="checkbox"> Черепаха</label>
+        </fieldset>
+        <p><input type="submit" value="Відправити"></p>
+      </form>
+    </div>
+  </body>
+</html>

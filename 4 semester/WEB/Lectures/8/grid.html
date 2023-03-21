@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Task</title>
+    <style>
+        .wrapper {
+            width: 50%;
+            margin: 50px 25% 0 25%;
+        }
+
+        hr.marg {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .block {
+            background-color: orange;
+        }
+
+        .grid {
+            display: grid;
+            column-gap: 70px;
+            row-gap: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="grid">
+            <div class="block" style="grid-column-start: 4; grid-column-end: 5; grid-row-start: 2; grid-row-end: 3">1</div>
+            <div class="block" style="grid-column-start: 1; grid-column-end: span 2; grid-row-start: 2; grid-row-end: 3">2</div>
+            <div class="block" style="grid-column-start: 1; grid-column-end: span 3; grid-row-start: 3; grid-row-end: 4">3</div>
+            <div class="block" style="grid-column-start: 2; grid-column-end: span 3; grid-row-start: 1; grid-row-end: 2">4</div>
+            <div class="block" style="grid-column-start: 4; grid-column-end: span 1; grid-row-start: 3; grid-row-end: 4">5</div>
+        </div>
+        <hr class="marg">
+        <div class="grid">
+            <div class="block" style="grid-column-start: 4; grid-column-end: 5; grid-row-start: 1; grid-row-end: 3">1</div>
+            <div class="block" style="grid-column-start: 1; grid-column-end: 2; grid-row-start: 1; grid-row-end: 5">2</div>
+            <div class="block" style="grid-column-start: 2; grid-column-end: span 1; grid-row-start: 3; grid-row-end: 5">3</div>
+            <div class="block" style="grid-column-start: 2; grid-column-end: span 2; grid-row-start: 1; grid-row-end: 2">4</div>
+            <div class="block" style="grid-column-start: 4; grid-column-end: span 1; grid-row-start: 4; grid-row-end: 5">5</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+* {
+ margin: 0;
+ padding: 0;
+}
+
+.article {
+    border: 3px solid #570D7B;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    padding: 20px;
+    width: 800px;
+    margin: auto auto 30px;
+    white-space: pre-line;
+    color: #570D7B;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    color: white;
+    background-color: #570D7B;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    background-color: #570D7B;
+    bottom: 0;
+    color: white;
+    text-align: center;
+}
+
+main {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.article h2 {
+    margin-bottom: 15px;
+}
