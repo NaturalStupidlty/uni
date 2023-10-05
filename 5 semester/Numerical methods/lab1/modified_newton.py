@@ -20,5 +20,7 @@ class ModifiedNewton(EquationSolver):
 
             if abs(self.result - previous_result) < self.config["accuracy"]:
                 break
+            elif abs(self.result - previous_result) > 1e10:
+                initial_guess_derivative = equation.derivative().evaluate(self.result)
 
         return self.result
