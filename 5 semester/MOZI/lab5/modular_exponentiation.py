@@ -63,8 +63,7 @@ def test_modular_exponentiation1():
 
 
 def test_modular_exponentiation2():
-    modular_exponentiation_test\
-        (modular_exponentiation2)
+    modular_exponentiation_test(modular_exponentiation2)
 
 
 if __name__ == "__main__":
