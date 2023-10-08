@@ -7,7 +7,6 @@ from utils import _to_modulo
 def modular_exponentiation1(number: int, degree: int, modulo: int) -> int:
     """ Computes the a^d (mod m) """
     number = _to_modulo(number, modulo)
-    degree = _to_modulo(degree, modulo)
 
     degree_binary = bin(degree)
 
@@ -27,7 +26,6 @@ def modular_exponentiation1(number: int, degree: int, modulo: int) -> int:
 def modular_exponentiation2(number: int, degree: int, modulo: int) -> int:
     """ Computes the a^d (mod m) """
     number = _to_modulo(number, modulo)
-    degree = _to_modulo(degree, modulo)
 
     binary_degree = [int(bit) for bit in bin(degree)[2:]]
 
@@ -46,14 +44,12 @@ def case(algorithm: callable, number: int, degree: int, modulo: int, expected_re
     print(f"Test case passed: {number}^{degree} (mod {modulo}) = {expected_result}")
 
 
-def test_modular_exponentiation(algorithm: callable):
+def modular_exponentiation_test(algorithm: callable):
     case(algorithm, 2, 3, 5, 3)
 
     case(algorithm, 5, 0, 7, 1)
 
     case(algorithm, 0, 10, 3, 0)
-
-    case(algorithm, 3, -2, 11, 4)
 
     case(algorithm, 3, 123, 247, 183)
 
@@ -63,11 +59,12 @@ def test_modular_exponentiation(algorithm: callable):
 
 
 def test_modular_exponentiation1():
-    test_modular_exponentiation(modular_exponentiation1)
+    modular_exponentiation_test(modular_exponentiation1)
 
 
 def test_modular_exponentiation2():
-    test_modular_exponentiation(modular_exponentiation2)
+    modular_exponentiation_test\
+        (modular_exponentiation2)
 
 
 if __name__ == "__main__":
