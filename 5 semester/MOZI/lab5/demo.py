@@ -87,4 +87,4 @@ def pohling_hellman_demo():
 
 
 if __name__ == "__main__":
-    pohling_hellman_demo()
+    interactive_algorithm_demo()
