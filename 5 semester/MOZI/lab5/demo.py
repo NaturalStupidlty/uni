@@ -53,7 +53,7 @@ def interactive_modular_exponentiation2_demo():
     interactive_modular_exponentiation_demo(modular_exponentiation2)
 
 
-def interactive_po_algorithm_demo():
+def interactive_ro_algorithm_demo():
     print("Pollard's Rho Algorithm Demo")
     while True:
         try:
