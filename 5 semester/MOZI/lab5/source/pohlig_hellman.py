@@ -85,7 +85,7 @@ def print_formatted(arg1, arg2, arg3, arg4, arg5):
     print("-" * 90)
 
 
-def pohling_hellman(g, h, p):
+def pohlig_hellman(g, h, p):
     """Main function of Pohling-Hellman's algorithm."""
 
     count_occurrences_list = count_occurrences(prime_factorization(p - 1))

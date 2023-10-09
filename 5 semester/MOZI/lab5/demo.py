@@ -1,5 +1,5 @@
-from modular_exponentiation import modular_exponentiation1, modular_exponentiation2
-from pohling_hellman import pohling_hellman
+from source.modular_exponentiation import modular_exponentiation1, modular_exponentiation2
+from source.pohlig_hellman import pohlig_hellman
 
 
 def interactive_algorithm_demo() -> None:
@@ -14,7 +14,7 @@ def interactive_algorithm_demo() -> None:
                 "1. Modular exponentiation1",
                 "2. Modular exponentiation2",
                 "3. Ro-algorithm",
-                "4. Pollard-Hemming algorithm",
+                "4. Pohlig-Hellman algorithm",
             )
         menu_verbose = False
         algorithm_name = input("Enter the algorithm name: ")
@@ -27,7 +27,7 @@ def interactive_algorithm_demo() -> None:
         elif algorithm_name == "3":
             interactive_ro_algorithm_demo()
         elif algorithm_name == "4":
-            interactive_pollard_hemming_algorithm_demo()
+            interactive_pohling_hellman_demo()
         else:
             print("Invalid algorithm name.")
             menu_verbose = True
@@ -56,34 +56,29 @@ def interactive_ro_algorithm_demo():
     pass
 
 
-def interactive_pollard_hemming_algorithm_demo():
-    pass
-
-
-def pohling_hellman_demo():
+def interactive_pohling_hellman_demo():
     print("=" * 90)
     print("Pohling-Hellman's algorithm for discrete logarithm")
     print("Formula: h ≡ g^x (mod p)")
     print("=" * 90)
     print("\n")
 
-    while True:
-        err = False
-        h = int(input("h: "))
-        g = int(input("g: "))
-        p = int(input("p: "))
+    err = False
+    h = int(input("h: "))
+    g = int(input("g: "))
+    p = int(input("p: "))
 
-        if p < 2:
-            print("Group order must be greater than one.\n")
-            err = True
+    if p < 2:
+        print("Group order must be greater than one.\n")
+        err = True
 
-        if not err:
-            try:
-                pohling_hellman(h, g, p)
-            except TypeError:
-                print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
-                print("-" * 90)
-                print("\n")
+    if not err:
+        try:
+            pohlig_hellman(h, g, p)
+        except TypeError:
+            print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
+            print("-" * 90)
+            print("\n")
 
 
 if __name__ == "__main__":
