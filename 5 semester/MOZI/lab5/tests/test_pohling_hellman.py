@@ -1,49 +1,31 @@
 import unittest
+from typing import Union
 
 from lab5.source.pohlig_hellman import pohlig_hellman
 
 
 class TestPohligHellman(unittest.TestCase):
+    def case(self, g: int, h: int, p: int, expected_result: Union[int, None]) -> None:
+        result = pohlig_hellman(g, h, p)
+        if expected_result is None:
+            self.assertIsNone(result)
+        else:
+            self.assertEqual(expected_result, result)
 
     def test_pohlig_hellman_valid_input1(self):
-        g = 18
-        h = 2
-        p = 29
-        expected_result = 11
-        result = pohlig_hellman(g, h, p)
-        self.assertEqual(expected_result, result)
+        self.case(18, 2, 29, 11)
 
     def test_pohlig_hellman_valid_input2(self):
-        g = 27
-        h = 3
-        p = 31
-        expected_result = 3
-        result = pohlig_hellman(g, h, p)
-        self.assertEqual(expected_result, result)
+        self.case(27, 3, 31, 3)
 
     def test_pohlig_hellman_valid_input3(self):
-        g = 8
-        h = 2
-        p = 11
-        expected_result = 3
-        result = pohlig_hellman(g, h, p)
-        self.assertEqual(expected_result, result)
+        self.case(8, 2, 11, 3)
 
     def test_pohlig_hellman_valid_input4(self):
-        g = 525
-        h = -2
-        p = 131
-        expected_result = 0
-        result = pohlig_hellman(g, h, p)
-        self.assertEqual(expected_result, result)
+        self.case(525, -2, 131, 0)
 
     def test_pohlig_hellman_valid_input5(self):
-        g = 525
-        h = 2
-        p = 809
-        # No solution
-        with self.assertRaises(TypeError):
-            pohlig_hellman(g, h, p)
+        self.case(525, 2, 809, None)
 
 
 if __name__ == '__main__':

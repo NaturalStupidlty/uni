@@ -1,5 +1,6 @@
 # coding: utf-8
 from math import sqrt, ceil
+from typing import Union
 
 
 def prime_factorization(p):
@@ -76,7 +77,10 @@ def congruence_pair(g, h, p, q, e, e1, e2):
     for i in range(1, e + 1):
         a = pow(e1, q ** (e - 1), p)
         b = pow(e2 * (alpha_inverse ** x), q ** (e - i), p)
-        x += shanks_algorithm(a, b, p) * (q ** (i - 1))
+        shanks_result = shanks_algorithm(a, b, p)
+        if shanks_result is None:
+            return None
+        x += shanks_result * (q ** (i - 1))
     return x, q ** e
 
 
@@ -85,7 +89,7 @@ def print_formatted(arg1, arg2, arg3, arg4, arg5):
     print("-" * 90)
 
 
-def pohlig_hellman(g, h, p):
+def pohlig_hellman(g, h, p) -> Union[int, None]:
     """Main function of Pohling-Hellman's algorithm."""
 
     count_occurrences_list = count_occurrences(prime_factorization(p - 1))
@@ -101,8 +105,10 @@ def pohlig_hellman(g, h, p):
         e1 = (h ** ((p - 1) // (count_occurrences_list[i][0] ** count_occurrences_list[i][1]))) % p  # Changed / to //
         e2 = (g ** ((p - 1) // (count_occurrences_list[i][0] ** count_occurrences_list[i][1]))) % p  # Changed / to //
         # Add new congruence
-        congruence_list.append(
-            congruence_pair(g, h, p, count_occurrences_list[i][0], count_occurrences_list[i][1], e1, e2))
+        pair = congruence_pair(g, h, p, count_occurrences_list[i][0], count_occurrences_list[i][1], e1, e2)
+        if pair is None:
+            return None
+        congruence_list.append(pair)
         e3 = congruence_list[len(congruence_list) - 1][0] % congruence_list[len(congruence_list) - 1][
             1]  # Changed / to //
         e4 = congruence_list[len(congruence_list) - 1][1]  # Changed / to //
@@ -116,7 +122,7 @@ def pohlig_hellman(g, h, p):
         print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
         print("-" * 90)
         print("\n")
-        return
+        return None
 
     print(" Solution x = %d" % solution)
     print("-" * 90)
