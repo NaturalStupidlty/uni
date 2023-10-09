@@ -1,4 +1,5 @@
 from modular_exponentiation import modular_exponentiation1, modular_exponentiation2
+from pohling_hellman import pohling_hellman
 
 
 def interactive_algorithm_demo() -> None:
@@ -14,7 +15,7 @@ def interactive_algorithm_demo() -> None:
                 "2. Modular exponentiation2",
                 "3. Ro-algorithm",
                 "4. Pollard-Hemming algorithm",
-                )
+            )
         menu_verbose = False
         algorithm_name = input("Enter the algorithm name: ")
         if algorithm_name == "0":
@@ -59,5 +60,31 @@ def interactive_pollard_hemming_algorithm_demo():
     pass
 
 
+def pohling_hellman_demo():
+    print("=" * 90)
+    print("Pohling-Hellman's algorithm for discrete logarithm")
+    print("Formula: h ≡ g^x (mod p)")
+    print("=" * 90)
+    print("\n")
+
+    while True:
+        err = False
+        h = int(input("h: "))
+        g = int(input("g: "))
+        p = int(input("p: "))
+
+        if p < 2:
+            print("Group order must be greater than one.\n")
+            err = True
+
+        if not err:
+            try:
+                pohling_hellman(h, g, p)
+            except TypeError:
+                print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
+                print("-" * 90)
+                print("\n")
+
+
 if __name__ == "__main__":
-    interactive_algorithm_demo()
+    pohling_hellman_demo()
