@@ -1,5 +1,6 @@
 from source.modular_exponentiation import modular_exponentiation1, modular_exponentiation2
 from source.pohlig_hellman import pohlig_hellman
+from source.po_algorithm import po_algorithm
 
 
 def interactive_algorithm_demo() -> None:
@@ -53,7 +54,27 @@ def interactive_modular_exponentiation2_demo():
 
 
 def interactive_ro_algorithm_demo():
-    pass
+    print("Pollard's Rho Algorithm Demo")
+    while True:
+        try:
+            n = int(input("Enter an integer greater than 2 (or enter 0 to quit): "))
+
+            if n == 0:
+                print("Exiting the program.")
+                break
+
+            if n <= 2:
+                print("Please enter a number greater than 2.")
+                continue
+
+            result = po_algorithm(n)
+
+            if result:
+                print(f"A non-trivial divisor of {n} is {result}")
+            else:
+                print(f"No non-trivial divisor found for {n}")
+        except ValueError:
+            print("Invalid input. Please enter an integer.")
 
 
 def interactive_pohling_hellman_demo():
