@@ -1,6 +1,5 @@
 """ Implementation of an algorithm to compute the a^d (mod m) """
 
-
 from .utils import _to_modulo
 
 
@@ -16,9 +15,9 @@ def modular_exponentiation1(number: int, degree: int, modulo: int) -> int:
 
     for i in reversed(degree_binary):
         if i == '1':
-            result = (result*s) % modulo
+            result = (result * s) % modulo
 
-        s = (s*s) % modulo
+        s = (s * s) % modulo
 
     return result
 

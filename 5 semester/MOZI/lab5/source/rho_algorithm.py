@@ -5,8 +5,8 @@ def gcd(a, b):
     return a
 
 
-def ro_algorithm(number: int, max_iterations: int = 1000):
-    """Computes a non-trivial factor of n using the Rho algorithm."""
+def rho_algorithm(number: int, max_iterations: int = 1000):
+    """Computes a non-trivial factor of n using the Pollard-Rho algorithm."""
     assert number > 2, "number must be greater than 2"
 
     a = 2
@@ -16,7 +16,7 @@ def ro_algorithm(number: int, max_iterations: int = 1000):
         a = (a * a + 1) % number
         b = (b * b + 1) % number
         b = (b * b + 1) % number  # зробити це двічі, щоб отримати "2b"
-        
+
         d = gcd(abs(a - b), number)
 
         if 1 < d < number:

@@ -1,23 +1,20 @@
 from source.modular_exponentiation import modular_exponentiation1, modular_exponentiation2
 from source.pohlig_hellman import pohlig_hellman
-from source.po_algorithm import po_algorithm
+from source.rho_algorithm import rho_algorithm
 
 
 def interactive_algorithm_demo() -> None:
     """ Interactive demo of the algorithm """
-    menu_verbose = True
     print("Interactive demo of the algorithm")
     while True:
-        if menu_verbose:
-            print(
-                "~~~~~~~~~~~~Menu~~~~~~~~~~~~"
-                "0. Exit",
-                "1. Modular exponentiation1",
-                "2. Modular exponentiation2",
-                "3. Ro-algorithm",
-                "4. Pohlig-Hellman algorithm",
-            )
-        menu_verbose = False
+        print(
+            "~~~~~~~~~~~~Menu~~~~~~~~~~~~\n "
+            "0. Exit\n",
+            "1. Modular exponentiation1\n",
+            "2. Modular exponentiation2\n",
+            "3. Pollard-Rho-algorithm\n",
+            "4. Pohlig-Hellman algorithm\n",
+        )
         algorithm_name = input("Enter the algorithm name: ")
         if algorithm_name == "0":
             break
@@ -26,12 +23,11 @@ def interactive_algorithm_demo() -> None:
         elif algorithm_name == "2":
             interactive_modular_exponentiation2_demo()
         elif algorithm_name == "3":
-            interactive_ro_algorithm_demo()
+            interactive_rho_algorithm_demo()
         elif algorithm_name == "4":
-            interactive_pohling_hellman_demo()
+            interactive_pohlig_hellman_demo()
         else:
             print("Invalid algorithm name.")
-            menu_verbose = True
 
 
 def interactive_modular_exponentiation_demo(algorithm: callable):
@@ -53,21 +49,21 @@ def interactive_modular_exponentiation2_demo():
     interactive_modular_exponentiation_demo(modular_exponentiation2)
 
 
-def interactive_ro_algorithm_demo():
+def interactive_rho_algorithm_demo():
     print("Pollard's Rho Algorithm Demo")
     while True:
         try:
             n = int(input("Enter an integer greater than 2 (or enter 0 to quit): "))
 
             if n == 0:
-                print("Exiting the program.")
+                print("Exiting the algorithm.")
                 break
 
             if n <= 2:
                 print("Please enter a number greater than 2.")
                 continue
 
-            result = po_algorithm(n)
+            result = rho_algorithm(n)
 
             if result:
                 print(f"A non-trivial divisor of {n} is {result}")
@@ -77,29 +73,33 @@ def interactive_ro_algorithm_demo():
             print("Invalid input. Please enter an integer.")
 
 
-def interactive_pohling_hellman_demo():
+def interactive_pohlig_hellman_demo():
     print("=" * 90)
     print("Pohling-Hellman's algorithm for discrete logarithm")
     print("Formula: h ≡ g^x (mod p)")
     print("=" * 90)
     print("\n")
 
-    err = False
-    h = int(input("h: "))
-    g = int(input("g: "))
-    p = int(input("p: "))
+    while True:
+        err = False
+        h = int(input("h: "))
+        g = int(input("g: "))
+        p = int(input("p: "))
 
-    if p < 2:
-        print("Group order must be greater than one.\n")
-        err = True
+        if p < 2:
+            print("Group order must be greater than one.\n")
+            err = True
 
-    if not err:
-        try:
-            pohlig_hellman(h, g, p)
-        except TypeError:
-            print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
-            print("-" * 90)
-            print("\n")
+        if not err:
+            try:
+                pohlig_hellman(h, g, p)
+            except TypeError:
+                print(" The congruence %d ≡ %d^x (mod %d) has no solution " % (h, g, p))
+                print("-" * 90)
+                print("\n")
+        print("Enter 0 to exit or any other key to continue")
+        if input() == "0":
+            break
 
 
 if __name__ == "__main__":

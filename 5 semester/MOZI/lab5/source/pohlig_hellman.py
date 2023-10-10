@@ -113,7 +113,7 @@ def pohlig_hellman(g, h, p) -> Union[int, None]:
             1]  # Changed / to //
         e4 = congruence_list[len(congruence_list) - 1][1]  # Changed / to //
         print_formatted(count_occurrences_list[i][0], count_occurrences_list[i][1], e1, e2,
-                       "x ≡ %2d (mod %2d)" % (e3, e4))
+                        "x ≡ %2d (mod %2d)" % (e3, e4))
 
     # Solve the system of congruences
     try:
