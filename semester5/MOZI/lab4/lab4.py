@@ -1,40 +1,53 @@
 import numpy as np
 
 
-def bipartite_encrypt(text: str, matrix: np.ndarray):
-    text = text.replace(' ', '').upper()
+def number_to_letter(n):
+    if 0 <= n <= 26:
+        return chr(ord('A') + n)
+    else:
+        return None
+
+
+def letter_to_number(letter):
+    # Ensure the input is a single uppercase letter
+    if len(letter) == 1 and 'A' <= letter <= 'Z':
+        return ord(letter) - ord('A')
+    else:
+        return None
+
+
+def bipartite_encrypt(text: str, matrix: np.ndarray, alphabet_size: int = 26):
+    # Remove whitespaces, punctuation, \n and convert to uppercase
+    text = "".join([letter.upper() for letter in text if letter.isalpha()])
 
     if len(text) % 2 != 0:
-        text += ' '
+        text = text[:-1]
 
     encrypted_text = ""
 
     for i in range(0, len(text), 2):
         block = text[i: i + 2]
-        vector = [ord(block[0]), ord(block[1])]
+        vector = [letter_to_number(block[0]), letter_to_number(block[1])]
 
         vector_array, matrix_array = np.array(vector), np.array(matrix)
         encrypted_vector = np.dot(matrix_array, vector_array)
-        encrypted_block = ''.join([chr(int(val) % 5000) for val in encrypted_vector])
+        encrypted_block = "".join([number_to_letter(int(val) % alphabet_size) for val in encrypted_vector])
         encrypted_text += encrypted_block
 
     return encrypted_text
 
 
-def bipartite_decrypt(text: str, matrix: np.ndarray):
-    if len(text) % 2 != 0:
-        raise ValueError("Input text length must be even for decryption")
-
+def bipartite_decrypt(text: str, matrix: np.ndarray, alphabet_size: int = 26):
     decrypted_text = ""
     inverse_matrix = np.linalg.inv(matrix)
 
     for i in range(0, len(text), 2):
         block = text[i:i+2]
-        vector = [ord(block[0]), ord(block[1])]
+        vector = [letter_to_number(block[0]), letter_to_number(block[1])]
 
         vector_array = np.array(vector)
         decrypted_vector = np.round(np.dot(inverse_matrix, vector_array))
-        decrypted_block = ''.join([chr(int(val)) for val in decrypted_vector])
+        decrypted_block = ''.join([str(number_to_letter(int(val % alphabet_size))) for val in decrypted_vector])
 
         decrypted_text += decrypted_block
 
