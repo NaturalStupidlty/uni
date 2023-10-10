@@ -14,6 +14,9 @@ git sparse-checkout init --cone
 
 #4. Checkout the folder with the project
 git sparse-checkout set semester5/MOZI/lab5
+
+# 5. Chekout
+git checkout
 ```
 
 
