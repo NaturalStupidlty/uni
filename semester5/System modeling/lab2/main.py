@@ -12,7 +12,7 @@ class LinearModel:
         """
         self.input_image = input_image
         self.output_image = output_image
-
+        self.input_image = np.append(self.input_image, np.ones((self.input_image.shape[1], 1)), axis=0)
         self.weights = weights if weights is not None else self._random_initialize()
 
     def _random_initialize(self) -> np.ndarray:
