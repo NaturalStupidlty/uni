@@ -12,7 +12,6 @@ class LinearModel:
         """
         self.input_image = input_image
         self.output_image = output_image
-        self.input_image = np.append(self.input_image, np.ones((self.input_image.shape[1], 1)), axis=0)
         self.weights = weights if weights is not None else self._random_initialize()
 
     def _random_initialize(self) -> np.ndarray:
@@ -58,9 +57,10 @@ def main():
     model = LinearModel(input_image, output_image, weights=np.zeros((output_image.shape[0], input_image.shape[0])))
     result = model()
 
-    result = cv2.resize(result, (2000, 2000))
-    cv2.imwrite('result.png', result)
-    cv2.imshow('result', result)
+    cv2.imwrite('images/result.png', result)
+
+    cv2.imshow("Y - left, result - right",
+               np.hstack([output_image, cv2.cvtColor(cv2.imread('images/result.png'), cv2.COLOR_BGR2GRAY)]))
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
