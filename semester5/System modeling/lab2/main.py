@@ -44,7 +44,17 @@ class LinearModel:
         :param matrix: A numpy array representing the matrix to calculate the pseudo-inverse of.
         :return: The pseudo-inverse of the matrix.
         """
-        return np.linalg.pinv(matrix)
+        # SVD
+        U, d, VT = np.linalg.svd(matrix)
+
+        UT = np.dot(np.linalg.inv(np.diag(d)), U.T)
+        pad_width = [(0, max(0, VT.shape[0] - UT.shape[0])), (0, 0)]
+        UT = np.pad(UT, pad_width, mode='constant', constant_values=0)
+
+        return np.dot(VT.T, UT)
+
+        # Шлях слабкості
+        # return np.linalg.pinv(matrix)
 
 
 def main():
@@ -57,7 +67,7 @@ def main():
     model = LinearModel(input_image, output_image, weights=np.zeros((output_image.shape[0], input_image.shape[0])))
     result = model()
 
-    cv2.imwrite('images/result.png', result)
+    cv2.imwrite('/Users/tylerdurden/GitHub/uni/semester5/System modeling/lab2/images/result.png', result)
 
     cv2.imshow("Y - left, result - right",
                np.hstack([output_image, cv2.cvtColor(cv2.imread('images/result.png'), cv2.COLOR_BGR2GRAY)]))
