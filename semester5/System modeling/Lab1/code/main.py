@@ -50,9 +50,11 @@ def find_frequencies_contribution(samples: np.ndarray, observation_interval: int
     time_step = 1 / observation_interval
 
     discrete_fourier_transform_modules = np.abs(discrete_fourier_transform(samples))
-    plot_discrete_fourier_transform_modules(discrete_fourier_transform_modules,
-                                            time_step,
-                                            'discrete_fourier_transform_modules.png')
+    plot_discrete_fourier_transform_modules(
+        discrete_fourier_transform_modules,
+        time_step,
+        'discrete_fourier_transform_modules.png'
+    )
 
     local_maxima_indices = []
     for k in range(1, num_samples - 1):
@@ -65,8 +67,11 @@ def find_frequencies_contribution(samples: np.ndarray, observation_interval: int
     return frequencies
 
 
-def plot_discrete_fourier_transform_modules(discrete_fourier_transform_modules: np.ndarray,
-                                            time_step: float, save_path: str) -> None:
+def plot_discrete_fourier_transform_modules(
+        discrete_fourier_transform_modules: np.ndarray,
+        time_step: float,
+        save_path: str
+) -> None:
     """
     Plot the discrete Fourier transform of the samples.
 
