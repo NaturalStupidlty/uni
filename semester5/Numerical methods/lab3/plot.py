@@ -79,15 +79,9 @@ def plot(x, expr, a, b, n, strategy='Optimal'):
 
     #init_plot()
     sl.linear_spline(fuck, start=2, end=6, step=0.5)
-    add_to_plot(x, expr, a, b, 'Initial function')
-    newton = nw.newton_interpolation(chosen_vals)
-    add_to_plot(x, newton, a, b, 'Newton')
+    add_to_plot(x, expr, a, b, 'Real')
     lagrange = lg.lagrange_interpolation(chosen_vals)
     add_to_plot(x, lagrange, a, b, 'Lagrange')
-    spline = sl.spline_interpolation(chosen_vals)
-    plot_spline(spline)
-
-
 
     add_points(chosen_vals)
     plt.grid(True)

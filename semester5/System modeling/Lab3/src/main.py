@@ -3,7 +3,7 @@ from io_reader import read
 from approximation import calculate
 
 
-def run_approximation(path_to_data: str = '../txt/y8.txt', epsilon: float = 1e-6):
+def run_approximation(path_to_data: str = '../txt/y8.txt', epsilon: float = 1e-16):
     mtx_input = read(path_to_data)
 
     c1, c2, c3, c4, m1, m2, m3 = sympy.symbols('c1 c2 c3 c4 m1 m2 m3')

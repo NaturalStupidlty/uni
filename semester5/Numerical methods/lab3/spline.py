@@ -70,29 +70,35 @@ def to_full_vector(m_v):
     full_v.append(0)
     return full_v
 
+def quadratic_coefficients(x0, y0, x1, y1, x2, y2):
+    # Coefficients for quadratic equation: y = ax^2 + bx + c
+    a = ((y2 - y0) / ((x2 - x0) * (x2 - x1))) - ((y1 - y0) / ((x1 - x0) * (x2 - x1)))
+    b = ((y1 - y0) / (x1 - x0)) - a * (x0 + x1)
+    c = y0 - (a * x0 ** 2) - (b * x0)
+    return a, b, c
 
 def spline_interpolation(vals):
-    if len(vals) < 2:
-        print("Not enough points for spline interpolation!")
+    if len(vals) < 3:
+        print("Not enough points for quadratic interpolation!")
         return {}
-    x = sp.symbols('x')
-    a_matrix = define_a(vals)
-    h_matrix = define_h(vals)
-    f_vector = define_f(vals)
-    x_vector = define_x(vals)
-    b_vector = h_matrix.dot(f_vector).astype(np.float64)
-    m_vector = solve(a_matrix, b_vector)
-    splines = {}
-    m_full = to_full_vector(m_vector)
-    for i in range(1, len(m_full)):
-        h = get_h(vals, i)
-        s = (m_full[i - 1] * (x_vector[i] - x) ** 3 / (6 * h) +
-             + m_full[i] * (x - x_vector[i - 1]) ** 3 / (6 * h) +
-             + (f_vector[i - 1] - m_full[i - 1] * h ** 2 / 6) * (x_vector[i] - x) / h +
-             + (f_vector[i] - m_full[i] * h ** 2 / 6) * (x - x_vector[i - 1]) / h)
-        splines[(x_vector[i - 1], x_vector[i])] = s
-    return splines
 
+    # Sort the values based on x-coordinates
+    vals.sort(key=lambda p: p.vals[0])  # Sort based on x-values
+    x_values = np.array([p.vals[0] for p in vals])
+    y_values = np.array([p.vals[1] for p in vals])
+
+    quadratics = {}
+    for i in range(len(vals) - 2):
+        x0, y0 = x_values[i], y_values[i]
+        x1, y1 = x_values[i + 1], y_values[i + 1]
+        x2, y2 = x_values[i + 2], y_values[i + 2]
+
+        a, b, c = quadratic_coefficients(x0, y0, x1, y1, x2, y2)
+
+        # Store the quadratic function coefficients for this interval
+        quadratics[(x0, x2)] = (a, b, c)
+
+    return quadratics
 
 def linear_spline(function: callable, start: int = -5, end: int = 5, step: float = 0.5):
     x_values = np.arange(start, end + step, step)
@@ -102,6 +108,34 @@ def linear_spline(function: callable, start: int = -5, end: int = 5, step: float
 
     # Perform linear spline interpolation
     linear_interp = interp1d(x_values, y_values, kind='linear')
+
+    def find_line_coefficients(x_values, y_values):
+        lines = []  # To store the coefficients of each line
+
+        # Ensure the lists x_values and y_values have the same length
+        if len(x_values) != len(y_values):
+            raise ValueError("The lists of x and y values must have the same length")
+
+        # Calculate coefficients for each pair of points
+        for i in range(len(x_values) - 1):
+            x1, y1 = x_values[i], y_values[i]
+            x2, y2 = x_values[i + 1], y_values[i + 1]
+
+            # Calculate the coefficients 'a' and 'b' for the line equation
+            a = (y2 - y1) / (x2 - x1)
+            b = y1 - a * x1
+
+            lines.append((a, b))  # Append coefficients of the line
+
+        return lines
+
+    lines = find_line_coefficients(linear_interp.x, linear_interp.y)
+
+    # Display the equations of the lines
+    for i, line in enumerate(lines):
+        print("Point: {linear_interp.x[i], linear_interp.y[i]}")
+        a, b = line
+        print(f"Line {i + 1}: y = {a}x + {b}")
 
     # Generate x values for interpolation result with smaller step size
     interpolation_step = 0.01
