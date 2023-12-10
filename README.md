@@ -55,7 +55,7 @@
     * [Neural Networks](https://github.com/NaturalStupldity/uni/tree/main/semester5/NN)
     * [Numerical Methods](https://github.com/NaturalStupldity/uni/tree/main/semester5/NumericalMethods)
     * [Scientific Research](https://github.com/NaturalStupldity/uni/tree/main/semester5/Science)
-    * [System Modelling](https://github.com/NaturalStupldity/uni/tree/main/semester5/System%20modeling)
+    * [System Modeling](https://github.com/NaturalStupldity/uni/tree/main/semester5/SystemModeling)
     * [Operating Systems](https://github.com/NaturalStupldity/uni/tree/main/semester5/OperatingSystems)
     <hr>
 
