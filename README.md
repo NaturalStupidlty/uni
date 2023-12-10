@@ -1,5 +1,5 @@
 # 🎓 uni
-### 📕 University studies, 🔬 laboratory works and projects 📝
+### 📘 University studies, 🔬 laboratory works and projects 💻
 
 
 <hr>
@@ -41,19 +41,19 @@
     <hr>
   * [Semester 4](https://github.com/NaturalStupldity/uni/tree/main/semester4)
     * [Algorithms](https://github.com/NaturalStupldity/uni/tree/main/semester4/Algorithms)
-    * [Data Analysis](https://github.com/NaturalStupldity/uni/tree/main/semester4/Data%20Analysis)
+    * [Data Analysis](https://github.com/NaturalStupldity/uni/tree/main/semester4/DataAnalysis)
     * [Mathematical Logic](https://github.com/NaturalStupldity/uni/tree/main/semester4/MathLogic)
     * [Object Oriented Programming](https://github.com/NaturalStupldity/uni/tree/main/semester4/OOP)
     * [Operations Research](https://github.com/NaturalStupldity/uni/tree/main/semester4/OperationsResearch)
     * [Ukrainian and Foreign Culture](https://github.com/NaturalStupldity/uni/tree/main/semester4/UkrainianAndForignCulture)
-    * [Web](https://github.com/NaturalStupldity/uni/tree/main/semester4/WEB)
+    * [Web](https://github.com/NaturalStupldity/uni/tree/main/semester4/Web)
 
 <td valign="top">
 
   * [Semester 5](https://github.com/NaturalStupldity/uni/tree/main/semester5)
-    * [Mathematical Foundations of Information Security](https://github.com/NaturalStupldity/uni/tree/main/semester5/MOZI)
+    * [Mathematical Foundations of Information Security](https://github.com/NaturalStupldity/uni/tree/main/semester5/MFIS)
     * [Neural Networks](https://github.com/NaturalStupldity/uni/tree/main/semester5/NN)
-    * [Numerical Methods](https://github.com/NaturalStupldity/uni/tree/main/semester5/Numerical%20methods)
+    * [Numerical Methods](https://github.com/NaturalStupldity/uni/tree/main/semester5/NumericalMethods)
     * [Scientific Research](https://github.com/NaturalStupldity/uni/tree/main/semester5/Science)
     * [System Modelling](https://github.com/NaturalStupldity/uni/tree/main/semester5/System%20modeling)
     * [Operating Systems](https://github.com/NaturalStupldity/uni/tree/main/semester5/OperatingSystems)
