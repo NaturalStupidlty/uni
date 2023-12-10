@@ -57,6 +57,7 @@
     * [Scientific Research](https://github.com/NaturalStupldity/uni/tree/main/semester5/Science)
     * [System Modeling](https://github.com/NaturalStupldity/uni/tree/main/semester5/SystemModeling)
     * [Operating Systems](https://github.com/NaturalStupldity/uni/tree/main/semester5/OperatingSystems)
+    * [Philosophy](https://github.com/NaturalStupldity/uni/tree/main/semester5/Philosophy)
     <hr>
 
 </table>
