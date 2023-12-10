@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="full-screen top-row">
+        The World of Fruit
+    </div>
+    <div class="full-screen bottom-row">
+        <form>
+            <div class="full-screen form-header">Fruit Survey</div>
+            <table>
+                <tr>
+                    <td>
+                        <label for="name-input">Name</label>
+                    </td>
+                    <td>
+                        <input type="text" name="name" id="name-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="address-input">Address</label>
+                    </td>
+                    <td>
+                        <input type="text" name="address" id="address-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email-input">Email</label>
+                    </td>
+                    <td>
+                        <input type="text" name="email" id="email-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        How many pieces of fruit do you eat per day?
+                    </td>
+                    <td>
+                        <input type="radio" name="pieces" id="pieces-input0" value="0">
+                        <label for="pieces-input0">0</label>
+                        <br>
+                        <input type="radio" name="pieces" id="pieces-input1" value="1">
+                        <label for="pieces-input1">1</label>
+                        <br>
+                        <input type="radio" name="pieces" id="pieces-input2" value="2">
+                        <label for="pieces-input2">2</label>
+                        <br>
+                        <input type="radio" name="pieces" id="pieces-input3" value=">2">
+                        <label for="pieces-input3">More than 2</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="favourite-input">
+                            My favourite fruit
+                        </label>
+                    </td>
+                    <td>
+                        <select name="favourite" id="favourite-input" multiple>
+                            <option value="apple">Apple</option>
+                            <option value="banana">Banana</option>
+                            <option value="plum">Plum</option>
+                            <option value="pomegranate">Pomegranate</option>
+                            <option value="pear">Pear</option>
+                            <option value="something-else">Something else</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="brochure-input">Would you like a brochure?</label></td>
+                    <td>
+                        <input type="checkbox" name="brochure" id="brochure-input">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

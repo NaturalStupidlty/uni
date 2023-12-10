@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lec14</title>
+</head>
+<body>
+    <h1>Lec14</h1>
+    <hr>
+    <p>
+        Час завантаження сторінки: <b id="time">?</b>
+    </p>
+    <script defer>
+        // ============ TIME ============
+        let time = document.getElementById('time');
+        let now = new Date();
+        let months = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
+        let days = ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'П\'ятниця', 'Субота'];
+        time.innerHTML =
+              now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear() + ", " +
+            + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ", "
+            + days[now.getDay()];
+
+        // ============= OBJ =============
+
+        function addPair(object, key, value){
+            if (key in object){
+                console.log("Key already exists");
+            } else {
+                object[key] = value;
+            }
+        }
+
+        let obj = {};
+        addPair(obj, "kk", "ABC");
+        addPair(obj, "kk1", "ABCD");
+        addPair(obj, "kk", "DEF");
+        console.log(obj);
+
+        function printFields(object){
+            for (let key in object){
+                console.log(key + ", " + object[key]);
+            }
+        }
+
+        printFields(obj);
+
+        function printFields2(object){
+            for (let key of Object.keys(object)){
+                console.log(key + ", " + object[key]);
+            }
+        }
+
+        printFields2(obj);
+
+
+        // ============= JSON =============
+
+        let gallery = {
+            images: [
+                {
+                    name: "name1",
+                    url: "url1",
+                    date: new Date(2017, 1, 1)
+                },
+                {
+                    name: "name2",
+                    url: "url2",
+                    date: new Date(2017, 2, 2)
+                },
+                {
+                    name: "name3",
+                    url: "url3",
+                    date: new Date(2017, 3, 3)
+                },
+                {
+                    name: "",
+                    url: "url4",
+                    date: new Date(2017, 4, 4)
+                },
+                {
+                    url: "url5",
+                    date: new Date(2017, 5, 5)
+                }
+            ],
+            info: "additional info"
+        }
+
+        let serializedAll = JSON.stringify(gallery);
+        console.log("serialized all: " + serializedAll);
+
+        let serializedNames = JSON.stringify(gallery, ["images", "name"]);
+        console.log("serialized names: " + serializedNames);
+
+        let serializedNamesRequired = JSON.stringify(gallery, (key, value) => {
+            if (key === "images"){
+                return value.filter(item => {
+                    return "name" in item && item.name !== "";
+                })
+            }
+            return value;
+        });
+        console.log("serialized, names required: " + serializedNamesRequired);
+
+
+        let gallery2 = JSON.parse(serializedAll, (key, value) => {
+            if (key === "date")
+                return new Date(value);
+            return value;
+        });
+
+        console.log("deserialized all: ");
+        console.log(gallery2);
+
+    </script>
+</body>
+</html>

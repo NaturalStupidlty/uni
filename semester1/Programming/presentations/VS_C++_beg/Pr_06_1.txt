@@ -1,0 +1,32 @@
+//Додавання введених даних
+//використання підпрограм
+#include <iostream>
+int x = 0, y = 0;  //об`ява глобальних змінних
+
+int summa(int x, int y);  //об`ява функції
+void print(int x); //об`ява функції
+
+int main()
+{
+	int z;
+	std::cout << "x = ";
+	std::cin >> x;
+	std::cout << "y = ";
+	std::cin >> y;
+	//std::cout << "Summa = " << x + y << std::endl;
+	z = summa(x, y);
+	print(z);
+	std::cout << "Press <Enter> ...";
+	//std::cin.get();
+	//std::cin.ignore().get();
+	std::cin.ignore(200,'\n').get();
+	return 0;
+}
+int summa(int x, int y)  //визначення функції
+{
+	return x + y;
+}
+void print(int x)  //визначення функції
+{
+	std::cout << x << std::endl;
+}

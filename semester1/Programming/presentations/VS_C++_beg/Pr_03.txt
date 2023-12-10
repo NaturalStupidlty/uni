@@ -1,0 +1,13 @@
+//Введення даних.
+//Проблеми з вікном
+#include <iostream>
+int main()
+{
+	int x = 1;
+	std::cout << "x = ";
+	std::cin >> x;
+	std::cout << x << std::endl;
+	std::cout << "Press <Enter> ...";
+	std::cin.get();
+	return 0;
+}

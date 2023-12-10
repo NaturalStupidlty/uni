@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Козацький драйв | Доставка</title>
+    <link rel="icon" href="static/images/logo.png">
+
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/feedback.css">
+    <link rel="stylesheet" href="styles/delivery.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@500;700&family=Orelega+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="static/images/logo.png" alt="logo"
+                     width="100" height="100">
+                <div>
+                    <h1>Козацький<br>драйв</h1>
+                    <h5>магазин військової техніки</h5>
+                </div>
+            </div>
+        </div>
+        <div class="contacts-container">
+            <div class="contacts">
+                <h1>+38 (050) 514-52-28</h1>
+                <h1>+42 (077) 546-81-86</h1>
+                <p><a id="feedback-link" href="#">Зворотній зв'язок</a></p>
+            </div>
+        </div>
+        <script src="scripts/feedback.js" defer></script>
+    </div>
+</header>
+<div id="feedback-background" class="hidden"></div>
+<div class="container">
+    <div id="feedback-form" class="hidden">
+        <form method="post">
+            <h1>Зворотній зв'язок</h1>
+            <label for="name">Ваше ім'я</label>
+            <input type="text" id="name" name="name" placeholder="Ваше ім'я" required>
+            <label for="phone">Телефон</label>
+            <input type="text" id="phone" name="phone" placeholder="Ваш телефон" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Ваш email" required>
+            <label for="message">Повідомлення</label>
+            <textarea name="message" id="message" placeholder="Ваше повідомлення" required></textarea>
+            <input type="submit" value="Відправити">
+        </form>
+        <div id="close-button">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+<div class="menu-container">
+    <div class="darken">
+        <div class="container">
+            <menu>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="delivery.html">Доставка і оплата</a></li>
+                <li><a href="#">Контакти</a></li>
+                <li><a href="https://bank.gov.ua/ua/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi">Допомога армії</a></li>
+            </menu>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="container">
+        <div class="content-container">
+            <div class="content-header">
+                <h1>Доставка і оплата</h1>
+            </div>
+            <hr>
+            <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi architecto blanditiis cum deserunt dolores eius est et, fugiat iste iure iusto neque optio perferendis possimus quia repellat repellendus sapiente sint, tempore vel, velit voluptate voluptatibus! Ad, placeat tempore!
+            </p>
+            <div class="warning">
+                <h2>Важливо</h2>
+                <p>
+                    За умов активних бойових дій доставка може бути ускладненою.<br>
+                    Доставка здійснюється у контрольовані Україною міста, наведені нижче.
+                </p>
+            </div>
+            
+            <div class="map-container">
+                <h1>Мапа бойових дій</h1>
+
+                <p>Матеріал з Вікіпедії. Посилання під мапою.</p>
+
+                <div class="map">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/2022_Russian_invasion_of_Ukraine.svg/1280px-2022_Russian_invasion_of_Ukraine.svg.png" alt="мапа">
+                </div>
+
+                <p class="map-description">
+                    <b>Посилання на автора</b>
+                    <br>
+                    Автор: <a href="//commons.wikimedia.org/wiki/User_talk:Viewsridge" title="User talk:Viewsridge">Viewsridge</a> - <span class="int-own-work" lang="uk">Власна робота</span>, derivate of <a href="//commons.wikimedia.org/wiki/File:Russo-Ukraine_Conflict_(2014-2021).svg" title="File:Russo-Ukraine Conflict (2014-2021).svg">Russo-Ukraine Conflict (2014-2021).svg</a> від <a href="//commons.wikimedia.org/wiki/User:Rr016" title="User:Rr016">Rr016</a>
+                    <br>
+                    Missile attacks source: <a rel="nofollow" class="external text" href="https://twitter.com/BNONews/status/1496750027687206917">BNO News</a>
+                    <br>
+                    Territorial control source: <a rel="nofollow" class="external text" href="https://www.understandingwar.org/backgrounder/ukraine-conflict-updates">ISW</a>
+                    <br>
+                    <a href="https://en.wikipedia.org/wiki/Template:Russo-Ukrainian_War_detailed_map" class="extiw" title="w:Template:Russo-Ukrainian War detailed map">Template:Russo-Ukrainian War detailed map</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=115506141">Посилання</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="container">
+        <div class="company-info">
+            (c) 2022 Всі права незахищені
+            <br>
+            boris@gov.uk
+        </div>
+        <div class="footer-menu">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог</a></li>
+                <li><a href="delivery.html">Доставка і оплата</a></li>
+                <li><a href="#">Контакти</a></li>
+                <li><a href="https://bank.gov.ua/ua/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi">Допомога армії</a></li>
+            </ul>
+        </div>
+        <div class="developers-info">
+            <img src="https://generatepress.com/assets/logo-white-asset.png" alt="developer-logo">
+            <span><a href="https://github.com/leirimnad/leirimnad.github.io">Розробка сайту</a> —<br>Миронов Данііл</span>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

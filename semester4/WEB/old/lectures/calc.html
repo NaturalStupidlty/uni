@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        .calculator {
+            max-width: 50%;
+            min-width: 500px;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 7px;
+        }
+
+        .display {
+            border: 1px solid black;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: right;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #display {
+            flex: 1 0;
+            /*max-width: 90%;*/
+            height: 100%;
+            font-size: 30px;
+            border: none;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        #display-value {
+            flex: 1 0;
+            max-width: 180px;
+            min-height: 100%;
+            background-color: #c0c0c0;
+            border: none;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 5px;
+
+        }
+
+        .button-row {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .button {
+            border: 1px solid black;
+            border-radius: 7px;
+            padding: 10px;
+            min-width: 70px;
+            margin: 3px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #clear {
+            background-color: #ff7474;
+        }
+
+        .button:hover {
+            background-color: #c0c0c0;
+        }
+
+        #clear:hover {
+            background-color: #cc5050;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" size="16">
+            <div id="display-value"></div>
+        </div>
+
+        <div class="button-row">
+            <button class="button" id="clear">C</button>
+            <button class="button" id="equals">=</button>
+        </div>
+
+
+        <script>
+            let display = document.getElementById("display");
+            let displayValue = document.getElementById("display-value");
+            let clearButton = document.getElementById("clear");
+            let equalsButton = document.getElementById("equals");
+
+            clearButton.addEventListener("click", function() {
+                display.value = "";
+                displayValue.innerText = "";
+            });
+
+            equalsButton.addEventListener("click", function() {
+                if (isCorrectFormula(display.value)) {
+                    try {
+                        displayValue.innerText = eval(display.value);
+                    } catch (e) {
+                        displayValue.innerText = "Error";
+                    }
+                } else {
+                    displayValue.innerText = "Error";
+                }
+            });
+
+            function isCorrectFormula(string) {
+                let regex = /^[0-9+\-*/.]+$/;
+                return regex.test(string);
+            }
+
+        </script>
+
+    </div>
+</body>
+</html>

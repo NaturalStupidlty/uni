@@ -1,0 +1,37 @@
+//транспонування матриць
+
+#include <iostream>
+using namespace std;
+const int nn = 3;  //розмір матриць
+
+void trasp(int arr[][nn], int n);  //об`ява функції
+void print(int arr[][nn], int n); //об`ява функції
+
+int main()
+{
+	int aa[][3]={{1, 2, 3},{4, 5, 6}, {7, 8, 9}};
+	cout << "Before A = " << endl;
+	print(aa, nn);
+	//транспонування
+	trasp(aa, nn);
+	cout << "Later A = " << endl;
+	print(aa, nn);
+    //system("pause");
+	return 0;
+}
+
+void trasp(int arr[][nn], int n)  //визначення функції
+{int t;
+	for(int i=0; i<n; i++){
+          for(int j=i+1; j<n; j++) {t = arr[i][j]; arr[i][j] = arr[j][i]; arr[j][i] = t;}
+}
+}
+
+void print(int arr[][nn], int n)  //визначення функції
+{
+    for(int i=0; i<n; i++){
+          for(int j=0; j<n; j++)
+          { cout << arr[i][j] << ", ";
+          }
+          cout << endl;}
+}

@@ -1,0 +1,29 @@
+.catalog-button {
+  background-color: var(--color-primary);
+  color: #FFF;
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  border: 5px solid var(--color-primary);
+  animation: pulsing-border 1.3s infinite;
+}
+
+@keyframes pulsing-border {
+  0% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: #c4b64b;
+  }
+
+  100% {
+    border-color: transparent;
+  }
+}
+

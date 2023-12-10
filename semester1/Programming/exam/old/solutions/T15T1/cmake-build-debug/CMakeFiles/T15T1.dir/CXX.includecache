@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tylerdurden/Dropbox/1 семестр/Прога/Екзамен/Минулорічні/Мої рішення/T15T1/main.cpp
+iostream
+-
+

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KP #1</title>
+</head>
+<style>
+    :root {
+        --tilt-difference: 20px;
+        --page-width: 700px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .full-height {
+        display: flex;
+    }
+
+    .center-block {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tilted-block {
+        width: var(--page-width);
+        background-color: rgba(0,0,0,0.2);
+    }
+
+    .upper-tilted-block {
+        position: absolute;
+        min-height: 80px;
+        clip-path: polygon(0 0, 100% 0%, 100% calc(100% - var(--tilt-difference)), 0% 100%);
+        top: 0;
+        z-index: 1;
+    }
+
+    .lower-tilted-block {
+        position: fixed;
+        min-height: 60px;
+        bottom: 0;
+        clip-path: polygon(0 var(--tilt-difference), 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .outer-wrapper {
+        min-height: 100vh;
+        max-width: var(--page-width);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .black-stripe {
+        min-height: 20px;
+        background-color: black;
+    }
+
+    .main-wrapper {
+        flex-grow: 1;
+        display: flex;
+    }
+
+
+    .side-content {
+        background-color: #9196B5;
+        min-width: 200px;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        padding: 10px 0 40px 0;
+    }
+
+    .main-content {
+        background-color: #C0C4E1;
+        flex-grow: 1;
+        min-width: 300px;
+
+        font-family: sans-serif;
+        font-size: 7px;
+        line-height: 1.3em;
+    }
+
+    main {
+        padding: 35px 10% 20px 10%;
+    }
+
+    main > div {
+        margin-bottom: 20px;
+    }
+
+    main > div:last-child {
+        margin-bottom: 0;
+    }
+
+    .grid-image {
+        width: 100%;
+    }
+
+    .image-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    img.main-image {
+        width: 50px;
+        margin: 20px 50px 20px 0;
+        box-shadow: 10px 10px 15px 0 #000000;
+        z-index: 5;
+
+    }
+
+    .image-container img {
+        margin-top: 10px;
+        width: 160px;
+    }
+
+    .title-article {
+        margin-bottom: 40px;
+        text-align: justify;
+    }
+
+    .column-wrapper {
+        display: inline-flex;
+        column-gap: 40px;
+    }
+
+    .column-wrapper > .column {
+        text-align: justify;
+        width: 50%;
+    }
+
+    .column > article h4 {
+        font-weight: 900;
+        text-align: left;
+        margin-bottom: 5px;
+        letter-spacing: -0.05em;
+    }
+
+    .column > article {
+        margin-bottom: 5px;
+    }
+
+    .column > article ul {
+        margin-left: 0.8em;
+        text-align: left;
+        list-style-position: outside;
+        list-style-type: "♦ ";
+    }
+
+    .column > article ul li {
+        margin-bottom: 5px;
+    }
+
+</style>
+<body>
+    <div class="center-block">
+        <div class="full-height">
+            <div>
+                <div class="upper-tilted-block tilted-block"></div>
+
+                <div class="outer-wrapper">
+                    <div class="black-stripe"></div>
+                    <div class="main-wrapper">
+                        <div class="side-content">
+                            <img class="main-image" src="https://omixcdn.com/img/catalog/papka-plastikovaya-s-pruzhinnym-skorosshivatelem-buromax-a4-shirina-20-mm-vm3407-2.png" alt="папка">
+                            <div class="image-container">
+                                <img src="https://www.researchgate.net/profile/Cormac-Flanagan/publication/2363546/figure/fig1/AS:394670216630274@1471108120197/The-DrScheme-Window-Windows-95-98-NT-2000-version.png" alt="вікно">
+                                <img src="https://img5.goodfon.com/wallpaper/nbig/7/75/martin-friman-sherlock-sherlock-bbc-dzhon-vatson-sherlock--2.jpg" alt="ватсон">
+                                <img src="https://winworldpc.com/res/img/screenshots/5x-587b550484ba3c30e31cd2aa602530ff-Adobe%20Photoshop%205%20-%20About.png" alt="вікно">
+                                <img src="https://image.shutterstock.com/image-photo/vintage-red-british-muscle-car-260nw-22647985.jpg" alt="авто">
+                            </div>
+                        </div>
+                        <div class="main-content">
+
+                            <main>
+
+
+                                <div class="title-article">
+                                    Blesk je český deník, který poprvé vyšel v roce 1992. Jeho vydavatelem je Czech News Center a.s. Od roku 2002 je Blesk nejprodávanějším a nejčtenějším celostátním deníkem v České republice.
+                                    Jedná se o barevný bulvární deník, zaměřený na aktuální zpravodajství, zajímavosti a senzace z ČR i ze světa. Textové zprávy jsou obvykle doplněny velkoformátovými fotografiemi. K šíření obsahu pomáhá několik platforem. Od roku 2015 se Blesk prezentuje claimem Blesk - Síla na vaší straně.
+                                </div>
+                                <div>
+                                    <img class="grid-image" src="https://s1.cdn.autoevolution.com/images/news/russian-warship-moskva-sinks-after-being-hit-by-2-cruise-missiles-186477-7.jpg" alt="Героїчний крузер Москва підвищено до підлодки">
+                                </div>
+                                <div class="column-wrapper">
+                                    <div class="column">
+                                        <article>
+                                            <h4>Ruský křižník Moskva byl povýšen na ponorku a další vtipy na potopenou válečnou loď</h4>
+                                            Válka je cokoliv jenom ne vtipná věc. Lidský organismus však na viděná zvěrstva, která páchají na Ukrajině ruští okupanti, reaguje všelijak. Humor je přitom pochopitelným obranným mechanismem. Potopení válečného křižníku se stalo vděčným tématem pro fórky.
+                                        </article>
+                                        <article>
+                                            <h4>„Je to primitiv!“</h4>
+                                            Bývalý premiér Andrej Babiš (ANO) zkritizoval předsedu Senátu Miloše Vystrčila poté, co spolu se senátní delegací navštívil Ukrajinu a města zlikvidovaná ruskými okupanty. Akci označil za marketingový tah, jeho slova ale vyvolala bouřlivou reakci nejen některých politiků.
+                                        </article>
+                                        <article>
+                                            <h4>Situace v Mariupolu je kritická</h4>
+                                            Situaci v Mariupolu, který se na východě Ukrajiny nachází v ruském obklíčení, dnes označil za kritickou velitel ukrajinské 36. brigády námořní pěchoty Serhij Volyna, jehož vojáci město brání. Ministerstvo obrany v Moskvě uvedlo, že ruské síly ovládly mariupolskou Iljičovu ocelárnu.
+                                        </article>
+                                        <article>
+                                            <h4>FOTO: Sexy rozhodčí, od které byste si to rádi nechali (na hřišti) foukat</h4>
+                                            Kromě toho, že má italská modelka Claudia Romani potřebné míry k tomu, aby se mohla vrtět na módních přehlídkách i před objektivy fotografů a kameramanů, má také dostatečnou kvalifikaci na to, aby řídila fotbalové zápasy.
+                                        </article>
+                                        <article>
+                                            <h4>Potopený křižník Moskva nesl dvě jaderné hlavice?</h4>
+                                            V Černém moři se ve čtvrtek potopila vlajková loď ruské Černomořské flotily, <mark>křižník Moskva</mark>, který se podílel na ruské invazi na Ukrajinu. Ukrajinské úřady tvrdí, že plavidlo zasáhly a poškodily ukrajinské protilodní střely Neptun.
+                                        </article>
+                                    </div>
+
+                                    <div class="column">
+                                        <article>
+                                            <h4>Miliardář Musk má zálusk na Twitter, nabízí 960 miliard korun</h4>
+                                            Miliardář a šéf automobilky Tesla Elon Musk chce koupit společnost Twitter. V provozovateli stejnojmenné sociální sítě už má podíl 9,2 procenta, a je tak jeho největším akcionářem. Jeho "nejlepší a konečná" nabídka společnost podle agentury Bloomberg ohodnocuje na zhruba 43 miliard dolarů (963,4 miliardy Kč). Firma má podle něj mimořádný potenciál, který on zcela rozvine, cituje Muska Bloomberg.
+                                        </article>
+                                        <article>
+                                            <h4>Finanční pomoc pro Ukrajinu</h4>
+                                            <ul>
+                                                <li>Nákup vojenského materiálu</li>
+                                                <li>Nákup ochranného vybavení (neprůstřelné vesty, helmy, zdravotnický materiál,...)</li>
+                                                <li>Zajištění základních potřeb jako voda, potraviny, hygienické potřeby či přístřeší</li>
+                                                <li>Humanitární pomoc</li>
+                                                <li>Podpora a zajištění základních potřeb evakuovaných obyvatel</li>
+                                                <li>Humanitární pomoc v místě i pro uprchlíky na území ČR</li>
+                                                <li>Zajištění základních potřeb a psychosociální podpory civilistům postižených válkou</li>
+                                                <li>Poskytování zdravotní péče. Pro zaslání pomoci přímo na Ukrajinu je třeba použít variabilní symbol 1502.</li>
+                                                <li>Finanční pomoc určená na vzdělávací a humanitární účely</li>
+                                                <li>Smírka na pomoc zvířatům v ukrajinských ZOO</li>
+                                            </ul>
+                                        </article>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lower-tilted-block tilted-block"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

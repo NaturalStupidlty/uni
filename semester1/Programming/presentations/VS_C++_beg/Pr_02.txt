@@ -1,0 +1,11 @@
+//Перша програма
+//Виведення кирилиці. Проблеми
+#include <iostream>
+
+int main()
+{
+	std::cout << "Ласкаво просимо до C++" << std::endl;
+	std::cout << "Натисніть <Enter> щоб закінчити ...";
+	std::cin.get();
+	return 0;
+}

@@ -1,0 +1,15 @@
+//Перша програма
+//Виведення кирилиці
+#include <iostream>
+#include <clocale>
+int main()
+{
+	char *pch = 0;
+	/*std::setlocale(LC_ALL, "Ukrainian_Ukraine.1251");*/
+	pch = std::setlocale(LC_ALL, "");
+	std::cout << "Ласкаво просимо до C++"<< std::endl;
+	std::cout << pch << std::endl;
+	std::cout << "Натиснiть <Enter> щоб закiнчити ...";
+	std::cin.get();
+	return 0;
+}

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>№14 - редактор таблиці</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: stretch;
+            height: 100vh;
+        }
+
+        #table-container {
+            flex: 1;
+            padding: 30px;
+            overflow: auto;
+        }
+
+        #menu-container {
+            background-color: #eef1f1;
+            width: 330px;
+            padding: 15px;
+            border-left: 1px solid #cccccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        fieldset {
+            border: 1px solid #a4a4a4;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        #table-container td, th {
+            border: 1px solid #8a8a8a;
+            text-align: left;
+            padding: 0 5px 0 0;
+
+            width: fit-content;
+            height: 20px;
+        }
+
+        .input-span{
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-family: sans-serif;
+            background-color: transparent;
+            padding: 1px 6px;
+            min-width: 50px;
+            min-height: 20px;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        #menu-container input[type="number"] {
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+        #menu-container button {
+            padding: 4px;
+            margin-bottom: 4px;
+        }
+
+
+        .action {
+            margin: 0 0 15px 0;
+        }
+        .action > p {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .action table td {
+            width: 50%;
+        }
+        .action table button {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div id="table-container">
+            <table id="table"></table>
+        </div>
+        <div id="menu-container">
+            <form>
+                <fieldset>
+                    <legend>Створити таблицю</legend>
+                    <input type="number" placeholder="шир" name="create-w" min="1" max="30" id="create-w-input">
+                    x
+                    <input type="number" placeholder="вис" name="create-h" min="1" max="20">
+                    <button id="create-table-button">Створити</button>
+                </fieldset>
+                <fieldset id="modify-table-fieldset" disabled style="opacity: 0.5">
+                    <legend>Модифікувати таблицю</legend>
+                    <div class="action">
+                        <p>Обрізати таблицю</p>
+                        <input type="number" placeholder="шир" name="crop-w" min="1" max="30">
+                        x
+                        <input type="number" placeholder="вис" name="crop-h" min="1" max="20">
+                        <button id="crop-table-button">Обрізати</button>
+                    </div>
+
+                    <div class="action">
+                        <p>Додати рядок/стовпчик</p>
+                        <table>
+                            <tr>
+                                <td colspan="2"><button id="append-top-button">Додати зверху</button></td>
+                            </tr>
+                            <tr>
+                                <td><button id="append-left-button">Додати зліва</button></td>
+                                <td><button id="append-right-button">Додати праворуч</button></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><button id="append-bottom-button">Додати знизу</button></td>
+                            </tr>
+                        </table>
+                        <label>
+                            Рядок перед <input type="number" min="1" max="50" name="insert-row" placeholder="рядком"> <button id="insert-row-button">Додати</button>
+                        </label>
+                        <br>
+                        <label>
+                            Стовпець перед <input type="number" min="1" max="50" name="insert-column" placeholder="стовпцем"> <button id="insert-col-button">Додати</button>
+                        </label>
+                    </div>
+
+
+                    <div class="action">
+                        <p>Видалити рядок/стовпчик</p>
+                        <label>
+                            Рядок номер <input type="number" min="1" max="50" name="delete-row"> <button id="delete-row-button">Видалити</button>
+                        </label>
+                        <br>
+                        <label>
+                            Стовпчик номер <input type="number" min="1" max="50" name="delete-column"> <button id="delete-col-button">Видалити</button>
+                        </label>
+                    </div>
+
+                    <div class="action">
+                        <p>Згенерувати випадковий вміст</p>
+                        <button id="generate-content-button">Згенерувати</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function createCell(){
+            let cell = document.createElement("td");
+            let input = document.createElement("span");
+            input.className = "input-span";
+            input.setAttribute("role", "textbox");
+            input.setAttribute("contentEditable", "true");
+            cell.appendChild(input);
+            return cell;
+        }
+
+        const table = document.getElementById("table");
+        const maxWidth = 30;
+        const maxHeight = 20;
+        document.getElementById("create-table-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let w = Math.max(Math.min(document.getElementsByName("create-w")[0].value, maxWidth), 1);
+            let h = Math.max(Math.min(document.getElementsByName("create-h")[0].value, maxHeight), 1);
+            document.getElementsByName("create-w")[0].value = w;
+            document.getElementsByName("create-h")[0].value = h;
+            table.innerHTML = "";
+            for (let i = 0; i < h; i++) {
+                let row = document.createElement("tr");
+                for (let j = 0; j < w; j++) {
+                    row.appendChild(createCell());
+                }
+                table.appendChild(row);
+            }
+            document.getElementById("modify-table-fieldset").attributes.removeNamedItem("disabled");
+            document.getElementById("modify-table-fieldset").style.opacity = "1";
+        });
+
+        document.getElementById("crop-table-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let w = Math.max(Math.min(document.getElementsByName("crop-w")[0].value, maxWidth), 1);
+            let h = Math.max(Math.min(document.getElementsByName("crop-h")[0].value, maxHeight), 1);
+            document.getElementsByName("crop-w")[0].value = w;
+            document.getElementsByName("crop-h")[0].value = h;
+            let rows = table.getElementsByTagName("tr");
+            let toDelete = Array.prototype.slice.call(rows, h);
+            let rowsLeft = Array.prototype.slice.call(rows, 0, h);
+            for (let i = 0; i < toDelete.length; i++) {
+                table.removeChild(toDelete[i]);
+            }
+            for (let i = 0; i < rowsLeft.length; i++) {
+                let cells = rowsLeft[i].getElementsByTagName("td");
+                let toDelete = Array.prototype.slice.call(cells, w);
+                for (let j = 0; j < toDelete.length; j++) {
+                    rowsLeft[i].removeChild(toDelete[j]);
+                }
+            }
+        });
+
+        document.getElementById("delete-row-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            let row = rows[document.getElementsByName("delete-row")[0].value - 1];
+            table.removeChild(row);
+            document.getElementsByName("delete-row")[0].value = "";
+        });
+
+        document.getElementById("delete-col-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let cell = cells[document.getElementsByName("delete-column")[0].value - 1];
+                rows[i].removeChild(cell);
+            }
+            document.getElementsByName("delete-column")[0].value = "";
+        });
+
+        document.getElementById("append-top-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            let row = document.createElement("tr");
+            for (let i = 0; i < rows[0].getElementsByTagName("td").length; i++) {
+                row.appendChild(createCell());
+            }
+            table.insertBefore(row, rows[0]);
+        });
+
+        document.getElementById("append-bottom-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            let row = document.createElement("tr");
+            for (let i = 0; i < rows[0].getElementsByTagName("td").length; i++) {
+                row.appendChild(createCell());
+            }
+            table.appendChild(row);
+        });
+
+        document.getElementById("append-left-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let cell = createCell();
+                rows[i].insertBefore(cell, cells[0]);
+            }
+        });
+
+        document.getElementById("append-right-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                let cell = createCell();
+                rows[i].appendChild(cell);
+            }
+        });
+
+        document.getElementById("insert-row-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            let row = document.createElement("tr");
+            for (let i = 0; i < rows[0].getElementsByTagName("td").length; i++) {
+                row.appendChild(createCell());
+            }
+            table.insertBefore(row, rows[document.getElementsByName("insert-row")[0].value - 1]);
+            document.getElementsByName("insert-row")[0].value = "";
+        });
+
+        document.getElementById("insert-col-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let rows = table.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let cell = createCell();
+                rows[i].insertBefore(cell, cells[document.getElementsByName("insert-column")[0].value - 1]);
+            }
+            document.getElementsByName("insert-column")[0].value = "";
+        });
+
+        const words = ["армія", "гелікоптер", "уніформа", "дирижабль", "волонтер", "дрон", "руйнувати", "герой", "солдат", "екіпіровка", "вертоліт", "розгрузка", "фортеця", "окупант", "казарма", "зброя", "диверсія", "блокпост", "атака", "бункер", "сигнал", "квадрокоптер", "гарнізон", "агресія", "пістолет", "арсенал", "міна", "полігон", "спис", "муштрувати", "кавалерія", "так точно!", "дуель", "взвод", "командир", "учєбка", "бліцкриґ", "маневр", "блокада", "рикошет", "каремат", "штаб", "холостий", "команда", "батальйон", "гармата", "варта", "штурм", "магазин", "клас", "рота", "бінокль", "турнір", "квартирування", "спецназ", "снайпер", "гартувати", "баталія", "ствол", "імператор", "офіційний", "бунт", "позиція", "превентивний", "bowyer", "снаряд", "фланг", "провокація", "танк", "трофей", "клятва", "салют", "прицілювання", "протистояння", "шанець", "патронташ", "стратегія", "обойма", "траншея", "бомба", "рапорт", "кля́стися", "гном", "кулемет", "приціл", "піка", "лати", "ранг", "тріумф", "курок", "авіація", "фронт", "ленд-ліз", "амуніція", "якір", "чатовий", "лагер", "дезінформація", "патруль", "башта", "логістика", "наконечник", "кузов", "скаут", "рикошетити", "офіцер", "кампанія", "портупея", "героїка", "флот", "берці", "русня; росня", "рапортувати", "руни", "русский мир", "чатувати", "рицар", "орієнти́р", "колонізація", "груз 300 / трьохсотий", "медаль", "силовик", "марш-бросок", "термовізор", "утиски", "ліквідація", "ескалація", "катапульта", "військова частина", "спусковий гачок", "компас", "мішень", "рукопашний бій", "бліндаж", "артилерія", "таласократія", "маршувати", "цейхгауз", "терорист", "субмарина", "коктейль молотова", "мисливство", "штуцер", "хронометр", "погон", "лента", "смертоносний", "рейд", "кинджал", "альянс", "мундир", "мобілізація", "груз 200 / двохсотий", "генерал", "бригада", "дивізіон", "міномет", "турнікет", "евакуація", "ракета", "матрос", "гауптвахта", "мемуаристика", "конфронтація", "генеральний штаб", "ієрархія", "експансія", "дезертир", "екіпаж", "амбразура", "радар", "карцер", "флетчер", "copy that", "кіл-хаус", "марш", "дислокація", "чек-пойнт", "кіборґ", "капітуляція", "бригада", "прапорщик", "сищик", "віджимати", "тероборонець", "парад", "мародер", "шеренга", "шикування", "посада", "ар’єргард", "при́зов", "руйнівник", "гравіровка", "кавалерист", "штурман", "воїн", "важко в навчанні — легко в бою", "автократ", "автократія", "конспірація", "десант", "дивізія", "корпус", "дуумвірат", "лінкор", "розряджати", "гімнастерка", "survivor", "балаклава", "double battle", "арбалет", "інтервенція", "форпост", "путч", "дисципліна", "багнет", "капітан", "лейтенант", "лазер", "хускарл", "серейтор", "картридж", "позивний", "обезьяна", "капелан", "тероборона", "батискаф", "ватерлінія", "гвинтівка", "русифікатор", "збруя", "темп", "тамплієр", "свисток", "клинок", "боцман", "ескадрилья", "місіонер", "кавалька́да", "водомет", "карабін", "гарпун", "граната", "понто́н", "розвідка", "ополчення", "гвардія", "експансіонізм", "узурпація", "кіберпростір", "секція", "тактика", "летальний", "уран", "офензи́ва", "спис кавалерійський", "кольчуга", "шикуватися", "термоядерна бомба", "ракета", "маршал", "ескадрон", "ветеран", "мілітаризм", "дезертирство", "легіон", "дворф", "edc", "катер", "комбатант", "добробат", "форсаж", "таран", "мапа", "госпіталь військовий", "збруя", "брязкати зброєю", "байрактар", "прикордонник", "шифр", "плюндрувати", "калібр", "базука", "дротик", "агітація", "списник", "гранатомет", "форт", "вербувати", "касерня", "партизан", "агентура", "небезпечний", "фельдмаршал", "фрімен", "декомпресія", "розвідник", "конвой", "ешелон", "prepper", "крейсер", "теракт", "рейнджер", "моргенштерн", "субординація", "контузія", "обріз", "мілітаризація", "геополітика", "реалполітик", "доктрина", "гвинтокрил", "плейн", "пістолет-кулемет", "пенула", "бомбардування", "піратство", "медсанбат", "снайперка", "лирик", "відставка", "пуля", "метальний спис", "тушківка", "безпечний", "лазерний", "комбриг", "метрополія", "кадет", "радіоелектронна боротьба"];
+        document.getElementById("generate-content-button").addEventListener("click", (e)=>{
+            e.preventDefault();
+            for (let i = 0; i < table.getElementsByTagName("tr").length; i++) {
+                let row = table.getElementsByTagName("tr")[i];
+                for (let j = 0; j < row.getElementsByTagName("td").length; j++) {
+                    row.getElementsByTagName("td")[j].querySelector("span.input-span").innerText
+                        = words[Math.floor(Math.random() * words.length)];
+                }
+            }
+        })
+
+        document.getElementById("create-w-input").focus();
+    </script>
+</body>
+</html>

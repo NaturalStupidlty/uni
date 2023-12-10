@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>№13 - редактор cookie</title>
+    <style>
+        body {
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+            width: fit-content;
+            box-shadow: 0 0 5px rgba(204, 204, 204, 0.5);
+        }
+        .card > .title {
+            margin: 5px 0 15px 0;
+        }
+        button {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        h2 {
+            margin: 0;
+            padding: 0;
+        }
+        .card > button {
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #e7e7e7;
+        }
+        button:active {
+            background-color: #b5d5bf;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        td, th {
+            border: 1px solid #ccc;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #cookie-list {
+            min-width: 600px;
+        }
+        #cookie-list tr td:first-child, #cookie-list tr th:first-child {
+            width: 30%;
+        }
+        #cookie-list tr td:nth-child(2), #cookie-list tr th:nth-child(2) {
+            width: 60%;
+        }
+        #cookie-list tr td:nth-child(3), #cookie-list tr th:nth-child(3) {
+            display: inline-flex;
+            align-items: center;
+            padding: 0;
+        }
+        .delete-button {
+            background-color: rgba(220,146,160,0.4);
+        }
+        #cookie-list button {
+            padding: 4px;
+            display: inline-block;
+            border: none;
+            margin: 0;
+            border-radius: 0;
+        }
+        #set-cookie-result {
+            margin-left: 10px;
+            color: #3e8121;
+            font-weight: bold;
+            opacity: 0;
+        }
+        @keyframes show {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+
+        <div class="card">
+            <div class="title">
+                <h2>Список cookie</h2>
+                <p style="margin-top: 0; color: #777;">для цього домену і каталогу</p>
+            </div>
+
+            <table id="cookie-list">
+            </table>
+
+            <button id="refresh-cookies-button">Оновити</button>
+            <button id="clear-cookies-button" class="delete-button">Видалити всі</button>
+        </div>
+
+
+        <form class="card">
+            <div class="title">
+                <h2>Встановити cookie</h2>
+            </div>
+            <label>
+                Ім'я cookie:
+                <input type="text" name="name" placeholder="Ім'я">
+            </label>
+            <label>
+                Значення cookie:
+                <input type="text" name="value" placeholder="Значення">
+            </label>
+            <label>
+                Термін життя cookie:
+                <input type="date" name="time" required>
+            </label>
+            <label>
+                Піддомен cookie:
+                <input type="text" name="domain" placeholder="Піддомен">
+            </label>
+            <label>
+                Підкаталог cookie:
+                <input type="text" name="path" placeholder="Підкаталог">
+            </label>
+            <button type="submit" id="set-cookie-button">Зберегти</button>
+            <span id="set-cookie-result">Збережено</span>
+        </form>
+    </div>
+
+
+
+
+
+    <script defer>
+        function setCookie(name, value, date, domain, path) {
+            console.log("SET", name, value, date, domain, path);
+            document.cookie =
+                escape(name) + "=" + (escape(value) || "")
+                + (date ? "; expires=" + date.toUTCString() : "")
+                + (domain ? "; domain=" + domain : "")
+                + (path ? "; path=" + path : "/");
+
+        }
+
+        function removeCookie(name) {
+            document.cookie =
+                name + "=; expires=" + new Date(0).toUTCString();
+        }
+
+        function setToEdit(name, value){
+            document.querySelector("input[name=name]").value = unescape(name);
+            document.querySelector("input[name=value]").value = unescape(value);
+        }
+
+        let setCookieButton = document.getElementById("set-cookie-button");
+        let refreshCookiesButton = document.getElementById("refresh-cookies-button");
+        let cookieList = document.getElementById("cookie-list");
+
+        // set cookie
+        setCookieButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            let form = this.parentNode;
+            let name = form.querySelector("[name=name]").value;
+            let value = form.querySelector("[name=value]").value;
+            let time = form.querySelector("[name=time]").value;
+            let domain = form.querySelector("[name=domain]").value;
+            let path = form.querySelector("[name=path]").value;
+
+            setCookie(name, value, new Date(time), domain, path);
+            refreshCookies();
+            document.getElementById('set-cookie-result').style.animation="show 2s linear 1";
+            setTimeout(function(){
+                document.getElementById('set-cookie-result').style.animation="";
+            }, 2000);
+            form.reset();
+        });
+
+        let trHead = document.createElement("tr");
+        let thName = document.createElement("th");
+        let thValue = document.createElement("th");
+        thValue.setAttribute("colspan", 2);
+        thName.innerText = "Назва";
+        thValue.innerText = "Значення";
+        trHead.appendChild(thName);
+        trHead.appendChild(thValue);
+
+        // refresh cookies
+        function refreshCookies(){
+            let cookies = document.cookie.split("; ");
+            cookieList.innerHTML = "";
+            cookieList.appendChild(trHead);
+            console.log(cookies);
+            for (let i = 0; i < cookies.length; i++) {
+                if (cookies[i].indexOf("=") === -1)
+                    continue;
+                let cookie = cookies[i].split("=");
+                let tr = document.createElement("tr");
+                let tdName = document.createElement("td");
+                let tdValue = document.createElement("td");
+                let tdDelete = document.createElement("td");
+                let deleteButton = document.createElement("button");
+                deleteButton.classList.add("delete-button");
+                let editButton = document.createElement("button");
+                tdName.innerText = cookie[0];
+                tdValue.innerText = cookie[1];
+                deleteButton.innerText = "Видалити";
+                deleteButton.addEventListener("click", function() {
+                    removeCookie(cookie[0]);
+                    refreshCookies();
+                });
+                editButton.innerText = "Редагувати";
+                editButton.addEventListener("click", function() {
+                    setToEdit(cookie[0], cookie[1]);
+                });
+                tdDelete.appendChild(editButton);
+                tdDelete.appendChild(deleteButton);
+                tr.appendChild(tdName);
+                tr.appendChild(tdValue);
+                tr.appendChild(tdDelete);
+                cookieList.appendChild(tr);
+            }
+        }
+
+        refreshCookiesButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            refreshCookies()
+        });
+
+        // clear cookies
+        document.getElementById("clear-cookies-button").addEventListener("click", function(e) {
+            e.preventDefault();
+            let cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                console.log(cookies[i]);
+                let cookie = cookies[i].split("=");
+                console.log(cookie);
+                removeCookie(cookie[0]);
+            }
+            refreshCookies();
+        });
+
+        refreshCookies();
+
+    </script>
+</body>
+</html>

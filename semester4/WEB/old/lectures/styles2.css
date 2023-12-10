@@ -1,0 +1,38 @@
+#upper {
+    font-family: Arial, serif;
+    color: #a40505;
+    font-size: 3em;
+    line-height:1;
+}
+
+#mediapoint {
+    font-family: Verdana, serif;
+    color: #a60000;
+    letter-spacing: 3px;
+    font-size: 1.5em;
+    line-height:0.5;
+}
+
+ul{
+    font-family: Arial, serif;
+    color: gray;
+    line-height:1.5;
+}
+
+#main {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#image {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-left: 50px;
+}
+
+#container {
+    width: 100%;
+    padding-left: 30%;
+}

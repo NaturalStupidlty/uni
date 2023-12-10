@@ -1,0 +1,17 @@
+//Додавання введених даних
+//керування вікном
+#include <iostream>
+int main()
+{
+	int x = 0, y = 0;
+	std::cout << "x = ";
+	std::cin >> x;
+	std::cout << "y = ";
+	std::cin >> y;
+	std::cout << "Summa = " << x + y << std::endl;
+	std::cout << "Press <Enter> ...";
+	//std::cin.get();
+	std::cin.ignore().get();
+	/*std::cin.ignore(200,'\n').get();*/
+	return 0;
+}

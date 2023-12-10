@@ -1,0 +1,33 @@
+//Додавання введених даних
+//обробка помилкових даних
+//використання умовного оператора
+#include <iostream>
+int main()
+{
+	int x = 0, y = 0;
+	std::cout << "x = ";
+	std::cin >> x;
+	//перевірка x
+	if (std::cin.good() == false)
+	{
+		std::cout << "Error" <<std::endl;
+		std::cin.clear();   //скидаємо прапор помилки
+		std::cin.ignore(200,'\n').get();
+		return 1;
+	}
+	std::cout << "y = ";
+	std::cin >> y;
+	if (std::cin.good() == false)
+	{
+		std::cout << "Error" <<std::endl;
+		std::cin.clear();   //скидаємо прапор помилки
+		std::cin.ignore(200,'\n').get();
+		return 1;
+	}
+	std::cout << "Summa = " << x + y << std::endl;
+	std::cout << "Press <Enter> ...";
+	//std::cin.get();
+	std::cin.ignore().get();
+	/*std::cin.ignore(200,'\n').get();*/
+	return 0;
+}

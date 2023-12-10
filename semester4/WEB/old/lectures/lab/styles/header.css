@@ -1,0 +1,83 @@
+header {
+    background-color: var(--color-secondary);
+    padding: 20px;
+    color: var(--text-color-primary);
+}
+
+header .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.logo-container, .contacts-container {
+    flex: 1;
+}
+
+@media (max-width: 700px) {
+    header .container {
+        gap: 40px;
+        flex-direction: column;
+    }
+}
+
+.logo {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.logo img {
+    min-height: 100px;
+    min-width: 100px;
+    background-color: var(--color-primary);
+    border: 6px solid var(--color-primary);
+    box-sizing: border-box;
+    float: left;
+    margin-right: 0.5em;
+    object-fit: cover;
+}
+
+.logo > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5em;
+    padding: 5px;
+}
+
+.logo h1 {
+    font-family: 'Orelega One', cursive;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1em;
+}
+
+.logo h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+
+.contacts {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.contacts h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 0.3em;
+}
+
+.contacts a {
+    color: var(--text-color-secondary);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px dashed rgb(100, 100, 100);
+}

@@ -1,0 +1,49 @@
+.menu-container {
+    background-color: var(--color-primary);
+    background-image: url(../static/images/erdl2.jpg);
+}
+
+.menu-container .darken {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(5, 28, 5, 0.5);
+}
+
+
+.menu-container menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+    padding: 5px;
+    width: fit-content;
+    font-size: 1.2em;
+}
+
+menu {
+    margin: 0 auto;
+}
+
+menu a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    line-height: normal;
+}
+
+menu a:hover {
+    text-decoration: underline;
+}
+
+menu li{
+    flex-grow: 1;
+    flex-basis: auto;
+    padding: 0 1em;
+    text-align: center;
+    border-left: 2px solid #ccc;
+    margin: 10px 0;
+}
+
+menu li:first-child {
+    border-left: none;
+}

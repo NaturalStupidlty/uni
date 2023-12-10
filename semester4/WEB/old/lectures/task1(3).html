@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+    <style>
+        body > div {
+            margin-bottom: 15px;
+        }
+
+        .orange-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px 10px;
+        }
+
+        .orange-wrapper > div {
+            background-color: orange;
+            height: 50px;
+            min-width: 50px;
+        }
+
+        .green {
+            background-color: #31fc31;
+            height: 30vw;
+        }
+
+        .blue-wrapper {
+            display: flex;
+            gap: 10px 10px;
+            flex-direction: column;
+        }
+
+        .blue-wrapper > div {
+            background-color: #3434b7;
+            height: calc(240px - 8vw);
+        }
+
+        .grey-wrapper {
+            display: grid;
+            gap: 10px 10px;
+        }
+
+        .grey-wrapper > div {
+            background-color: lightgrey;
+            height: 100px;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .grey-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .orange-wrapper {
+                flex-direction: row;
+            }
+
+            .orange-wrapper > div {
+                width: 50%;
+            }
+
+            .blue-wrapper {
+                flex-direction: row;
+            }
+
+            .blue-wrapper > div {
+                height: 220px;
+                width: 33%;
+            }
+
+            .grey-wrapper {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orange-wrapper">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="green">
+
+    </div>
+    <div class="blue-wrapper">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="grey-wrapper">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+td {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+table {
+    border: 1px solid black;
+}
+
+#big-tr {
+    height: 300px;
+    text-align: right;
+    vertical-align: bottom;
+}

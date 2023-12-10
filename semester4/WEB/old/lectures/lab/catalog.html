@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Козацький драйв | Каталог</title>
+    <link rel="icon" href="static/images/logo.png">
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/slider.css">
+    <link rel="stylesheet" href="styles/catalog.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/feedback.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@500;700&family=Orelega+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="static/images/logo.png" alt="logo"
+                         width="100" height="100">
+                    <div>
+                        <h1>Козацький<br>драйв</h1>
+                        <h5>магазин військової техніки</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts-container">
+                <div class="contacts">
+                    <h1>+38 (050) 514-52-28</h1>
+                    <h1>+42 (077) 546-81-86</h1>
+                    <p><a id="feedback-link" href="#">Зворотній зв'язок</a></p>
+                </div>
+            </div>
+            <script src="scripts/feedback.js" defer></script>
+        </div>
+    </header>
+    <div id="feedback-background" class="hidden"></div>
+    <div class="container">
+        <div id="feedback-form" class="hidden">
+            <form method="post">
+                <h1>Зворотній зв'язок</h1>
+                <label for="name">Ваше ім'я</label>
+                <input type="text" id="name" name="name" placeholder="Ваше ім'я" required>
+                <label for="phone">Телефон</label>
+                <input type="text" id="phone" name="phone" placeholder="Ваш телефон" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Ваш email" required>
+                <label for="message">Повідомлення</label>
+                <textarea name="message" id="message" placeholder="Ваше повідомлення" required></textarea>
+                <input type="submit" value="Відправити">
+            </form>
+            <div id="close-button">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <div class="menu-container">
+        <div class="darken">
+            <div class="container">
+                <menu>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="delivery.html">Доставка і оплата</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="https://bank.gov.ua/ua/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi">Допомога армії</a></li>
+                </menu>
+            </div>
+        </div>
+    </div>
+    <div class="slider-container">
+        <div class="blue-1 circle"></div>
+        <div class="green-1 circle"></div>
+        <div class="orange-1 circle"></div>
+        <div class="blue-2 circle"></div>
+        <div class="orange-2 circle"></div>
+        <div class="green-2 circle"></div>
+        <div id="slider" class="container">
+
+            <img class="active" src="static/slides/slide-1.jpg" alt="slide-1">
+            <img src="static/slides/slide-2.jpg" alt="slide-2">
+            <img src="static/slides/slide-3.jpg" alt="slide-3">
+            <img src="static/slides/slide-4.jpg" alt="slide-4">
+            <img src="static/slides/slide-5.jpg" alt="slide-5">
+            <img src="static/slides/slide-6.jpg" alt="slide-6">
+            <div class="slide-arrow" id="previous"><i class="fa fa-arrow-left"></i></div>
+            <div class="slide-arrow" id="next"><i class="fa fa-arrow-right"></i></div>
+        </div>
+        <script src="scripts/slider.js"></script>
+    </div>
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#">Головна</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">Важка зброя</a></li>
+                </ul>
+            </div>
+            <div class="content-container">
+                <div class="side-content">
+                    <ul class="side-menu">
+                        <li>
+                            <a href="#">Легка зброя</a>
+                            <ul>
+                                <li><a href="#">Новинки</a></li>
+                                <li><a href="#">Пістолети</a></li>
+                                <li><a href="#">Автоматичні пістолети</a></li>
+                                <li><a href="#">Легкі автомати</a></li>
+                            </ul>
+                        </li>
+                        <li class="active-category">
+                            <a href="#">Важка зброя</a>
+                            <ul>
+                                <li class="active-subcategory"><a href="#">Новинки</a></li>
+                                <li><a href="#">Персональна зброя</a></li>
+                                <li><a href="#">Кулемети</a></li>
+                                <li><a href="#">ПЗРК</a></li>
+                                <li><a href="#">ПТРК</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Автомобілі</a>
+                            <ul>
+                                <li><a href="#">Транспортні</a></li>
+                                <li><a href="#">Війскькові</a></li>
+                                <li><a href="#">Медичні</a></li>
+                                <li><a href="#">Багатофункціональні</a></li>
+                                <li><a href="#">Інші</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Броньовані машини</a>
+                            <ul>
+                                <li><a href="#">Вітчизняні</a></li>
+                                <li><a href="#">Закордонні</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Артилерія</a>
+                            <ul>
+                                <li><a href="#">Самохідна</a></li>
+                                <li><a href="#">Переносна</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Безпілотники</a>
+                            <ul>
+                                <li><a href="#">Розвідувальні</a></li>
+                                <li><a href="#">Винищувальні</a></li>
+                                <li><a href="#">Штучні</a></li>
+                                <li><a href="#">Багатофункціональні</a></li>
+                                <li><a href="#">Інші</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Додаткове спорядження</a>
+                            <ul>
+                                <li><a href="#">Аптечки</a></li>
+                                <li><a href="#">Тепловізори</a></li>
+                                <li><a href="#">Засоби маскування</a></li>
+                                <li><a href="#">Бронежилети та шоломи</a></li>
+                                <li><a href="#">Камуфляж</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#">
+                        <div class="side-note">
+                            <img src="static/images/raytheon.png" alt="logo">
+                            <h1>Прайс-лист</h1>
+                        </div>
+                    </a>
+                    <script src="scripts/dropdown.js"></script>
+                </div>
+                <div class="main-content">
+                    <div class="products">
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/javelin.jpg" alt="javelin">
+                            </div>
+                            <div class="product-info">
+                                <h1>FGM-148 Javelin</h1>
+                                <span>"Дротик" третього покоління. Вистрілив-забув.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    $246 000
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/nlaw.jpg" alt="product">
+                            </div>
+                            <div class="product-info">
+                                <h1>NLAW</h1>
+                                <span>Шведсько-британська ПТРК</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    £20 000
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/bayraktar-tb2.jpg" alt="bayraktar">
+                            </div>
+                            <div class="product-info">
+                                <h1>Bayraktar TB2</h1>
+                                <span>Не тільки вражає колони, а й відволікає російські крейсери</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    $69 000 000
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/stugna-p.jpg" alt="stugna-p">
+                            </div>
+                            <div class="product-info">
+                                <h1>Стугна-П</h1>
+                                <span>Дистанційна ПТРК від компанії "Луч". Використовуйте з другом чи подругою.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    на замовлення
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/pzf3.jpg" alt="panzerfaust 3">
+                            </div>
+                            <div class="product-info">
+                                <h1>Panzerfaust 3</h1>
+                                <span>Протитанковий гранатомет. Розроблений в Федеративній Республіці Німеччина до падіння берлінської стіни.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    €4 000
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/zbroyar.jpg" alt="zbroyar">
+                            </div>
+                            <div class="product-info">
+                                <h1>Зброяр Z-10</h1>
+                                <span>Гвинтівка, яко користуються "кіборги". Сертифікована NATO і одного разу придбана компанією Roshen.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    240 000 грн
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/granatnikRGP40.jpg" alt="granatnik">
+                            </div>
+                            <div class="product-info">
+                                <h1>Granatnik RGP-40</h1>
+                                <span>Шестизарядний гранатомет зі смішною польською назвою.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    150 000 грн
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product">
+                            <div class="product-img">
+                                <img src="static/products/rk3.jpg" alt="granatnik">
+                            </div>
+                            <div class="product-info">
+                                <h1>РК-3 Корсар</h1>
+                                <span>Вітчизняний ПТРК від компанії "Луч". Є на озброєнні навіть в армії Бангладеша.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    $120 000
+                                </div>
+                                <a href="#" class="buy-button">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product not-available">
+                            <div class="product-img">
+                                <img src="static/products/ak47.jpg" alt="zbroyar">
+                            </div>
+                            <div class="product-info">
+                                <h1>АК-47</h1>
+                                <span>Класика, однак російська.</span>
+                            </div>
+
+                            <div class="product-details">
+                                <div class="product-price">
+                                    немає у продажу
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-navigation">
+                        <ul>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li class="active"><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">6</a></li>
+                            <li><a href="#">7</a></li>
+                        </ul>
+                    </div>
+                    <div class="company-info-text">
+                        <div>
+                            <b>Партнер магазину - конструкторське бюро «Луч».</b><br>
+                            Державне підприємство Державне Київське конструкторське бюро «Луч» (укр. "Промінь") створено в 1965 році як основний розробник в СРСР автоматизованих систем контролю та діагностики спеціальної авіаційної техніки. Є одним з провідних розробників складових частин комплексів авіаційного та протитанкового озброєння України.
+                        </div>
+                        <div>
+                            Підприємством розроблено та передано у виробництво понад 40 типів складних наукомістких виробів, у тому числі автоматизованих і автоматичних систем контролю та діагностики авіаційних засобів ураження, блоків електричних рульових приводів, інших систем і агрегатів високоточної зброї, а також систем контролю і управління технологічними процесами в промисловості, складної медичної техніки і товарів народного споживання. Продукція, розроблена ДП "ДержККБ «Луч», успішно експлуатується як в Україні, так і в багатьох країнах світу.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="company-info">
+                (c) 2022 Всі права незахищені
+                <br>
+                boris@gov.uk
+            </div>
+            <div class="footer-menu">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="catalog.html">Каталог</a></li>
+                    <li><a href="delivery.html">Доставка і оплата</a></li>
+                    <li><a href="#">Контакти</a></li>
+                    <li><a href="https://bank.gov.ua/ua/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi">Допомога армії</a></li>
+                </ul>
+            </div>
+            <div class="developers-info">
+                <img src="https://generatepress.com/assets/logo-white-asset.png" alt="developer-logo">
+                <span><a href="https://github.com/leirimnad/leirimnad.github.io">Розробка сайту</a> —<br>Миронов Данііл</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

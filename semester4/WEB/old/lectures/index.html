@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        // ЗАДАЧА 1
+
+        let fizzbuzzExpr = function(n) {
+            for (let i = 1; i <= n; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log("fizzbuzz");
+                } else if (i % 3 === 0) {
+                    console.log("fizz");
+                } else if (i % 5 === 0) {
+                    console.log("buzz");
+                } else {
+                    console.log(i);
+                }
+            }
+        }
+
+        function fizzbuzzDef(n) {
+            for (let i = 1; i <= n; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log("fizzbuzz");
+                } else if (i % 3 === 0) {
+                    console.log("fizz");
+                } else if (i % 5 === 0) {
+                    console.log("buzz");
+                } else {
+                    console.log(i);
+                }
+            }
+        }
+
+        let fizzbuzzArrow = (n) => {
+            for (let i = 1; i <= n; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    console.log("fizzbuzz");
+                } else if (i % 3 === 0) {
+                    console.log("fizz");
+                } else if (i % 5 === 0) {
+                    console.log("buzz");
+                } else {
+                    console.log(i);
+                }
+            }
+        }
+
+        fizzbuzzExpr(5);
+
+        // ============================================================
+        // ЗАДАЧА 2
+
+
+        function costDef(h, k){
+            let hName;
+            if (h % 10 === 1){
+                hName = "гривня";
+            } else if (h % 10 === 2 || h % 10 === 3 || h % 10 === 4){
+                hName = "гривні";
+            } else {
+                hName = "гривень";
+            }
+
+            if (h % 100 > 10 && h % 100 < 20){
+                hName = "гривень";
+            }
+
+
+            let kName;
+            if (k % 10 === 1){
+                kName = "копійка";
+            } else if (k % 10 === 2 || k % 10 === 3 || k % 10 === 4){
+                kName = "копійки";
+            } else {
+                kName = "копійок";
+            }
+
+            if (k % 100 > 10 && k % 100 < 20){
+                kName = "копійок";
+            }
+
+            console.log(`Вартість замовлення: ${h} ${hName} ${k} ${kName}`);
+        }
+
+        let costExpr = function(h, k){
+            let hName;
+            if (h % 10 === 1){
+                hName = "гривня";
+            } else if (h % 10 === 2 || h % 10 === 3 || h % 10 === 4){
+                hName = "гривні";
+            } else {
+                hName = "гривень";
+            }
+
+            if (h % 100 > 10 && h % 100 < 20){
+                hName = "гривень";
+            }
+
+
+            let kName;
+            if (k % 10 === 1){
+                kName = "копійка";
+            } else if (k % 10 === 2 || k % 10 === 3 || k % 10 === 4){
+                kName = "копійки";
+            } else {
+                kName = "копійок";
+            }
+
+            if (k % 100 > 10 && k % 100 < 20){
+                kName = "копійок";
+            }
+
+            console.log(`Вартість замовлення: ${h} ${hName} ${k} ${kName}`);
+        }
+
+        let costArrow = (h, k) => {
+            let hName;
+            if (h % 10 === 1){
+                hName = "гривня";
+            } else if (h % 10 === 2 || h % 10 === 3 || h % 10 === 4){
+                hName = "гривні";
+            } else {
+                hName = "гривень";
+            }
+
+            if (h % 100 > 10 && h % 100 < 20){
+                hName = "гривень";
+            }
+
+
+            let kName;
+            if (k % 10 === 1){
+                kName = "копійка";
+            } else if (k % 10 === 2 || k % 10 === 3 || k % 10 === 4){
+                kName = "копійки";
+            } else {
+                kName = "копійок";
+            }
+
+            if (k % 100 > 10 && k % 100 < 20){
+                kName = "копійок";
+            }
+
+            console.log(`Вартість замовлення: ${h} ${hName} ${k} ${kName}`);
+        }
+
+        costDef(2,75);
+        costDef(0,1);
+        costDef(25,3);
+        costDef(20,99);
+
+        // ============================================================
+        // ЗАДАЧА 3
+
+        function printQuadrant(x, y){
+            if (x === 0 && y === 0){
+                console.log("Центр координат");
+            } else if (x === 0){
+                console.log("вісь Y");
+            } else if (y === 0){
+                console.log("вісь X");
+            } else if (x > 0 && y > 0){
+                console.log("I");
+            } else if (x < 0 && y > 0){
+                console.log("II");
+            } else if (x < 0 && y < 0){
+                console.log("III");
+            } else if (x > 0 && y < 0){
+                console.log("IV");
+            }
+        }
+
+        let distanceOrNumberArr = (x1, y1, x2, y2) => {
+            if (x1 > 0 && x2 > 0 && y1 > 0 && y2 > 0 ||
+                x1 < 0 && x2 < 0 && y1 < 0 && y2 < 0 ||
+                x1 > 0 && x2 < 0 && y1 > 0 && y2 < 0 ||
+                x1 < 0 && x2 > 0 && y1 < 0 && y2 > 0
+            ){
+                let x = Math.abs(x1 - x2);
+                let y = Math.abs(y1 - y2);
+                console.log(Math.sqrt(x * x + y * y));
+            } else if(x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0){
+                console.log("Точки в нульових координатах");
+            } else if(y1 === 0 && y2 === 0){
+                console.log("Точки на осі X");
+            } else if(x1 === 0 && x2 === 0){
+                console.log("Точки на осі Y");
+            } else {
+                console.log("Перша точка:");
+                printQuadrant(x1, y1);
+
+                console.log("Друга точка:");
+                printQuadrant(x2, y2);
+
+            }
+        }
+
+        function distanceOrNumberDef(x1, y1, x2, y2){
+            if (x1 > 0 && x2 > 0 && y1 > 0 && y2 > 0 ||
+                x1 < 0 && x2 < 0 && y1 < 0 && y2 < 0 ||
+                x1 > 0 && x2 < 0 && y1 > 0 && y2 < 0 ||
+                x1 < 0 && x2 > 0 && y1 < 0 && y2 > 0
+            ){
+                let x = Math.abs(x1 - x2);
+                let y = Math.abs(y1 - y2);
+                console.log(Math.sqrt(x * x + y * y));
+            } else if(x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0){
+                console.log("Точки в нульових координатах");
+            } else if(y1 === 0 && y2 === 0){
+                console.log("Точки на осі X");
+            } else if(x1 === 0 && x2 === 0){
+                console.log("Точки на осі Y");
+            } else {
+                console.log("Перша точка:");
+                printQuadrant(x1, y1);
+
+                console.log("Друга точка:");
+                printQuadrant(x2, y2);
+
+            }
+        }
+
+
+        let distanceOrNumberExpr = function (x1, y1, x2, y2){
+            if (x1 > 0 && x2 > 0 && y1 > 0 && y2 > 0 ||
+                x1 < 0 && x2 < 0 && y1 < 0 && y2 < 0 ||
+                x1 > 0 && x2 < 0 && y1 > 0 && y2 < 0 ||
+                x1 < 0 && x2 > 0 && y1 < 0 && y2 > 0
+            ){
+                let x = Math.abs(x1 - x2);
+                let y = Math.abs(y1 - y2);
+                console.log(Math.sqrt(x * x + y * y));
+            } else if(x1 === 0 && y1 === 0 && x2 === 0 && y2 === 0){
+                console.log("Точки в нульових координатах");
+            } else if(y1 === 0 && y2 === 0){
+                console.log("Точки на осі X");
+            } else if(x1 === 0 && x2 === 0){
+                console.log("Точки на осі Y");
+            } else {
+                console.log("Перша точка:");
+                printQuadrant(x1, y1);
+
+                console.log("Друга точка:");
+                printQuadrant(x2, y2);
+
+            }
+        }
+
+        distanceOrNumberArr(0,0,0,0);
+
+
+    </script>
+</body>
+</html>

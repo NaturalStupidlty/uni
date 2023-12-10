@@ -1,0 +1,36 @@
+#include <iostream>
+int main()
+{
+	int x = 0, y = 0;
+	bool flag = false;
+	do
+	{
+	std::cout << "x = ";
+	std::cin >> x;
+	//перевірка x
+	if (!std::cin.good())
+	{
+		std::cout <<std::endl << "Error" <<std::endl;
+		std::cin.clear();   //скидаємо прапор помилки
+		std::cin.ignore(255,'\n').get();
+	}
+	else flag = true;
+	} while (!flag);
+	flag = false;
+	do
+	{
+	std::cout << "y = ";
+	std::cin >> y;
+	if (!std::cin.good())
+	{
+		std::cout <<std::endl << "Error" <<std::endl;
+		std::cin.clear();   //скидаємо прапор помилки
+		std::cin.ignore(255,'\n').get();
+	}
+	else flag = true;
+	} while (!flag);
+	std::cout << "Summa = " << x + y << std::endl;
+	std::cout << "Press <Enter> ...";
+	std::cin.ignore(255,'\n').get();
+	return 0;
+}

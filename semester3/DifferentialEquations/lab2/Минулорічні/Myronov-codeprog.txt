@@ -1,0 +1,107 @@
+# Ч1Завд2 (№114)
+
+# загальний розв’язок
+y=function('y')(x)
+de=diff(y,x)==(2*x+y+1)/(4*x+2*y-3)
+solution=desolve(de,y, contrib_ode=True)
+solution[0].show()
+ 
+# задача Кошi 
+try:
+    # без contrib_ode=True (див. примiтку)
+    solutionWO=desolve(de,y,ics=[0.5,1])
+    solutionWO.show()
+except Exception as e:
+    print("Error:", e)
+ 
+    # з contrib_ode=True (див. примiтку)
+try:
+    solution=desolve(de,y,ics=[0.5,1], contrib_ode=True)
+    solution[0].show()
+except Exception as e:
+    print("Error:", e)
+    
+try:
+    solution1=desolve(de,y,ics=[-1,4], contrib_ode=True)
+    solution1[0].show()
+except Exception as e:
+    print("Error:", e)
+    
+try:
+    solution2=desolve(de,y,ics=[-1,-1], contrib_ode=True)
+    solution2[0].show()
+except Exception as e:
+    print("Error:", e)
+    
+try:
+    solution3=desolve(de,y,ics=[2,-2], contrib_ode=True)
+    solution3[0].show()
+except Exception as e:
+    print("Error:", e)
+    
+# поле напрямкiв
+x,y=var('x,y')
+f(x,y)=(2*x+y+1)/(4*x+2*y-3)
+p=plot_slope_field(f,(x,-6,6),(y,-6,6), headaxislength=3,
+headlength=3, axes_labels=['$x$','$y(x)$'])
+  
+# графiки розв’язку задачi Кошi
+p+=desolve_rk4(f,y,ics=[0.5,1],ivar=x,output='plot',
+end_points=[-6,6], thickness=2,color='red', step=0.001)
+p1=desolve_rk4(f,y,ics=[-1,4],ivar=x,output='plot',
+end_points=[-6,6], thickness=2,color='orange', step=0.001)
+p2=desolve_rk4(f,y,ics=[-1,-1],ivar=x,output='plot',
+end_points=[-6,6], thickness=2,color='yellow', step=0.001)
+p3=desolve_rk4(f,y,ics=[2,-2],ivar=x,output='plot',
+end_points=[-6,6], thickness=2,color='yellowgreen', step=0.001)
+ 
+show(p+p1+p2+p3,xmin=-6, xmax=6, ymin=-6, ymax=6)
+
+
+
+# Ч1Завд4 (№547)
+
+# загальний розв’язок
+y=function('y')(x)
+de=diff(y,x,2)+4*diff(y,x)+4*y==x*e**(2*x)
+solution=desolve(de,y)
+solution.show()
+ 
+# задача Кошi
+solution = desolve(de, y, ics=[1, 1, 0])
+solution.show()
+solution1 = desolve(de, y, ics=[-1, 1, 0])
+solution1.show()
+solution2 = desolve(de, y, ics=[-1, -1, -(e^(-2))/8])
+solution2.show()
+solution3 = desolve(de, y, ics=[1, -1, (e^2)/8])
+solution3.show()
+ 
+# поле напрямкiв
+x,y=var('x,y')
+f(x,y)=x*e^(2*x)-4*y
+p=plot_slope_field(f,(x,-6,6),(y,-6,6), headaxislength=3, headlength=3, axes_labels=['$x$','$y(x)$'])
+ 
+# графiки розв’язку задачi Кошi
+p += desolve_rk4(f, y, ics=[1, 1, 0], ivar=x, output='plot', end_points=[-6, 6], thickness=2, color='red')
+p1 = desolve_rk4(f, y, ics=[-1, 1, 0], ivar=x, output='plot', end_points=[-6, 6], thickness=2, color='orange')
+p2 = desolve_rk4(f, y, ics=[-1, -1, -(e^(-2))/8], ivar=x, output='plot', end_points=[-6, 6], thickness=2, color='yellow')
+p3 = desolve_rk4(f, y, ics=[1, -1, (e^2)/8], ivar=x, output='plot', end_points=[-6, 6], thickness=2, color='yellowgreen')
+show(p+p1+p2+p3, xmin=-6, xmax=6, ymin=-6, ymax=6)
+
+
+
+
+# Частина 2
+
+# Розімкнена система
+x,y=var('x,y')
+s=streamline_plot((y-2*x, 2*y-4*x),(x,-5,5),(y,-5,5), plot_points=1000)
+s+=line([(-4,-8),(4,8)],rgbcolor='blue',thickness=2)
+show(s,xmin=-5,xmax=5,ymin=-5,ymax=5)
+
+# Побудована замкнена система
+s1=streamline_plot((-2*x+y, -4*x-2*y),(x,-5,5),(y,-5,5), plot_points=1000)
+s1+=arrow2d((1,0),(-1,-4),rgbcolor='gray',thickness=2)
+show(s1,xmin=-5,xmax=5,ymin=-5,ymax=5)
+

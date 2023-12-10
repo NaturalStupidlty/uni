@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lec12</title>
+</head>
+<body>
+<script>
+    let x = [0, 1, 2, 3, 4, 5];
+    let y = [3, 4, 6, 7, 8, 9, 10];
+
+    function union(a, b) {
+        let res = [];
+        for (let x of a.concat(b)) {
+            if (res.indexOf(x) === -1) {
+                res.push(x);
+            }
+        }
+        return res;
+    }
+
+    console.log("1) union(["+x+"], ["+y+"]): " + union(x, y));
+
+
+    function evenPositive(arr) {
+        return arr.filter((x) => x % 2 === 0 && x > 0);
+    }
+
+    console.log("2) evenPositive(["+y+"]): " + evenPositive(y));
+
+    function containsZero(arr) {
+        if (arr.some(x => x === 0)) {
+            return "Містить 0";
+        } else {
+            return "Не містить 0";
+        }
+    }
+
+    console.log("3.1) containsZero(["+x+"]): " + containsZero(x));
+    console.log("3.2) containsZero(["+y+"]): " + containsZero(y));
+
+    function indexOf5(arr) {
+        let res = arr.indexOf(5);
+        if (res === -1) {
+            return "Не містить 5";
+        } else {
+            return "Містить 5 на позиції " + res;
+        }
+    }
+
+    console.log("4.1) indexOf5(["+x+"]): " + indexOf5(x));
+    console.log("4.2) indexOf5(["+y+"]): " + indexOf5(y));
+
+    function reduceMult(arr) {
+        return arr.reduce((acc, x) => acc * x);
+    }
+
+    console.log("5) reduceMult(["+y+"]): " + reduceMult(y));
+
+    function returnSortedAlphabetic(arr) {
+        return [...arr].sort();
+    }
+
+    console.log("6) returnSortedAlphabetic(["+["b", "a", "c", "d"]+"]): " + returnSortedAlphabetic(["b", "a", "c", "d"]));
+
+    function returnSortedAbsolute(arr) {
+        return [...arr].sort((a, b) => Math.abs(a) - Math.abs(b));
+    }
+
+    console.log("7) returnSortedAbsolute(["+[3, -4, 2, -5, 1]+"]): " + returnSortedAbsolute([3, -4, 2, -5, 1]));
+
+</script>
+</body>
+</html>
