@@ -1,0 +1,39 @@
+body {
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+}
+
+b {
+  font-size: 32px;
+}
+
+.flag_image {
+	max-height: 100px;
+}
+
+.monument_image {
+	display: block;
+  margin: 20px auto;
+	max-height: 500px;
+}
+
+.description {
+  margin: 0 auto;
+  max-width: 85%;
+  font-size: 20px;
+}
+
+#flag {
+  display: block;
+  margin: 20px auto;
+}
+
+#countries {
+  display: block;
+  margin: 0 auto;
+}
+
+#total {
+  margin: 50 auto 0 auto;
+  font-size: 42px;
+}

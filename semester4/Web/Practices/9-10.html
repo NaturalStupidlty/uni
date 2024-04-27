@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Форма</title>
+    <style>
+        .overAllForm
+        {
+            background-color: rgb(157, 208, 224);
+            position: relative;
+            left: 15vw;
+            width: 65vw;
+        }
+        .myMarg
+        {
+            position: relative;
+            left: 10vw;          
+        }
+        .marg
+        {
+            margin: 0.3vw;
+        }
+        
+    </style>
+      <script>        
+        function check(x)
+        {
+          var temp = Math.trunc(x*10000);
+          if (temp%10000 != 0)
+            return false;
+          else 
+            return true;
+        }
+      
+        function countAns() {
+          var ans = document.querySelector('[id="costOfBooks"]').value;
+          ans = Number(ans);
+          
+          if (document.getElementById('deliverToPostOffice').checked)
+            ans += 20;
+          else if (document.getElementById('deliverToHome').checked)
+            ans += 40;
+          else if (document.getElementById('deliverOther').checked) {
+            if (document.getElementById('otherDeliverField').value === "") {
+              alert("Поле іншого способу доставки не має бути пустим");
+              return;
+            }
+            ans += 60;
+          } else {
+            alert("Виберіть спосіб доставки");
+            return;
+          }
+          
+          if (document.getElementById("howDeliver").checked)
+            ans *= 1.4;
+            
+          var promo = document.getElementById("promo").value;
+
+          if (promo === "SUMMER_SALE") {
+            ans *= 0.9;
+          } else if (promo === "WINTER_SALE") {
+            ans *= 0.95;
+          } else if (promo === "AUTUMN_SALE") {
+            ans *= 0.8;
+          } else {
+            if (promo !== "") {
+              alert("Invalid promo");
+            }
+          }
+
+          document.getElementById("answer").value = ans;
+        }
+
+        
+        function whatIsChecked()
+        {
+          if (document.getElementById('deliverToPostOffice').checked)
+              return 'Доставка до офісу: <b>20</b>';
+          if (document.getElementById('deliverToHome').checked)
+              return 'Достaвка до дому: <b>40</b>';
+          if (document.getElementById('deliverOther').checked)        
+          {
+              var val = document.getElementById('otherDeliverField').value;
+              return 'Спосіб доставки інший - ' + val + ': <b>60</b>';
+          }
+        }
+        
+        function mySubmit()
+        {   
+          var amount = document.querySelector('[id = "numberOfBooks"]').value,	
+              cost = document.querySelector('[id = "costOfBooks"]').value;
+          ammount = Number(amount);
+          cost = Number(cost);
+          var allCost = document.getElementById("answer").value;
+          if (allCost == "")
+          {
+            alert("Не підрахована вартість замовлення! Натисніть кнопку \"Підрахувати\"");
+            return;
+          }
+          function isValidPhoneNumber(number) {
+            // Remove any non-digit characters from the phone number
+            var cleanedNumber = number.replace(/\D/g, '');
+
+            // Check if the cleaned number has a valid length
+            if (cleanedNumber.length !== 10) {
+              return false;
+            }
+
+            // Check if the cleaned number starts with a valid digit
+            if (!/^([6789])/.test(cleanedNumber)) {
+              return false;
+            }
+
+            // All checks passed, the number is valid
+            return true;
+          }
+          var number = document.getElementById("Number").value;
+          if (isValidPhoneNumber(number)) {
+            alert("Phone number is valid");
+          } else {
+            alert("Phone number is invalid");
+          }
+
+          allCost = Number(allCost);
+          var nameP = document.getElementById('Name').value,
+              adress = document.getElementById('Adress').value;
+          if (nameP == '')
+            alert("Введіть дані у поле з іменем");
+          else if (adress == '')
+            alert("Введіть дані у поле з адресою");
+          else {
+              var resultElement = document.getElementById('giveSub');
+              resultElement.innerHTML += '<br /><b><i>Нове замовлення</i></b><br/>';
+              resultElement.innerHTML += 'Ціна 1 книги: <b>' + Math.trunc(cost/amount) + '</b><br />';
+              resultElement.innerHTML += 'Кількість книг: <b>' + amount + '</b><br />';        
+              resultElement.innerHTML += 'Ціна усіх книг: <b>' + cost + '</b><br />';        
+              resultElement.innerHTML += whatIsChecked() + '<br />';
+              resultElement.innerHTML += 'У подарунковій упаковці: ';  
+              if (document.getElementById('howDeliver').checked)        
+                resultElement.innerHTML += '<b>так</b><br />';
+              else
+                resultElement.innerHTML += '<b>ні</b><br />';
+                
+              resultElement.innerHTML += 'Загальна ціна: <b>' + allCost + '</b><br />';       
+              resultElement.innerHTML += 'Ім\'я замовника: <b>' + nameP + '</b><br />';              
+              resultElement.innerHTML += 'Адреса замовника: <b>' + adress + '</b><br />'; 
+              var lastElement = document.getElementById('lastPrice'); 
+              lastElement.innerHTML = Number(lastElement.innerHTML) + allCost;  
+              var plastElement = document.getElementById('prelastPrice');    
+              plastElement.innerHTML = "<br /><b><i>Остаточна ціна</b></i>"; 
+                                  
+            }
+        }
+      function changePrice()
+      {
+        var curElement = document.getElementById('selectorOfBooks').value;
+        var ammount = document.getElementById('numberOfBooks').value;
+        document.getElementById('numberOfBooks').value = Math.trunc(ammount);
+        ammount = Math.trunc(ammount);
+        if (ammount < 1)
+        {
+          document.getElementById('numberOfBooks').value = 1;
+          ammount = 1;
+        }
+        var ans = 0;
+        if (curElement == "Book1")
+          ans = 10;
+        else if (curElement == "Book2")
+          ans = 12;
+        else if (curElement == "Book3")
+          ans = 15.5;
+        else if (curElement == "Book4")
+          ans = 20.5;
+        else if (curElement == "Book5")
+          ans = 30;
+        ans = Number(ans)*Number(ammount);
+        document.getElementById('costOfBooks').value = ans; 
+        clearAns();
+      }  
+      
+      function clearAns()
+      {
+        document.getElementById('answer').value = "";         
+      }
+      
+      function changeProp()
+      {
+        clearAns();
+        document.getElementById('otherDeliverField').value = "";
+        if (document.getElementById('deliverOther').checked)
+          document.getElementById('otherDeliverField').readOnly = false;
+        else     
+          document.getElementById('otherDeliverField').readOnly = true;
+      }
+    </script>
+</head>
+
+<body onload = "changePrice()">
+  <form>
+    <table class = "overAllForm" border = "black">
+      <tr><td align = "center">Замовлення на придбання товару</td></tr>
+      <tr><td>
+        <div class = "marg">
+          Назва товару<br />
+          <select class = "select_style" id = "selectorOfBooks" onchange = "changePrice()" >
+              <option value = "Book1">Товар 1 - 10</option>
+              <option value = "Book2">Товар 2 - 12</option>
+              <option value = "Book3">Товар 3 - 15.5</option>
+              <option value = "Book4">Товар 4 - 20.5</option>
+              <option value = "Book5">Товар 5 - 30</option>
+          </select>
+        </div>
+      </td></tr>
+      <tr><td>
+        <div class = "marg">
+           Кількість <input type = "number" value = "1" id = "numberOfBooks" onchange = "changePrice()">
+           Вартість замовлення <input type = "number" value = "10" id = "costOfBooks" readonly>
+        </div>
+      </td></tr>
+      <tr><td>
+        <div class = "marg">
+          Спосіб доставки замовлення<br />
+          <input type = "radio" name = "whereToDeliver" id = "deliverToPostOffice" onclick = "changeProp()">Поштою<br />
+          <input type = "radio" name = "whereToDeliver" id = "deliverToHome" onclick = "changeProp()">Доставка до дому<br />
+          <input type = "radio" name = "whereToDeliver" id = "deliverOther" onclick = "changeProp()">Інше <input type = "text" readonly id = "otherDeliverField" value="" onchange = "clearAns()"><br />
+          <input type = "checkbox" id = "howDeliver" onclick = "clearAns()">У святковій упаковці
+        </div>
+      </td></tr>
+      <tr><td align = "right">
+        <div class = "marg">
+          Загальна вартість замовлення <input type = "number" id = "answer" value="" readonly>
+          <input type="button" value = "Підрахувати" id = "countAnswer" OnClick="countAns()">
+        </div>
+      </td></tr>
+      <tr><td>
+        <div class = "marg">
+          Промокод<input type = "text" id = "promo" value="">
+          <input type="button" value = "Застосувати" id = "changeAns" OnClick="countAns()">
+        </div>
+      </td></tr>
+      <tr><td>
+        <div class = "marg">
+          Дані замовника<br />
+          Ім`я:        <input type = "text" id = "Name" value="">
+          Прізвище:     <input type = "text" id = "Surname" value="">
+          Адреса:     <input type = "text" id = "Adress" value="">
+          Номер телефону:     <input type = "text" id = "Number" value="">
+        </div>
+      </td></tr>
+      <tr><td align = "right">
+        <div class = "marg">
+            <input type = "reset" value = "Відновити початкові значення полів" id = "clear">
+            <input type = "button" value = "Відіслати дані" id = "submit" OnClick = "mySubmit();">
+        </div>
+      </td></tr>
+    </table>
+  </form>
+  <div id = "giveSub" class = "myMarg">
+  </div>
+  <div id = "prelastPrice" class = "myMarg">
+  </div>
+  <div id = "lastPrice" class = "myMarg">
+  </div>
+</body>
+</html>

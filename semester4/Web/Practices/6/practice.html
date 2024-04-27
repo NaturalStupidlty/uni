@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <title>Cossacks</title>
+    <style>
+      body {
+        background-color: rgb(234, 234, 234);
+        margin: 0;
+      }
+      /* CSS styles for the blocks */
+      .block_third {
+        width: 33.333333333333%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      /* CSS styles for the container */
+      .container {
+        text-align: center;
+      }
+
+      .text {
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      .title {
+        font-weight: 600;
+        font-size: 42px;
+      }
+      .sub_title {
+        font-size: 18px;
+      }
+
+      .circular_image {
+        border-radius: 50%;
+        border: 2px solid red;
+        max-width: 250px;
+        max-height: 250px;
+        margin: 20px;
+      }
+
+      .circular_logo {
+        border-radius: 50%;
+        max-width: 50px;
+        max-height: 50px;
+        margin: 10px;
+      }
+      
+      /* CSS styles for responsive design */
+      @media screen and (max-width: 900px) {
+        .block_third {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text title">Наша команда</h1>
+    <h4 class="text sub_title">Ми три козаки із Запорізької Січі. Багато мандруємо по світу, спілкуємось з людьми з різних країн та епох. &#10;&#13; <br> Навіть зустрічаємося з інопланетянами </h2>
+    <div class="container">
+      <div class="block_third" style="background-color: white;">
+        <img class="circular_image" src="1.jpg">
+        <h2 class="text">Козак Око</h2>
+        <p class="text">Маленький козак, але бадьорий та войовничий</p>
+        <img class="circular_logo" src="g.jpg">
+        <img class="circular_logo" src="f.jpg">
+        <img class="circular_logo" src="f.jpg">
+      </div>
+      <div class="block_third" style="background-color: rgb(201, 201, 201);">
+        <img class="circular_image" src="2.jpg">
+        <h2 class="text">Козак Грай</h2>
+        <p class="text">Отаман нашої команди. Спокійний та кмітливий козак</p>
+        <img class="circular_logo" src="g.jpg">
+        <img class="circular_logo" src="f.jpg">
+        <img class="circular_logo" src="f.jpg">
+      </div>
+      <div class="block_third" style="background-color: white;">
+        <img class="circular_image" src="3.jpg">
+        <h2 class="text">Козак Тур</h2>
+        <p class="text">Здоровий та сильний козак. Часто буває сором'язливим</p>
+        <img class="circular_logo" src="g.jpg">
+        <img class="circular_logo" src="f.jpg">
+        <img class="circular_logo" src="f.jpg">
+      </div>
+    </div>
+  </body>
+</html>

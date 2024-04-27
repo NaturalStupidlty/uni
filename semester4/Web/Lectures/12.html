@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two Block Website</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      /* CSS styles for the blocks */
+
+      .a {
+        width: 50%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      .b {
+        width: 100%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      .c {
+        width: 33.333333333333%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      .c3 {
+        width: 33.333333333333%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      .d {
+        width: 25%;
+        margin: -2px;
+        display: inline-block;
+      }
+
+      /* CSS styles for the container */
+      .container {
+        text-align: center;
+      }
+
+      .text {
+        text-align: center;
+      }
+      
+      /* CSS styles for responsive design */
+      @media screen and (max-width: 1200px) {
+        .a {
+          width: 100%;
+        }
+        .c {
+          width: 50%;
+        }
+        .c3 {
+          width: 100%;
+        }
+        .d {
+          width: 50%;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .c {
+          width: 100%;
+        }
+        .d {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="a" style="background-color: rgb(111, 206, 244);">
+        <h2>A1</h2>
+      </div>
+      <div class="a" style="background-color: rgb(19, 159, 235);">
+        <h2>A2</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="b" style="background-color: #15a43f">
+        <h2>B</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="c" style="background-color: rgb(227, 152, 155);">
+        <h2>C1</h2>
+      </div>
+      <div class="c" style="background-color: rgb(201, 64, 69);">
+        <h2>C2</h2>
+      </div>
+      <div class="c3" style="background-color: rgb(164, 0, 5);">
+        <h2>C3</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="d" style="background-color: rgb(210, 189, 225);">
+        <h2>D1</h2>
+      </div>
+      <div class="d" style="background-color: rgb(169, 130, 197);">
+        <h2>D2</h2>
+      </div>
+      <div class="d" style="background-color: rgb(128, 75, 169);">
+        <h2>D3</h2>
+      </div>
+      <div class="d" style="background-color: rgb(74, 22, 113);">
+        <h2>D4</h2>
+      </div>
+    </div>
+  </body>
+</html>

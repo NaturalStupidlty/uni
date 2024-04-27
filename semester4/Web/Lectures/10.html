@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KP #1</title>
+    <style>
+        :root {
+            --tilt-difference: 1.5em;
+            --page-width: 750px;
+        }
+
+        * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .full-height {
+        display: flex;
+    }
+
+    .center-block {
+        display: flex;
+        justify-content: center;
+    }
+
+    .tilted-block {
+        width: var(--page-width);
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .upper-tilted-block {
+        position: absolute;
+        min-height: 100px;
+        clip-path: polygon(0 0, 100% 0%, 100% calc(100% - var(--tilt-difference)), 0% 100%);
+        top: 0;
+        z-index: 1;
+    }
+
+    .lower-tilted-block {
+        position: fixed;
+        min-height: 60px;
+        bottom: 0;
+        clip-path: polygon(0 var(--tilt-difference), 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .outer-wrapper {
+        min-height: 100vh;
+        max-width: var(--page-width);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .black-stripe {
+        min-height: 50px;
+        background-color: black;
+    }
+
+    .main-wrapper {
+        flex-grow: 1;
+        display: flex;
+    }
+
+    .side-content {
+        background-color: #9196C1;
+        min-width: 200px;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        padding: 10px 0 40px 0;
+    }
+
+    .main-content {
+        background-color: #C0C4E5;
+        flex-grow: 1;
+        min-width: 300px;
+        font-family: sans-serif;
+        font-size: 7px;
+        line-height: 1.3em;
+    }
+
+    main {
+        padding: 35px 10% 20px 10%;
+    }
+
+    main > div {
+        margin-bottom: 20px;
+    }
+
+    main > div:last-child {
+        margin-bottom: 0;
+    }
+
+    .grid-image {
+        width: 100%;
+    }
+
+    .image-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    img.main-image {
+        width: 75px;
+        margin: 20px 50px 20px 0;
+        box-shadow: 7px 7px 11px 0 #000000;
+        z-index: 5;
+    }
+
+    .image-container img {
+        margin-top: 10px;
+        width: 180px;
+    }
+
+    .title-article {
+        margin-bottom: 40px;
+        text-align: justify;
+    }
+
+    .column-wrapper {
+        display: inline-flex;
+        column-gap: 40px;
+    }
+
+    .column-wrapper > .column {
+        text-align: justify;
+        width: 50%;
+    }
+
+    .column > article h4 {
+        font-weight: 900;
+        text-align: left;
+        margin: 10px auto   ;
+        letter-spacing: -0.05em;
+    }
+
+    .column > article {
+        margin-bottom: 5px;
+    }
+
+    .column > article ul {
+        margin-left: 0.8em
+    }
+
+    .yellow-background {
+        background-color: yellow;
+    }
+
+</style>
+<body>
+    <div class="center-block">
+        <div class="full-height">
+            <div>
+                <div class="upper-tilted-block tilted-block"></div>
+
+                <div class="outer-wrapper">
+                    <div class="black-stripe"></div>
+                    <div class="main-wrapper">
+                        <div class="side-content">
+                            <img class="main-image" src="https://www.nanonline.org/images/Education/blue_book.jpg" alt="blueprints book">
+                            <div class="image-container">
+                                <img src="https://news-cdn.softpedia.com/images/fitted/340x180/activating-microsoft-plus-for-windows-xp-still-works-18-years-after-launch.jpg" alt="window">
+                                <img src="https://www.slantmagazine.com/wp-content/uploads/2007/12/therewillbeblood.jpg" alt="Mustache guy">
+                                <img src="http://1.bp.blogspot.com/-5vZumFcyboI/T9DmobPkjcI/AAAAAAAAAEM/BoeWueLTp24/s320/pic6.png" alt="Window">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/1925_Ford_Model_T_touring.jpg/560px-1925_Ford_Model_T_touring.jpg" alt="Vehicle">
+                            </div>
+                        </div>
+                        <div class="main-content">
+
+                            <main>
+
+
+                                <div class="title-article">
+                                    The Ford Model T is an automobile that was produced by the Ford Motor Company from October 1, 1908, to May 26, 1927.[10] It is generally regarded as the first affordable automobile, which made car travel available to middle-class Americans. The relatively low price was partly the result of Ford's efficient fabrication, including assembly line production instead of individual handcrafting.[11] It was mainly designed by an American (Childe Harold Wills) and two Hungarian engineers (Joseph A. Galamb, Eugene Farkas). The Model T was colloquially known as the "Tin Lizzie", "Leaping Lena" or "flivver".
+                                </div>
+                                <div>
+                                    <img class="grid-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/1915_Ford_Model_T_%2801%29.jpg/2560px-1915_Ford_Model_T_%2801%29.jpg" alt="1915 Model T Speedster">
+                                </div>
+                                <div class="column-wrapper">
+                                    <div class="column">
+                                        <article>
+                                            <h4>Introduction</h4>
+                                            Although automobiles had been produced from the 1880s, until the Model T was introduced in 1908, they were mostly scarce, expensive, and often unreliable. Positioned as reliable, easily maintained, mass-market transportation, the Model T was a great success. In a matter of days after the release, 15,000 orders had been placed.
+                                        </article>
+                                        <article>
+                                            <h4>Engine Characteristics</h4>
+                                            The Model T has a front-mounted 177-cubic-inch (2.9 L) inline four-cylinder engine, producing 20 hp (15 kW), for a top speed of 42 mph (68 km/h).[29] According to Ford Motor Company, the Model T had fuel economy on the order of 13–21 mpg‑US (16–25 mpg‑imp; 18–11 L/100 km).[30] The engine was capable of running on gasoline, kerosene, or ethanol,[31][32] although the decreasing cost of gasoline and the later introduction of Prohibition made ethanol an impractical fuel for most users. 
+                                        <article>
+                                            <h4>Transmission and drive train</h4>
+                                            The Model T is a rear-wheel drive vehicle. Its transmission is a planetary gear type known (at the time) as "three speed." In today's terms it is considered a two-speed, because one of the three speeds is reverse.
+
+                                            The Model T's transmission is controlled with three floor-mounted pedals, a revolutionary feature for its time,[36] and a lever mounted to the road side of the driver's seat. The throttle is controlled with a lever on the steering wheel. The left-hand pedal is used to engage the transmission. With the floor lever in either the mid position or fully forward and the pedal pressed and held forward, the car enters low gear. When held in an intermediate position, the car is in neutral. 
+                                        </article>
+                                        <article>
+                                            <h4>Transmission bands and linings</h4>
+                                            Two main types of band lining material were used:[37]
+
+                                            Cotton – Cotton woven linings were the original type fitted and specified by Ford.
+                                            Wood – Wooden linings were originally offered as a "longer life" accessory part during the life of the Model T. 
+                                        </article>
+                                        <article>
+                                            <h4>Aftermarket transmissions and drives</h4>
+                                            <p>During the Model T's production run, particularly after 1916, more than 30 manufacturers offered auxiliary transmissions or drives to substitute for, or enhance, the Model T's drivetrain gears. Some offered overdrive for greater <p class="yellow-background">speed and efficiency<p>, while others offered underdrives for more torque (often incorrectly described as "power") to enable hauling or pulling greater loads. </p>
+                                        </article>
+                                    </div>
+
+                                    <div class="column">
+                                        <article>
+                                            <h4>Color</h4>
+                                            By 1918, half of all the cars in the U.S. were Model Ts. In his autobiography, Ford reported that in 1909 he told his management team, "Any customer can have a car painted any color that he wants so long as it is black."[42]
+
+                                            However, in the first years of production from 1908 to 1913, the Model T was not available in black,[43] but rather only in gray, green, blue, and red. Green was available for the touring cars, town cars, coupes, and Landaulets. Gray was available for the town cars only and red only for the touring cars. By 1912, all cars were being painted midnight blue with black fenders. Only in 1914 was the "any color so long as it is black" policy finally implemented.
+                                        </article>
+                                        <article>
+                                            <h4>Body</h4>
+                                            <ul>
+                                                <li>1909–1914 – Characterized by a nearly straight, five-sided hood, with a flat top containing a center hinge and two side sloping sections containing the folding hinges. The firewall is flat from the windshield down with no distinct cowl. </li>
+                                                <li>1915–1916 – The hood design is nearly the same five-sided design with the only obvious change being the addition of louvers to the vertical sides.</li>
+                                                <li>1917–1923 – The hood design was changed to a tapered design with a curved top. The folding hinges were now located at the joint between the flat sides and the curved top. </li>
+                                                <li>1923–1925 – This change was made during the 1923 calendar year, so models built earlier in the year have the older design, while later vehicles have the newer design.</li>
+                                                <li>1926–1927 – This design change made the greatest difference in the appearance of the car. The hood was again enlarged, with the cowl panel no longer a compound curve and blended much more with the line of the hood. </li>
+                                            </ul>
+                                        </article>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+                <div class="lower-tilted-block tilted-block"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

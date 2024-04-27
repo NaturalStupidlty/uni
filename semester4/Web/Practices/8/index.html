@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <title>Title</title>
+</head>
+<body>
+  <img id="flag" src="flags/ukraine.png" class="flag_image">
+  <select id="countries">
+    <option value="ukraine">Ukraine</option>
+    <option value="usa">United States</option>
+    <option value="france">France</option>
+    <option value="russia">.ussia</option>
+    <option value="germany">Germany</option>
+  </select>
+
+  <div id="monuments">
+    <div class="monument">
+      <img src="monuments/ukraine1.jpeg" class="monument_image" id='monument_image1'>
+      <h2 id="monument_header1">Майдан Незалежності</h2>
+      <p id="monument_description1" class="description">Майдан Незалежності у Києві – головна площа столиці та найпопулярніший майдан країни, де завжди бурхливо кипить життя. Взимку – найбільша новорічна ялинка, влітку – старт велопробігів та світломузичні фонтани, весь рік – періодичні культурно-масові заходи, святкові шоу, концерти зірок. З недавніх пір це місце кривавих подій Революції гідності, про які нагадує прилегла Алея Героїв Небесної Сотні.</p>
+      <b id="monument_price1">Price: 0$</b>
+      <input type="checkbox" name="monument1" value="0">
+    </div>
+    <div class="monument">
+      <img src="monuments/ukraine2.jpeg" class="monument_image" id='monument_image2'>
+      <h2 id="monument_header2">Домініканський собор</h2>
+      <p id="monument_description2" class="description">Один із найвеличніших та найбільш пізнаваних храмів Західної України – Домініканський собор (1745-1764), є прикладом архітектури пізнього бароко у Львові. Архітектор – Ян де Вітте, будівничий – Мартін Урбанік.
+Вигляд храму його величність та його розкішність затамовують подих. Першими в вічі впадають величезні колони на опорах круглої та квадратної форм, які тримають з вигляду важелезну споруду. Храм в плані видовженої хрестопотібної форми завершений масивним куполом еліптичної форми та двома дзвіницями по обидва боки. Барабан купола також оздоблено спареними колонами, яких є вісім пар, на осях яких встановлено 18 дерев’яних фігур домініканських святих. Вікна прямокутні, на бічних стінах можна побачити круглі вікна, прикрашені вітражами. Розірваний фронтон фасаду довершений скульптурами святих - роботи Себастіана Фесінгера. Під банею костелу викарбуваний напис латиною «Soli Deo honor et gloria» або «Єдиному Богу честь і хвала».
+Адреса: площа Музейна, 1</p>
+      <b id="monument_price2">Price: 100$</b>
+      <input type="checkbox" name="monument2" value="100">
+    </div>
+    <div class="monument">
+      <img src="monuments/ukraine3.jpeg" class="monument_image" id='monument_image3'>
+      <h2 id="monument_header3">Золоті ворота</h2>
+      <p id="monument_description3" class="description">“Золоті ворота” – музей-реставрація головної міської брами стародавнього Києва та символ сучасної столиці. В самому центрі міста знаходяться залишки фортифікаційної споруди ХІ ст., через яку проїжджали найвищі чини Київської Русі, а за уявленням русинів через «небесну браму» заходило до міста сонце. Тоді – найурочистіша велична брама, сьогодні – одна з найдавніших датованих споруд Східної Європи.</p>
+      <b id="monument_price3">Price: 10$</b>
+      <input type="checkbox" name="monument3" value="10">
+    </div>
+  </div>
+  <p id="total">Total: $0</p>
+
+  <script type="text/javascript">
+    var countriesDropdown = document.getElementById("countries");
+    var flagImage = document.getElementById("flag");
+
+    var monumentImage1 = document.getElementById("monument_image1");
+    var monumentImage2 = document.getElementById("monument_image2");
+    var monumentImage3 = document.getElementById("monument_image3");
+
+    var monumentHeader1 = document.getElementById("monument_header1");
+    var monumentHeader2 = document.getElementById("monument_header2");
+    var monumentHeader3 = document.getElementById("monument_header3");
+
+    var monumentDescription1 = document.getElementById("monument_description1");
+    var monumentDescription2 = document.getElementById("monument_description2");
+    var monumentDescription3 = document.getElementById("monument_description3");
+
+    var monumentPrice1 = document.getElementById("monument_price1");
+    var monumentPrice2 = document.getElementById("monument_price2");
+    var monumentPrice3 = document.getElementById("monument_price3");
+
+    countriesDropdown.addEventListener("change", function() {
+      var country = countriesDropdown.value;
+      flagImage.src = "flags/" + country + ".png";
+      monumentImage1.src = "monuments/" + country + "1.jpeg";
+      monumentImage2.src = "monuments/" + country + "2.jpeg";
+      monumentImage3.src = "monuments/" + country + "3.jpeg";
+
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+      if (country == 'ukraine') {
+        monumentHeader1.innerHTML = "Майдан Незалежності";
+        monumentHeader2.innerHTML = "Домініканський собор";
+        monumentHeader3.innerHTML = "Золоті ворота";
+
+        monumentDescription1.innerHTML = "Майдан Незалежності у Києві – головна площа столиці та найпопулярніший майдан країни, де завжди бурхливо кипить життя. Взимку – найбільша новорічна ялинка, влітку – старт велопробігів та світломузичні фонтани, весь рік – періодичні культурно-масові заходи, святкові шоу, концерти зірок. З недавніх пір це місце кривавих подій Революції гідності, про які нагадує прилегла Алея Героїв Небесної Сотні.";
+        monumentDescription2.innerHTML = "Один із найвеличніших та найбільш пізнаваних храмів Західної України – Домініканський собор (1745-1764), є прикладом архітектури пізнього бароко у Львові. Архітектор – Ян де Вітте, будівничий – Мартін Урбанік. Вигляд храму його величність та його розкішність затамовують подих. Першими в вічі впадають величезні колони на опорах круглої та квадратної форм, які тримають з вигляду важелезну споруду. Храм в плані видовженої хрестопотібної форми завершений масивним куполом еліптичної форми та двома дзвіницями по обидва боки. Барабан купола також оздоблено спареними колонами, яких є вісім пар, на осях яких встановлено 18 дерев’яних фігур домініканських святих. Вікна прямокутні, на бічних стінах можна побачити круглі вікна, прикрашені вітражами. Розірваний фронтон фасаду довершений скульптурами святих - роботи Себастіана Фесінгера. Під банею костелу викарбуваний напис латиною «Soli Deo honor et gloria» або «Єдиному Богу честь і хвала».Адреса: площа Музейна, 1";
+        monumentDescription3.innerHTML = "“Золоті ворота” – музей-реставрація головної міської брами стародавнього Києва та символ сучасної столиці. В самому центрі міста знаходяться залишки фортифікаційної споруди ХІ ст., через яку проїжджали найвищі чини Київської Русі, а за уявленням русинів через «небесну браму» заходило до міста сонце. Тоді – найурочистіша велична брама, сьогодні – одна з найдавніших датованих споруд Східної Європи.";
+
+        monumentPrice1.innerHTML = "Price: 0$";
+        monumentPrice2.innerHTML = "Price: 100$";
+        monumentPrice3.innerHTML = "Price: 10$";
+
+        checkboxes[0].value = "0"
+        checkboxes[1].value = "100"
+        checkboxes[2].value = "10"
+      }
+
+      if (country == 'russia') {
+        monumentHeader1.innerHTML = "Крємль, червона площа";
+        monumentHeader2.innerHTML = "Свастополь";
+        monumentHeader3.innerHTML = "Кримський міст";
+
+        monumentDescription1.innerHTML = "Гарма пам'ятка, на її території можна побачити багато дронів. Скоро планується відкрити АТБ.";
+        monumentDescription2.innerHTML = "На території часто показують світлові шоу, а також дистанційно виступають українські факіри";
+        monumentDescription3.innerHTML = "Мости нікагда нє закончатся.";
+
+        monumentPrice1.innerHTML = "Price: 1488$";
+        monumentPrice2.innerHTML = "Price: 69$";
+        monumentPrice3.innerHTML = "Price: 42$";
+
+        checkboxes[0].value = "1488"
+        checkboxes[1].value = "69"
+        checkboxes[2].value = "42"
+      }
+
+      if (country == 'germany') {
+        monumentHeader1.innerHTML = "Бранденбурзькі ворота";
+        monumentHeader2.innerHTML = "Рейхстаг";
+        monumentHeader3.innerHTML = "Кельнський собор";
+
+        monumentDescription1.innerHTML = "Автор проекту Карл Готтард Ланґганс. Будівництво тривало протягом трьох років (1788–1791), висота становить двадцять метрів. Це перша споруда міста в стилі німецького класицизму. Створена вона за зразком Пропілей афінського Акрополя. Увінчує ворота шестиметрова бронзова квадрига (скульптор Йоганн Готфрид Шадоу), якою управляє богиня перемоги Вікторія. Брандербурзькі ворота мали на меті персоніфікувати міць пруської армії.";
+        monumentDescription2.innerHTML = "Рейхстаг - це будівля німецького парламенту, яка була спалена перед війною і повністю зруйнована під час бомбардувань. Сьогодні його реконструювали і на його вершині побудували великий скляний купол, з якого відкривається прекрасний вид на 360 градусів на все місто Берлін. Пам’ятка німецької історії, Рейхстаг, не можна пропустити. Це на Platz der Republik.";
+        monumentDescription3.innerHTML = "У Кельні, серед інших вражаючих місць, є величезний собор, який відвідують і люблять мільйони!";
+
+        monumentPrice1.innerHTML = "Price: 20$";
+        monumentPrice2.innerHTML = "Price: 60$";
+        monumentPrice3.innerHTML = "Price: 40$";
+
+        checkboxes[0].value = "20"
+        checkboxes[1].value = "60"
+        checkboxes[2].value = "40"
+      }
+
+      if (country == 'france') {
+        monumentHeader1.innerHTML = "Тріумфальна арка";
+        monumentHeader2.innerHTML = "Ейфелева вежа";
+        monumentHeader3.innerHTML = "Нотр-дам де Парі";
+
+        monumentDescription1.innerHTML = "Тріумфальна арка вважається однією з найпопулярніших пам'яток у всьому Парижі. Пам'ятники розташовані в центрі площі Шарля де Голля, на західній стороні Єлисейських полів.";
+        monumentDescription2.innerHTML = "Е́йфелева ве́жа (фр. la Tour Eiffel) — архітектурна пам'ятка Парижа, розміщена на Марсовому полі, символ сучасної Франції. Вежу названо на честь її конструктора Густава Ейфеля. Сам Ейфель називав її «300-метровою вежею» (фр. tour de 300 mètres), інша, народна назва — «Залізна пані» (фр. La dame de fer). Популярний туристичний об'єкт, щорічно приймає понад 6 мільйонів відвідувачів. У 2007 році на вежі побувало 6 893 000 осіб[4], що на 78 000 відвідувачів більше, ніж у 2006, а за її історію з 1889 до 31 грудня 2007 року — 236 445 812 осіб. Вежа стала найвідвідуванішою[5] і найфотографованішою[6] туристичною пам'яткою світу.";
+        monumentDescription3.innerHTML = "Паризький собор Паризької Богоматері є перлиною готичної архітектури і, можливо, однією з найкращих церков Європи. Побудований у середньовіччі собор є центральною сценою «Горбаня Паризької Богоматері», роману XIX століття, написаного французьким письменником Віктором Гюго.";
+
+        monumentPrice1.innerHTML = "Price: 10$";
+        monumentPrice2.innerHTML = "Price: 80$";
+        monumentPrice3.innerHTML = "Price: 30$";
+
+        checkboxes[0].value = "10"
+        checkboxes[1].value = "80"
+        checkboxes[2].value = "30"
+      }
+
+      if (country == 'usa') {
+        monumentHeader1.innerHTML = "Статуя свободи";
+        monumentHeader2.innerHTML = "Монумент Вашингтона";
+        monumentHeader3.innerHTML = "Рашмор";
+
+        monumentDescription1.innerHTML = "Ста́туя Свобо́ди (англ. Statue of Liberty, повна назва — Свобо́да, що ося́ює світ, англ. Liberty Enlightening the World) — національний пам'ятник США, символ свободи, демократії та справедливості. Це одна з найзнаменитіших скульптур у США та у світі, часто звана «символом Нью-Йорка і США», «символом свободи і демократії», «Леді Свобода». Це подарунок французьких громадян до сторіччя американської революції.";
+        monumentDescription2.innerHTML = "Монумент Вашингтона (англ. Washington Monument) — обеліск у західній частині Національної алеї у Вашингтоні (США), зведений на честь першого президента США Джорджа Вашингтона. Монумент зроблений із мармуру, граніту і мідного кварциту є одночасно найстрункішою висотною спорудою у Вашингтоні і світі, та найстрункішим обеліском заввишки 169 метрів 29,4 сантиметрів. У світі є стрункіші монументальні колони, але вони не є кам'яними чи обелісками. Спроектований архітектором Робертом Міллзом у 1840-х роках. Спорудження монументу почалося в 1848 р., а завершилося у 1884 р. — майже через 30 років після смерті архітектора. Затримка в споруджені сталася через перешкоди з боку впливової партії «Нічого не знаю», брак коштів та громадянську війну в США. Про кількарічні перерви в будівництві свідчать відмінності в кольорах матеріалів обеліску на висоті близько 46-ти метрів. Наріжний камінь було закладено на день незалежності США 4 липня 1848 р; останній елемент встановлено 6 грудня 1884 р., а остаточно монумент було завершено 21 лютого 1885 р. Офіційне відкриття відбулося 9 жовтня 1888 р. ";
+        monumentDescription3.innerHTML = "Національний меморіал Гора Рашмор (англ. Mount Rushmore National Memorial) знаходиться біля міста Кістоун у Південній Дакоті, США. Гора відома тим, що в її гірській породі висічені 18-ти метрові голови чотирьох президентів США: Джорджа Вашингтона, Томаса Джефферсона, Теодора Рузвельта й Авраама Лінкольна (на зображенні зліва направо). Меморіал займає площу 5,17 км², знаходиться на висоті 1745 м над рівнем моря.";
+
+        monumentPrice1.innerHTML = "Price: 100$";
+        monumentPrice2.innerHTML = "Price: 80$";
+        monumentPrice3.innerHTML = "Price: 50$";
+
+        checkboxes[0].value = "100"
+        checkboxes[1].value = "80"
+        checkboxes[2].value = "50"
+      }
+    });
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const totalDisplay = document.getElementById('total');
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].addEventListener('change', function() {
+        let total = 0;
+        for (let j = 0; j < checkboxes.length; j++) {
+          if (checkboxes[j].checked) {
+            total += parseFloat(checkboxes[j].value);
+          }
+        }
+        totalDisplay.innerText = "Total: $" + total;
+      });
+    }
+  </script>
+</body>
+</html>

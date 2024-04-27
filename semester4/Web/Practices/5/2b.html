@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2b</title>
+    <link rel="stylesheet" href="styles1b.css">
+    <style>
+
+.angry-grid {
+   display: grid; 
+
+   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   
+   gap: 0px;
+   height:400px;
+   width:600px;
+}
+.item {
+    background-color: grey;
+    margin: 2px;
+    border-radius: 5px;
+    color: white;
+    font-family: Arial;
+    padding: 20px;
+}
+  
+#item-0 {
+   grid-row-start: 1;
+   grid-column-start: 1;
+
+   grid-row-end: 2;
+   grid-column-end: 5;
+   
+}
+#item-1 {
+   grid-row-start: 4;
+   grid-column-start: 1;
+
+   grid-row-end: 5;
+   grid-column-end: 2;
+   
+}
+#item-2 {
+   grid-row-start: 3;
+   grid-column-start: 4;
+
+   grid-row-end: 4;
+   grid-column-end: 5;
+   
+}
+#item-3 {
+   grid-row-start: 4;
+   grid-column-start: 2;
+
+   grid-row-end: 5;
+   grid-column-end: 3;
+   
+}
+#item-4 { 
+   grid-row-start: 2;
+   grid-column-start: 1;
+
+   grid-row-end: 3;
+   grid-column-end: 2;
+   
+}
+#item-5 { 
+   grid-row-start: 3;
+   grid-column-start: 1;
+
+   grid-row-end: 4;
+   grid-column-end: 2;
+   
+}
+#item-6 {
+   grid-row-start: 2;
+   grid-column-start: 2;
+
+   grid-row-end: 3;
+   grid-column-end: 3;
+   
+}
+#item-7 {
+   grid-row-start: 3;
+   grid-column-start: 2;
+
+   grid-row-end: 4;
+   grid-column-end: 3;
+   
+}
+#item-8 { 
+   grid-row-start: 3;
+   grid-column-start: 3;
+
+   grid-row-end: 4;
+   grid-column-end: 4;
+   
+}
+#item-9 {
+   grid-row-start: 2;
+   grid-column-start: 3;
+
+   grid-row-end: 3;
+   grid-column-end: 4;
+   
+}
+#item-10 {
+   grid-row-start: 2;
+   grid-column-start: 4;
+
+   grid-row-end: 3;
+   grid-column-end: 5;
+   
+}
+#item-11 {
+   grid-row-start: 5;
+   grid-column-start: 1;
+
+   grid-row-end: 6;
+   grid-column-end: 5;
+   
+}
+</style>
+</head>
+<body>
+    <div class="angry-grid">
+          <div id="item-0" class="item">My header</div>
+          <div id="item-1" class="item">Panel A</div>
+          <div id="item-2" class="item">Panel B</div>
+          <div id="item-3" class="item">Panel C</div>
+          <div id="item-4" class="item">Panel D</div>
+          <div id="item-5" class="item">Panel E</div>
+          <div id="item-6" class="item">Panel F</div>
+          <div id="item-7" class="item">Panel G</div>
+          <div id="item-8" class="item">Panel H</div>
+          <div id="item-9" class="item">Panel I</div>
+          <div id="item-10" class="item">Panel J</div>
+          <div id="item-11" class="item">My footer</div>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2b</title>
+    <link rel="stylesheet" href="styles1b.css">
+<style>
+.container {
+   display: grid;
+   background-color: lightgoldenrodyellow;
+   max-width: 50%;
+   margin: 0 auto;
+   color: red;
+   border: 2px solid red;
+   border-radius: 5px;
+}
+
+.angry-grid {
+   display: grid; 
+
+   grid-template-rows: 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr;
+   
+   gap: 0px;
+   height: 200px;
+   width: 715px;
+   
+}
+  
+.item {
+   background-color: orange;
+   color: red;
+   border: 2px solid red;
+   border-radius: 5px;
+   padding: 5px;
+   font-family: Arial;
+}
+.sub_item {
+   background-color: lightyellow;
+   color: red;
+   border: 2px solid yellow;
+   border-radius: 5px;
+   padding: 5px;
+   margin: 2px;
+   font-family: Arial;
+}
+
+
+#item-0 {
+   grid-row-start: 1;
+   grid-column-start: 1;
+
+   grid-row-end: 3;
+   grid-column-end: 2;
+   
+}
+#item-1 { 
+   grid-row-start: 1;
+   grid-column-start: 2;
+
+   grid-row-end: 2;
+   grid-column-end: 3;
+   
+}
+#item-2 {
+   grid-row-start: 1;
+   grid-column-start: 3;
+
+   grid-row-end: 2;
+   grid-column-end: 4;
+   
+}
+#item-3 {
+   grid-row-start: 2;
+   grid-column-start: 2;
+
+   grid-row-end: 3;
+   grid-column-end: 3;
+   
+}
+</style>
+</head>
+<body>
+<div class="container">
+   <div class="item">
+      <div class="sub_item">
+         a
+      </div>
+      <div class="sub_item">
+         b
+      </div>
+      <div class="sub_item">
+         c
+      </div>
+
+   </div>
+   <div class="angry-grid">
+     <div id="item-0" class="item">Two</div>
+     <div id="item-1" class="item">Three</div>
+     <div id="item-2" class="item">Four</div>
+     <div id="item-3" class="item">Five</div>
+   </div>
+</div>
+</body>
+</html>
+
+
+
