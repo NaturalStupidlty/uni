@@ -43,7 +43,7 @@
     * [Algorithms](https://github.com/NaturalStupldity/uni/tree/main/semester4/Algorithms)
     * [Data Analysis](https://github.com/NaturalStupldity/uni/tree/main/semester4/DataAnalysis)
     * [Mathematical Logic](https://github.com/NaturalStupldity/uni/tree/main/semester4/MathLogic)
-    * [Object Oriented Programming](https://github.com/NaturalStupldity/uni/tree/main/semester4/OOP)
+    * [OOP](https://github.com/NaturalStupldity/uni/tree/main/semester4/OOP)
     * [Operations Research](https://github.com/NaturalStupldity/uni/tree/main/semester4/OperationsResearch)
     * [Ukrainian and Foreign Culture](https://github.com/NaturalStupldity/uni/tree/main/semester4/UkrainianAndForignCulture)
     * [Web](https://github.com/NaturalStupldity/uni/tree/main/semester4/Web)
