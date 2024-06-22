@@ -45,7 +45,7 @@
     * [Mathematical Logic](https://github.com/NaturalStupldity/uni/tree/main/semester4/MathLogic)
     * [OOP](https://github.com/NaturalStupldity/uni/tree/main/semester4/OOP)
     * [Operations Research](https://github.com/NaturalStupldity/uni/tree/main/semester4/OperationsResearch)
-    * [Ukrainian and Foreign Culture](https://github.com/NaturalStupldity/uni/tree/main/semester4/UkrainianAndForignCulture)
+    * [Ukrainian Culture](https://github.com/NaturalStupldity/uni/tree/main/semester4/UkrainianAndForignCulture)
     * [Web](https://github.com/NaturalStupldity/uni/tree/main/semester4/Web)
 
 <td valign="top">
