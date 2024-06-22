@@ -59,5 +59,13 @@
     * [Operating Systems](https://github.com/NaturalStupldity/uni/tree/main/semester5/OperatingSystems)
     * [Philosophy](https://github.com/NaturalStupldity/uni/tree/main/semester5/Philosophy)
     <hr>
+  * [Semester 6](https://github.com/NaturalStupldity/uni/tree/main/semester6)
+    * [AutomataTheory](https://github.com/NaturalStupldity/uni/tree/main/semester6/AutomataTheory)
+    * [Compilers](https://github.com/NaturalStupldity/uni/tree/main/semester6/Compilers)
+    * [EEPM](https://github.com/NaturalStupldity/uni/tree/main/semester6/EEPM)
+    * [OOP](https://github.com/NaturalStupldity/uni/tree/main/semester6/OOP)
+    * [Python](https://github.com/NaturalStupldity/uni/tree/main/semester6/Python)
+    * [Sociology](https://github.com/NaturalStupldity/uni/tree/main/semester6/Sociology)
+    * [CourseWork](https://github.com/NaturalStupldity/uni/tree/main/semester6/CourseWork)
 
 </table>
