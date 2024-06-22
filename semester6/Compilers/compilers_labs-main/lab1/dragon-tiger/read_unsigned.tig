@@ -1,0 +1,24 @@
+let
+  /* Read a positive integer from the standard input.
+     Returns -1 on error */
+var buffer := getchar()
+
+function read_unsigned() : int =
+  let var i := 0
+      function isdigit(s : string) : int =
+        ord("0") <= ord(s) & ord(s) <= ord("9")
+      function skipto() =
+        while buffer = "\n"
+        do buffer := getchar()
+  in skipto();
+     while isdigit(buffer)
+     do (i := i * 10 + ord(buffer) - ord("0");
+         buffer := getchar());
+     i
+  end
+
+var a : int := read_unsigned()
+in
+  print_int(a*2);
+  print("\n")
+end

@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>Concert ID</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Genre</th>
+            <th>Date</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for concert in concerts %}
+            <tr>
+                <td><a href="/concerts/{{ concert.concert_id }}/performers/">{{ concert.concert_id }}</a></td>
+                <td>{{ concert.name }}</td>
+                <td>{{ concert.place }}</td>
+                <td>{{ concert.genre }}</td>
+                <td>{{ concert.date }}</td>
+                <td>{{ concert.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

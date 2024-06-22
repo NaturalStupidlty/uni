@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>Event ID</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Date</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+            <tr>
+                <td><a href="/event/{{ event.event_id }}/performers/">{{ event.event_id }}</a></td>
+                <td>{{ event.name }}</td>
+                <td>{{ event.place }}</td>
+                <td>{{ event.date }}</td>
+                <td>{{ event.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

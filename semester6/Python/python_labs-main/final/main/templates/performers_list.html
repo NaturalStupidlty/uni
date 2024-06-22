@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>Concert ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for performer in performers %}
+            <tr>
+                <td>{{ performer.concert_id }}</td>
+                <td>{{ performer.name }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

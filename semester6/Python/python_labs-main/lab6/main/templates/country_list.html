@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>Country ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for country in countries %}
+            <tr>
+                <td><a href="/countries/{{ country.country_id }}/cities/">{{ country.country_id }}</a></td>
+                <td>{{ country.name }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

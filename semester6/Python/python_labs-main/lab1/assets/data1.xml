@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<WorldMap>
+  <Country id="1" name="Україна">
+    <City id="1" name="Київ" is_capital="True" population="3000000"/>
+    <City id="2" name="Львів" is_capital="False" population="600000"/>
+  </Country>
+  <Country id="2" name="Монако">
+    <City id="3" name="Монако" is_capital="True" population="74285"/>
+    <City id="4" name="Канни" is_capital="False" population="38400"/>
+  </Country>
+</WorldMap>

@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>City ID</th>
+            <th>Name</th>
+            <th>Population</th>
+            <th>Is Capital</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.city_id }}</td>
+                <td>{{ city.name }}</td>
+                <td>{{ city.population }}</td>
+                <td>{{ city.is_capital }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

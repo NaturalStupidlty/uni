@@ -1,0 +1,27 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+<table>
+    <thead>
+        <tr>
+            <th>Theatre play ID</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Play type</th>
+            <th>Date</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for play in theatre_plays %}
+            <tr>
+                <td><a href="/theatre_plays/{{ play.play_id }}/performers/">{{ play.play_id }}</a></td>
+                <td>{{ play.name }}</td>
+                <td>{{ play.place }}</td>
+                <td>{{ play.play_type }}</td>
+                <td>{{ play.date }}</td>
+                <td>{{ play.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
