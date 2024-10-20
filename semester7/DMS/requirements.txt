@@ -1,0 +1,6 @@
+lightkurve
+WxPython
+plotly
+pyqtwebengine
+pyqt5
+pyqtdarktheme
