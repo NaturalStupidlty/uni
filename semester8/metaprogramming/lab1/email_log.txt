@@ -1,0 +1,2 @@
+[2025-03-09T17:44:09.275449] email changed from None to alice@example.com
+[2025-03-09T17:44:09.275618] email changed from alice@example.com to alice.cooper@example.com
